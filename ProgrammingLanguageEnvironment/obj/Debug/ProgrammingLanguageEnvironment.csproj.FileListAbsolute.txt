@@ -1,0 +1,10 @@
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\bin\Debug\ProgrammingLanguageEnvironment.exe.config
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\bin\Debug\ProgrammingLanguageEnvironment.exe
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\bin\Debug\ProgrammingLanguageEnvironment.pdb
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.csproj.AssemblyReference.cache
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.csproj.SuggestedBindingRedirects.cache
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.Properties.Resources.resources
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.csproj.GenerateResource.cache
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.csproj.CoreCompileInputs.cache
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.exe
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.pdb
