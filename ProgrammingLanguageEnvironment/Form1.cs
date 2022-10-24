@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace ProgrammingLanguageEnvironment
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        //bitmap that will be displayed in OutputWindow picturebox
+        Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
+        Canvass MyCanvass;
+        public MainForm()
         {
             InitializeComponent();
+            MyCanvass = new Canvass(Graphics.FromImage(OutputBitmap));
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,8 +39,30 @@ namespace ProgrammingLanguageEnvironment
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Console.WriteLine("enter pressed");
+                //TO DO EXTRACT CODE AND PARAMATERS FROM COMMAND LINE
+                String Command = CommandLine.Text.Trim().ToLower(); // read + sanitise commandline
+                if (Command.Equals("line") == true)
+                {
+                    MyCanvass.DrawLine(160, 120);
+                    Console.WriteLine("LINE");
+                }
+                else if (Command.Equals("square") == true)
+                {
+                    MyCanvass.DrawSquare(25);
+                    Console.WriteLine("SQUARE");
+                }
+                CommandLine.Text = ""; // clears the commandline
+                Refresh(); // update the outputwindow
+
+                //Console.WriteLine("enter pressed");
             }
+        }
+
+        private void OutputWindow_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics; // get graphics context of the form
+            g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
+
         }
     }
 }
