@@ -35,11 +35,14 @@ namespace ProgrammingLanguageEnvironment
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void commandLine_KeyDown(object sender, KeyEventArgs e)
+        private void CommandLine_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 //TO DO EXTRACT CODE AND PARAMATERS FROM COMMAND LINE
+                //Methodise the below to allow calling from elsewhere
+                // call new process method here
+
                 String Command = CommandLine.Text.Trim().ToLower(); // read + sanitise commandline
                 if (Command.Equals("line") == true)
                 {
