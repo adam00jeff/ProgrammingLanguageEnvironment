@@ -17,7 +17,10 @@ namespace ProgrammingLanguageEnvironment
         Graphics g;
         Pen Pen;
         int xPos, yPos; //positional reference when drawing
-
+        /// <summary>
+        /// test change
+        /// </summary>
+        /// <param name="g"></param>
         public Canvass(Graphics g)
         {
             this.g = g;
