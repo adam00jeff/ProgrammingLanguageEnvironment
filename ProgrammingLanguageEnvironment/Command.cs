@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    internal class Command
+    public class Command
     {
         internal Action Action { get; set; }
         internal IEnumerable<int> Coordinates { get; set; }
