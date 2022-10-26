@@ -21,7 +21,7 @@ namespace ProgrammingLanguageEnvironment
         public Canvass(Graphics g)
         {
             this.g = g;
-            xPos = yPos = 0;
+            xPos = yPos = 20;
             Pen = new Pen(Color.Black, 1);
         }
 

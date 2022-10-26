@@ -41,7 +41,7 @@
             this.CommandLine.Name = "CommandLine";
             this.CommandLine.Size = new System.Drawing.Size(402, 20);
             this.CommandLine.TabIndex = 0;
-            this.CommandLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.commandLine_KeyDown);
+            this.CommandLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CommandLine_KeyDown);
             // 
             // button1
             // 

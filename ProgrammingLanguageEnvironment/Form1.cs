@@ -44,6 +44,7 @@ namespace ProgrammingLanguageEnvironment
                 // call new process method here
 
                 String Command = CommandLine.Text.Trim().ToLower(); // read + sanitise commandline
+                // switch (command typed) <- add a switch to replace the if
                 if (Command.Equals("line") == true)
                 {
                     MyCanvass.DrawLine(160, 120);
