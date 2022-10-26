@@ -21,7 +21,7 @@ namespace ProgrammingLanguageEnvironment
         public Canvass(Graphics g)
         {
             this.g = g;
-            xPos = yPos = 0;
+            xPos = yPos = 50;
             Pen = new Pen(Color.Black, 1);
         }
 
@@ -34,7 +34,18 @@ namespace ProgrammingLanguageEnvironment
 
         public void DrawSquare(int size)
         {
-            g.DrawRectangle(Pen, xPos, yPos, xPos = size, yPos + size);
+            g.DrawRectangle(Pen, xPos, yPos, xPos + size, yPos + size);
+        }
+
+        public void DrawTriangle(int side1, int side2, int side3)
+        {
+            Point[] points =
+            {
+                new Point(xPos, yPos),
+                new Point(xPos-side1, yPos+side2),
+                new Point(xPos+side2, yPos+side3)
+            };
+            g.DrawPolygon(Pen, points);
         }
     }
 

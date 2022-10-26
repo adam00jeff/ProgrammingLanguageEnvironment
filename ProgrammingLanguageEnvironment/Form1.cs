@@ -55,6 +55,11 @@ namespace ProgrammingLanguageEnvironment
                     MyCanvass.DrawSquare(25);
                     Console.WriteLine("SQUARE");
                 }
+                else if (Command.Equals("triangle") == true)
+                {
+                    MyCanvass.DrawTriangle(55, 55, 55);
+                    Console.WriteLine("TRIANGLE");
+                }
                 CommandLine.Text = ""; // clears the commandline
                 Refresh(); // update the outputwindow
 
