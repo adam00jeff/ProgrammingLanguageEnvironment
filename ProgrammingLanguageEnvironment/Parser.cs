@@ -9,15 +9,9 @@ namespace ProgrammingLanguageEnvironment
 {
     public class Parser
     {
-       // public static CommandBehavior ParseInput(string input)
-       // {
-        //    if (input == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(input));
-        //    IEnumerable<string> parts = input.Split(' ').ToList();
-
-            ///
-            ///
-     //   }
+       public static Action ParseAction(IEnumerable<string> tokens)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

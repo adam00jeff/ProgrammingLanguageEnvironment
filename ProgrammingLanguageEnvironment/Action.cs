@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    internal class Action
+    public enum Action
     {
+        Circle,
+        Square,
+        Rectangle,
+        Triangle,
+        Line,
+        Move,
+        Clear,
+        Reset,
+        None
+
     }
 }

@@ -8,5 +8,13 @@ namespace ProgrammingLanguageEnvironment
 {
     internal class Command
     {
+        internal Action Action { get; set; }
+        internal IEnumerable<int> Coordinates { get; set; }
+
+        public Command(Action action, IEnumerable<int> coordinates)
+        {
+            Action = action;
+            Coordinates = coordinates;
+        }
     }
 }
