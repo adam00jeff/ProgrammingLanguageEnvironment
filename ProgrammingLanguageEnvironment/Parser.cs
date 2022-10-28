@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
@@ -15,7 +17,7 @@ namespace ProgrammingLanguageEnvironment
         /// </summary>
         /// <param name="tokens">the string tokens from input</param>
         /// <returns>an instance of the Action Enums if matched,Action.none if unmatched</returns>
-       public static Action ParseAction(IEnumerable<string> tokens)
+        public static Action ParseAction(IEnumerable<string> tokens)
         {
             var actions = Enum.GetNames(typeof(Action));
             var firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));
@@ -43,30 +45,37 @@ namespace ProgrammingLanguageEnvironment
         /// <exception cref="NotImplementedException"></exception>
         public static IEnumerable<int> ParseNumbers(IEnumerable<string> tokens)
         {
-            IEnumerable<int> result = tokens.Select(int.Parse);
-            
-            return result;
-
-
-            
-        }
-        /// <summary>
-        /// 
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static Command ParseInput(string input)
-        {
-            if (input == null)
+            List<int> result = new List<int>(); // sets up an enum to store result
+            IEnumerable<int> list3 = new List<int>(); // sets up an enum to store result
+            Regex nonDigits = new Regex(@"[^\d]"); // sets a regex for removing things than arent an int
+            List<string> list2 = tokens.Select(l => nonDigits.Replace(l, "")).ToList();// iterates through a list of tokens, removing things that are not ints
+            list3 = list2.Select(s => Int32.TryParse(s, out int n) ? n : (int?)null)// parses the list2 checking for nulls
+                .Where(n => n.HasValue)
+                 .Select(n => n.Value)
+                .ToList(); // saves in result
+            foreach(var i in list3)
             {
-                throw new ArgumentNullException(nameof(input));
+                result.Add(i);
             }
-            IEnumerable<string> tokens = input.Split(' ').ToList();
-            var action = ParseAction(tokens);
-            var numbers = ParseNumbers(tokens);
-            return new Command(action, numbers);
+            return result;
         }
-    }
-}
+            /// <summary>
+            /// 
+            /// 
+            /// </summary>
+            /// <param name="input"></param>
+            /// <returns></returns>
+            /// <exception cref="NotImplementedException"></exception>
+            public static Command ParseInput(string input)
+            {
+                if (input == null)
+                {
+                    throw new ArgumentNullException(nameof(input));
+                }
+                IEnumerable<string> tokens = input.Split(' ').ToList();
+                var action = ParseAction(tokens);
+                var numbers = ParseNumbers(tokens);
+                return new Command(action, numbers);
+            }
+        }
+    } 

@@ -106,7 +106,39 @@ namespace ProgrammingLanguageEnvironment.Tests
         }
 
         [TestMethod()]
-        public void ParseNumbersTest_returnsCorrectNumbers()
+        public void ParseInputTest_returnsCorrectActionCommand()
+        {
+            //arrange
+            var input = "circle";
+
+            //calculate
+            var result = Parser.ParseInput(input);
+
+            //check
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.Circle, result.Action);
+            Assert.IsTrue(!result.Coordinates.Any());
+        }
+
+        [TestMethod()]
+        public void ParseInputTest()
+        {
+            //arrange
+            var input = "circle 10";
+
+            //calculate
+            var result = Parser.ParseInput(input);
+
+            //check
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.Circle, result.Action);
+            Assert.IsTrue(!result.Coordinates.Contains(10));
+        }
+
+        [TestMethod()]
+        public void ParseNumbersTest()
         {
             //arrange
             var input = new List<string> { "50" };
@@ -115,13 +147,9 @@ namespace ProgrammingLanguageEnvironment.Tests
             var result = Parser.ParseNumbers(input);
 
             //check
-            Assert.AreEqual("50", result);
-        }
-
-        [TestMethod()]
-        public void ParseInputTest()
-        {
-            Assert.Fail();
+            Assert.AreEqual(50, result);
+            Assert.IsInstanceOfType(result, typeof(int));
+            
         }
     }
 }
