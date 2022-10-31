@@ -147,8 +147,9 @@ namespace ProgrammingLanguageEnvironment.Tests
             var result = Parser.ParseNumbers(input);
 
             //check
-            Assert.AreEqual(50, result);
-            Assert.IsInstanceOfType(result, typeof(int));
+            Assert.IsTrue(result.Count() == 1);
+            Assert.IsTrue(result.Contains(50));
+           
             
         }
     }
