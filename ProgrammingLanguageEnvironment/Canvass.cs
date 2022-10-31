@@ -25,6 +25,8 @@ namespace ProgrammingLanguageEnvironment
             Pen = new Pen(Color.Black, 1);
         }
 
+        // TO DO G.DRAWSTING OUTPUT SYNTAX CHECK
+
         public void DrawLine(int toX, int toY)
         {
             g.DrawLine(Pen, xPos, yPos, toX, toY);
