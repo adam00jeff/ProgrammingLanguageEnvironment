@@ -120,25 +120,9 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.AreEqual(Action.Circle, result.Action);
             Assert.IsTrue(!result.Coordinates.Any());
         }
-
+               
         [TestMethod()]
-        public void ParseInputTest()
-        {
-            //arrange
-            var input = "circle 10";
-
-            //calculate
-            var result = Parser.ParseInput(input);
-
-            //check
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(Command));
-            Assert.AreEqual(Action.Circle, result.Action);
-            Assert.IsTrue(!result.Coordinates.Contains(10));
-        }
-
-        [TestMethod()]
-        public void ParseNumbersTest()
+        public void ParseNumbersTestBasicStringInput()
         {
             //arrange
             var input = new List<string> { "50" };
@@ -151,6 +135,68 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsTrue(result.Contains(50));
            
             
+        }
+        [TestMethod()]
+        public void ParseInputTestBasicCorrectLowerString()
+        {
+            //arrange
+            var input = "circle 10";
+
+            //calculate
+            var result = Parser.ParseInput(input);
+
+            //check
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.Circle, result.Action);
+            Assert.IsTrue(result.Coordinates.Contains(10));
+        }
+        [TestMethod()]
+        public void ParseInputTestBasicCorrectUpperString()
+        {
+            //arrange
+            var input = "CIRCLE 10";
+
+            //calculate
+            var result = Parser.ParseInput(input);
+
+            //check
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.Circle, result.Action);
+            Assert.IsTrue(result.Coordinates.Contains(10));
+        }
+        [TestMethod()]
+        public void ParseInputTestBacisIncorrectLowerString()
+        {
+            //arrange
+            var input = "cwwircle 10";
+
+            //calculate
+            var result = Parser.ParseInput(input);
+
+            //check
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.None, result.Action);
+            Assert.IsTrue(result.Coordinates.Contains(10));
+        }
+        [TestMethod()]
+        public void ParseInputTestBacisCorrectLowerStringThreeCorrectNumbers()
+        {
+            //arrange
+            var input = "circle 10 30 40";
+
+            //calculate
+            var result = Parser.ParseInput(input);
+
+            //check
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.Circle, result.Action);
+            Assert.IsTrue(result.Coordinates.Contains(10));
+            Assert.IsTrue(result.Coordinates.Contains(40));
+            Assert.IsTrue(result.Coordinates.Contains(30));
         }
     }
 }
