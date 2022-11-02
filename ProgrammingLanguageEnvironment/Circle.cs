@@ -24,5 +24,10 @@ namespace ProgrammingLanguageEnvironment
         {
             Radius = radius;
         }
+
+        public override void draw(Graphics g)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace ProgrammingLanguageEnvironment
     /// Class to hold the data to be displayed on the form
     /// </summary>
     class Canvass
+        ///must be some kind of inheritance issue
     {
         ///
         ///
@@ -21,7 +22,7 @@ namespace ProgrammingLanguageEnvironment
         public Canvass(Graphics g)
         {
             this.g = g;
-            xPos = yPos = 50;
+            xPos = yPos = 50; // this cant be right
             Pen = new Pen(Color.Black, 1);
         }
 
@@ -34,10 +35,7 @@ namespace ProgrammingLanguageEnvironment
             yPos = toY;
         }
 
-        public void DrawSquare(int size)
-        {
-            g.DrawRectangle(Pen, xPos, yPos, xPos + size, yPos + size);
-        }
+        
 
         public void DrawTriangle(int side1, int side2, int side3)
         {

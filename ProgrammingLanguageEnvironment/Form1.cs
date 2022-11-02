@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +16,16 @@ namespace ProgrammingLanguageEnvironment
         //bitmap that will be displayed in OutputWindow picturebox
         Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
         Canvass MyCanvass;
+        ArrayList Shapes = new ArrayList();
+
+
         public MainForm()
         {
             InitializeComponent();
             MyCanvass = new Canvass(Graphics.FromImage(OutputBitmap));
+            Shapes.Add(new Rectangle(Color.Black, 50, 70, Width, Height));
+            
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,7 +59,8 @@ namespace ProgrammingLanguageEnvironment
                 }
                 else if (Command.Equals("square") == true)
                 {
-                    MyCanvass.DrawSquare(25);
+                    //MyCanvass.DrawSquare(25);
+                    
                     Console.WriteLine("SQUARE");
                 }
                 else if (Command.Equals("triangle") == true)
@@ -71,6 +79,8 @@ namespace ProgrammingLanguageEnvironment
         {
             Graphics g = e.Graphics; // get graphics context of the form
             g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
+            
+
 
         }
     }
