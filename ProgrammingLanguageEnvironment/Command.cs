@@ -9,12 +9,15 @@ namespace ProgrammingLanguageEnvironment
     public class Command
     {
         public Action Action { get; set; }
-        public IEnumerable<int> Coordinates { get; set; }
+        public IEnumerable<int> Paramaters { get; set; }
 
-        public Command(Action action, IEnumerable<int> coordinates)
+        public Command(Action action, IEnumerable<int> paramaters)
         {
             Action = action;
-            Coordinates = coordinates;
+            Paramaters= paramaters;
         }
-    }
+
+     }
+
+
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,23 +40,30 @@ namespace ProgrammingLanguageEnvironment
         {
             if (e.KeyCode == Keys.Enter)
             {
+                //var Command = Parser.ParseInput(CommandLine.Text);
                 //TO DO EXTRACT CODE AND PARAMATERS FROM COMMAND LINE
                 //Methodise the below to allow calling from elsewhere
                 // call new process method here
+               // String Command = CommandLine.Text.Trim().ToLower(); 
+                // read + sanitise commandline // change this to parser class
+                // switch (command typed) <- add a switch to replace the if
+                //if (Command.Action.Equals("line") == true)
 
-                String Command = CommandLine.Text.Trim().ToLower(); // read + sanitise commandline // change this to parser class
-                                                                    // switch (command typed) <- add a switch to replace the if
-                if (Command.Equals("line") == true)
+                var result = Parser.ParseInput(CommandLine.Text);
+                var input1 = result.Action;
+                var input2 = result.Paramaters;
+
+                if (input1.Equals(Action.Line) == true)
                 {
                     MyCanvass.DrawLine(160, 120);
                     Console.WriteLine("LINE");
                 }
-                else if (Command.Equals("square") == true)
+                else if (input1.Equals(Action.Square) == true)
                 {
-                    MyCanvass.DrawSquare(25);
+                    MyCanvass.DrawSquare(50);
                     Console.WriteLine("SQUARE");
                 }
-                else if (Command.Equals("triangle") == true)
+                else if (input1.Equals(Action.Triangle) == true)
                 {
                     MyCanvass.DrawTriangle(55, 55, 55);
                     Console.WriteLine("TRIANGLE");
@@ -69,9 +77,10 @@ namespace ProgrammingLanguageEnvironment
 
         private void OutputWindow_Paint(object sender, PaintEventArgs e)
         {
+            
             Graphics g = e.Graphics; // get graphics context of the form
             g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
-
+            
         }
     }
 }

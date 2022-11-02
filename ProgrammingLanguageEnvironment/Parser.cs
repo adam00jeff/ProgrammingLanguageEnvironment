@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -69,11 +71,17 @@ namespace ProgrammingLanguageEnvironment
         /// <exception cref="NotImplementedException"></exception>
         public static Command ParseInput(string input)
             {
+
+            var line = input.ToLower();
+            var trim = line.Trim();
+            
                 if (input == null)
                 {
                     throw new ArgumentNullException(nameof(input));
                 }
-                IEnumerable<string> tokens = input.Split(' ').ToList();
+                
+
+                IEnumerable<string> tokens = trim.Split(' ').ToList();
                 var action = ParseAction(tokens);
                 var numbers = ParseNumbers(tokens);
                 return new Command(action, numbers);

@@ -11,9 +11,16 @@ namespace ProgrammingLanguageEnvironment
     {
         public static readonly int DefaultHeight = 40;
         public static readonly int DefaultWidth = 40;
+        ///
+        ///
+
 
         internal int Height { get; set; }
         internal int Width { get; set; }
+
+ 
+
+
 
         public Rectangle() : this(DefaultHeight, DefaultWidth)
         {

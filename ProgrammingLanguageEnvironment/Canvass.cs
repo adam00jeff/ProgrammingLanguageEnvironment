@@ -15,28 +15,37 @@ namespace ProgrammingLanguageEnvironment
         ///
         ///
         Graphics g;
-        Pen Pen;
-        int xPos, yPos; //positional reference when drawing
+        Pen p = new Pen(Color.Black, 1);
+        int xPos, yPos = 0; //positional reference when drawing
 
         public Canvass(Graphics g)
         {
             this.g = g;
-            xPos = yPos = 50;
-            Pen = new Pen(Color.Black, 1);
+
         }
 
+
+        public void DrawTo(int toX, int toY)
+        {
+            g.DrawLine(p, xPos, yPos, toX, toY);
+
+            xPos = toX;
+            yPos = toY;
+
+        }
         // TO DO G.DRAWSTING OUTPUT SYNTAX CHECK
 
         public void DrawLine(int toX, int toY)
         {
-            g.DrawLine(Pen, xPos, yPos, toX, toY);
+            g.DrawLine(p, xPos, yPos, toX, toY);
             xPos = toX;
             yPos = toY;
         }
 
         public void DrawSquare(int size)
         {
-            g.DrawRectangle(Pen, xPos, yPos, xPos + size, yPos + size);
+
+            g.DrawRectangle(p, xPos, yPos, xPos + size, yPos + size);
         }
 
         public void DrawTriangle(int side1, int side2, int side3)
@@ -47,7 +56,7 @@ namespace ProgrammingLanguageEnvironment
                 new Point(xPos-side1, yPos+side2),
                 new Point(xPos+side2, yPos+side3)
             };
-            g.DrawPolygon(Pen, points);
+            g.DrawPolygon(p, points);
         }
     }
 

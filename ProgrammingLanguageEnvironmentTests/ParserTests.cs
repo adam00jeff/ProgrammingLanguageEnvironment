@@ -118,7 +118,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(Command));
             Assert.AreEqual(Action.Circle, result.Action);
-            Assert.IsTrue(!result.Coordinates.Any());
+            Assert.IsTrue(!result.Paramaters.Any());
         }
                
         [TestMethod()]
@@ -149,7 +149,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(Command));
             Assert.AreEqual(Action.Circle, result.Action);
-            Assert.IsTrue(result.Coordinates.Contains(10));
+            Assert.IsTrue(result.Paramaters.Contains(10));
         }
         [TestMethod()]
         public void ParseInputTestBasicCorrectUpperString()
@@ -164,7 +164,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(Command));
             Assert.AreEqual(Action.Circle, result.Action);
-            Assert.IsTrue(result.Coordinates.Contains(10));
+            Assert.IsTrue(result.Paramaters.Contains(10));
         }
         [TestMethod()]
         public void ParseInputTestBacisIncorrectLowerString()
@@ -179,7 +179,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(Command));
             Assert.AreEqual(Action.None, result.Action);
-            Assert.IsTrue(result.Coordinates.Contains(10));
+            Assert.IsTrue(result.Paramaters.Contains(10));
         }
         [TestMethod()]
         public void ParseInputTestBacisCorrectLowerStringThreeCorrectNumbers()
@@ -194,9 +194,9 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(Command));
             Assert.AreEqual(Action.Circle, result.Action);
-            Assert.IsTrue(result.Coordinates.Contains(10));
-            Assert.IsTrue(result.Coordinates.Contains(40));
-            Assert.IsTrue(result.Coordinates.Contains(30));
+            Assert.IsTrue(result.Paramaters.Contains(10));
+            Assert.IsTrue(result.Paramaters.Contains(40));
+            Assert.IsTrue(result.Paramaters.Contains(30));
         }
     }
 }
