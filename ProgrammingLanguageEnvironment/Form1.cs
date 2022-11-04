@@ -51,16 +51,16 @@ namespace ProgrammingLanguageEnvironment
 
                 var result = Parser.ParseInput(CommandLine.Text);
                 var input1 = result.Action;
-                var input2 = result.Paramaters;
+                var input2 = result.Paramaters.ToArray();
 
                 if (input1.Equals(Action.Line) == true)
                 {
-                    MyCanvass.DrawLine(160, 120);
+                    MyCanvass.DrawLine(input2[0], input2[1]);
                     Console.WriteLine("LINE");
                 }
                 else if (input1.Equals(Action.Square) == true)
                 {
-                    MyCanvass.DrawSquare(50);
+                    MyCanvass.DrawSquare(input2[0]);
                     Console.WriteLine("SQUARE");
                 }
                 else if (input1.Equals(Action.Triangle) == true)
