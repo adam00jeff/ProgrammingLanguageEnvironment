@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,11 @@ namespace ProgrammingLanguageEnvironment
 {
     public partial class MainForm : Form
     {
+        
         //bitmap that will be displayed in OutputWindow picturebox
         Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
         Canvass MyCanvass;
+        ArrayList shapes = new ArrayList();
         public MainForm()
         {
             InitializeComponent();
@@ -38,8 +41,10 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="e"></param>
         private void CommandLine_KeyDown(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyCode == Keys.Enter)
             {
+
                 //var Command = Parser.ParseInput(CommandLine.Text);
                 //TO DO EXTRACT CODE AND PARAMATERS FROM COMMAND LINE
                 //Methodise the below to allow calling from elsewhere
@@ -53,6 +58,11 @@ namespace ProgrammingLanguageEnvironment
                 var input1 = result.Action;
                 var input2 = result.Paramaters.ToArray();
 
+                //shapes.Add(new Rectangle(Color.Black, 10, 100, 100, 150));
+
+
+                
+
                 if (input1.Equals(Action.Line) == true)
                 {
                     MyCanvass.DrawLine(input2[0], input2[1]);
@@ -60,12 +70,20 @@ namespace ProgrammingLanguageEnvironment
                 }
                 else if (input1.Equals(Action.Square) == true)
                 {
-                    MyCanvass.DrawSquare(input2[0]);
+                    shapes.Add(new Rectangle(Color.Black, 50, 50, input2[0], input2[0]));
+                    //MyCanvass.DrawSquare(input2[0]);
+                    Console.WriteLine("SQUARE");
+                }
+                else if (input1.Equals(Action.Circle) == true)
+                {
+                    shapes.Add(new Circle(Color.Black, 70, 70, input2[0]));
+                    //MyCanvass.DrawSquare(input2[0]);
                     Console.WriteLine("SQUARE");
                 }
                 else if (input1.Equals(Action.Triangle) == true)
                 {
-                    MyCanvass.DrawTriangle(input2[0], input2[1], input2[2]);
+                    // MyCanvass.DrawTriangle(input2[0], input2[1], input2[2]);
+                    shapes.Add(new Triangle(Color.Black, 60, 60, input2[0], input2[1], input2[2]));
                     Console.WriteLine("TRIANGLE");
                 }
                 CommandLine.Text = ""; // clears the commandline
@@ -80,7 +98,13 @@ namespace ProgrammingLanguageEnvironment
             
             Graphics g = e.Graphics; // get graphics context of the form
             g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
-            
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                Shape s;
+                s = (Shape)shapes[i];
+                s.draw(g);
+                Console.WriteLine(s.ToString());
+            }
         }
     }
 }

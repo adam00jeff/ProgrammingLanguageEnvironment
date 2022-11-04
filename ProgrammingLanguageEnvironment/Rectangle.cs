@@ -7,36 +7,19 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    public class Rectangle : Shape
+    class Rectangle : Shape
     {
-        public static readonly int DefaultHeight = 40;
-        public static readonly int DefaultWidth = 40;
-        ///
-        ///
+        int width, height;
 
-
-        internal int Height { get; set; }
-        internal int Width { get; set; }
-
- 
-
-
-
-        public Rectangle() : this(DefaultHeight, DefaultWidth)
+        public Rectangle(Color colour, int x, int y, int width, int height) :base(colour, x,y)
         {
-
+            this.width = width;
+            this.height = height;
         }
-
-        public Rectangle(int width, int height)
+        public override void draw(Graphics g)
         {
-            Height = height;
-            Width = width;
-        }
-
-        public Rectangle(Point position, int width, int height) : base(position)
-        {
-            Height = height;
-            Width = width;
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawRectangle(p, x, y, width, height);
         }
     }
 }

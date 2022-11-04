@@ -14,9 +14,9 @@ namespace ProgrammingLanguageEnvironment.Tests
         [TestMethod()]
         public void RectangleTest()
         {
-            var input = 5;
+        //    var input = 5;
 
-            var result = Rectange.rectangle();
+         //  var result = Rectange.rectangle();
         }
     }
 }

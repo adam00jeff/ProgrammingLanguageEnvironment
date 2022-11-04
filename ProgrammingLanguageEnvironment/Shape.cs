@@ -7,18 +7,36 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    public abstract class Shape
+    abstract class Shape
     {
-        public static Point DefaultPosition;
-        public Point Position { get; set; }
+        //example code commented out
+        //public static Point DefaultPosition;
+        //public Point Position { get; set; }
 
-        public Shape() : this(DefaultPosition)
+        // public Shape() : this(DefaultPosition)
+        // {
+
+        // }
+        // public Shape(Point position)
+        // {
+        //  Position = position;
+        // }
+        protected Color colour; //the colour of the shape to be drawn
+        protected int x, y; // values to be used to draw the shape
+
+        public Shape(Color colour, int x, int y)
         {
+            this.colour = colour; //colour of the shape
+            this.x = x; // the x position
+            this.y = y; // the y position
 
         }
-        public Shape(Point position)
+        public abstract void draw(Graphics g);
+
+        public override string ToString()
         {
-            Position = position;
+            return base.ToString() + "     " + this.x + " , " + this.y + " : ";
+
         }
 
 

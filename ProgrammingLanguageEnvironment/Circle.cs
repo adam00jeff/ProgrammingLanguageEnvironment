@@ -2,27 +2,31 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    public class Circle : Shape
+    class Circle : Shape
     {
-        public static readonly int DefaultRadius = 50;
-        internal int Radius { get; set; }
+        int radius;
 
-        public Circle() : this(DefaultRadius)
+        public Circle(Color colour, int x, int y, int radius) : base(colour, x, y)
         {
+            this.radius = radius;
+        }
+
+        public override void draw(Graphics g)
+        {
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawEllipse(p, x, y, radius * 2, radius * 2);
 
         }
-        public Circle(int radius)
+        public override string ToString()
         {
-            Radius = radius;
-        }   
-        public Circle(Point position, int radius) : base(position)
-        {
-            Radius = radius;
+            return base.ToString()+ "     "+this.radius;
         }
     }
 }
