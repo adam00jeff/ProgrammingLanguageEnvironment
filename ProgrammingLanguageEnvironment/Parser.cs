@@ -21,9 +21,14 @@ namespace ProgrammingLanguageEnvironment
         /// <returns>an instance of the Action Enums if matched,Action.none if unmatched</returns>
         public static Action ParseAction(IEnumerable<string> tokens)
         {
+           // var listinput = new List<string>(tokens);
+           // var listactions = new List<string>(Enum.GetNames(typeof(Action)));
+           // var result = listinput.Where(a => listactions.Any(act => act.Contains(a)));
+           //var res2 = result.ToList();
             var actions = Enum.GetNames(typeof(Action));
             var firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));
             return string.IsNullOrEmpty(firstAction) ? Action.None : (Action)Enum.Parse(typeof(Action), firstAction);
+            
         }
         /// <summary>
         /// returns a string in lower case 
