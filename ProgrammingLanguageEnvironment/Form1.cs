@@ -17,7 +17,7 @@ namespace ProgrammingLanguageEnvironment
         
         //bitmap that will be displayed in OutputWindow picturebox
         Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
-        Canvass MyCanvass;
+        //Canvass MyCanvass;
         ArrayList shapes = new ArrayList();
         public MainForm()
         {
@@ -60,10 +60,24 @@ namespace ProgrammingLanguageEnvironment
 
                 //shapes.Add(new Rectangle(Color.Black, 10, 100, 100, 150));
 
-
+                switch(input1)
+                {
+                    case Action.Line:
+                        shapes.Add(new Line(Color.Black, 50, 50, input2[0], input2[1]));
+                        break;
+                    case Action.Square:
+                        shapes.Add(new Rectangle(Color.Black, 50, 50, input2[0], input2[0]));
+                        break;
+                    case Action.Circle:
+                        shapes.Add(new Circle(Color.Black, 70, 70, input2[0]));
+                        break;
+                    case Action.Triangle:
+                        shapes.Add(new Triangle(Color.Black, 60, 60, input2[0], input2[1], input2[2]));
+                        break;
+                }
                 
 
-                if (input1.Equals(Action.Line) == true)
+               /* if (input1.Equals(Action.Line) == true)
                 {
                     shapes.Add(new Line(Color.Black, 50, 50, input2[0], input2[1]));
                     Console.WriteLine("LINE");
@@ -85,7 +99,7 @@ namespace ProgrammingLanguageEnvironment
                     // MyCanvass.DrawTriangle(input2[0], input2[1], input2[2]);
                     shapes.Add(new Triangle(Color.Black, 60, 60, input2[0], input2[1], input2[2]));
                     Console.WriteLine("TRIANGLE");
-                }
+                }*/
                 CommandLine.Text = ""; // clears the commandline
                 Refresh(); // update the outputwindow
 
