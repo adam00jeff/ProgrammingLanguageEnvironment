@@ -65,7 +65,7 @@ namespace ProgrammingLanguageEnvironment
                 }
                 else if (input1.Equals(Action.Triangle) == true)
                 {
-                    MyCanvass.DrawTriangle(55, 55, 55);
+                    MyCanvass.DrawTriangle(input2[0], input2[1], input2[2]);
                     Console.WriteLine("TRIANGLE");
                 }
                 CommandLine.Text = ""; // clears the commandline
