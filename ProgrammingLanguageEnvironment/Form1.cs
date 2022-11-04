@@ -54,7 +54,7 @@ namespace ProgrammingLanguageEnvironment
                 // switch (command typed) <- add a switch to replace the if
                 //if (Command.Action.Equals("line") == true)
 
-                var result = Parser.ParseInput(CommandLine.Text);
+                var result = Parser.ParseInput(ProgramWindow.Text);
                 var input1 = result.Action;
                 var input2 = result.Paramaters.ToArray();
 
@@ -105,6 +105,11 @@ namespace ProgrammingLanguageEnvironment
                 s.draw(g);
                 Console.WriteLine(s.ToString());
             }
+        }
+
+        private void ProgramWindow_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

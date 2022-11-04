@@ -54,6 +54,8 @@
             // 
             // OutputWindow
             // 
+            this.OutputWindow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.OutputWindow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.OutputWindow.Location = new System.Drawing.Point(420, 12);
             this.OutputWindow.Name = "OutputWindow";
             this.OutputWindow.Size = new System.Drawing.Size(368, 426);
@@ -69,6 +71,7 @@
             this.ProgramWindow.Size = new System.Drawing.Size(399, 338);
             this.ProgramWindow.TabIndex = 3;
             this.ProgramWindow.Text = "";
+            this.ProgramWindow.TextChanged += new System.EventHandler(this.ProgramWindow_TextChanged);
             // 
             // MainForm
             // 
