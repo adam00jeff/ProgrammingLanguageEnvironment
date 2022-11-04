@@ -22,7 +22,7 @@ namespace ProgrammingLanguageEnvironment
         public MainForm()
         {
             InitializeComponent();
-            MyCanvass = new Canvass(Graphics.FromImage(OutputBitmap));
+           // MyCanvass = new Canvass(Graphics.FromImage(OutputBitmap));
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace ProgrammingLanguageEnvironment
 
                 if (input1.Equals(Action.Line) == true)
                 {
-                    MyCanvass.DrawLine(input2[0], input2[1]);
+                    shapes.Add(new Line(Color.Black, 50, 50, input2[0], input2[1]));
                     Console.WriteLine("LINE");
                 }
                 else if (input1.Equals(Action.Square) == true)
