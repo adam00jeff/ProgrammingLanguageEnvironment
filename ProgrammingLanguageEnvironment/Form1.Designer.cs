@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.CommandLine = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.RunButton = new System.Windows.Forms.Button();
             this.OutputWindow = new System.Windows.Forms.PictureBox();
             this.ProgramWindow = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.OutputWindow)).BeginInit();
@@ -43,14 +43,16 @@
             this.CommandLine.TabIndex = 0;
             this.CommandLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CommandLine_KeyDown);
             // 
-            // button1
+            // RunButton
             // 
-            this.button1.Location = new System.Drawing.Point(12, 388);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 50);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.RunButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RunButton.Location = new System.Drawing.Point(12, 388);
+            this.RunButton.Name = "RunButton";
+            this.RunButton.Size = new System.Drawing.Size(113, 50);
+            this.RunButton.TabIndex = 1;
+            this.RunButton.Text = "Run";
+            this.RunButton.UseVisualStyleBackColor = true;
+            this.RunButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // OutputWindow
             // 
@@ -80,7 +82,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ProgramWindow);
             this.Controls.Add(this.OutputWindow);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.RunButton);
             this.Controls.Add(this.CommandLine);
             this.Name = "MainForm";
             this.Text = "Programming Language Environment";
@@ -94,7 +96,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox CommandLine;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button RunButton;
         private System.Windows.Forms.PictureBox OutputWindow;
         private System.Windows.Forms.RichTextBox ProgramWindow;
     }

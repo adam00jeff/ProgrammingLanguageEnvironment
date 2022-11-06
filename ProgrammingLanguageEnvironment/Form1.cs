@@ -19,7 +19,7 @@ namespace ProgrammingLanguageEnvironment
         //bitmap that will be displayed in OutputWindow picturebox
         Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
         //Canvass MyCanvass;
-        ArrayList shapes = new ArrayList();
+        public ArrayList shapes = new ArrayList();
         public MainForm()
         {
             InitializeComponent();
@@ -45,43 +45,16 @@ namespace ProgrammingLanguageEnvironment
             
             if (e.KeyCode == Keys.Enter)
             {
-
-                //var Command = Parser.ParseInput(CommandLine.Text);
-                //TO DO EXTRACT CODE AND PARAMATERS FROM COMMAND LINE
-                //Methodise the below to allow calling from elsewhere
-                // call new process method here
-               // String Command = CommandLine.Text.Trim().ToLower(); 
-                // read + sanitise commandline // change this to parser class
-                // switch (command typed) <- add a switch to replace the if
-                //if (Command.Action.Equals("line") == true)
-
-                var result = Parser.ParseInput(ProgramWindow.Text);
-                var input1 = result.Action;
-                var input2 = result.Paramaters.ToArray();
-
-                //shapes.Add(new Rectangle(Color.Black, 10, 100, 100, 150));
-
-                
-
-                switch(input1)
-                {
-                    case Action.Line:
-                        shapes.Add(new Line(Color.Black, 50, 50, input2[0], input2[1]));
-                        break;
-                    case Action.Square:
-                        shapes.Add(new Rectangle(Color.Black, 50, 50, input2[0], input2[0]));
-                        break;
-                    case Action.Circle:
-                        shapes.Add(new Circle(Color.Black, 70, 70, input2[0]));
-                        break;
-                    case Action.Triangle:
-                        shapes.Add(new Triangle(Color.Black, 60, 60, input2[0], input2[1], input2[2]));
-                        break;
-                }
-                
-                CommandLine.Text = ""; // clears the commandline
+                var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
+                shapes = (ArrayList)parse;
                 Refresh(); // update the outputwindow
             }
+        }
+       private void button1_Click(object sender, EventArgs e)
+        {
+            var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
+            shapes = (ArrayList)parse;
+            Refresh(); // update the outputwindow
         }
 
         private void OutputWindow_Paint(object sender, PaintEventArgs e)
@@ -102,5 +75,7 @@ namespace ProgrammingLanguageEnvironment
         {
 
         }
+
+ 
     }
 }
