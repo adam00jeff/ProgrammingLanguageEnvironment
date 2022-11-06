@@ -18,6 +18,10 @@ namespace ProgrammingLanguageEnvironment
         Drawto,
         Clear,
         Reset,
+        ColourRed,
+        ColourGreen,
+        ColourBlue,
+        ColourReset,
         None
 
     }

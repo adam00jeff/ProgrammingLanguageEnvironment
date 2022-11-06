@@ -66,6 +66,7 @@ namespace ProgrammingLanguageEnvironment
                     var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
                     shapes = (ArrayList)parse;
                     Console.WriteLine("run");
+                    CommandLine.Text = "";
                     Refresh(); // update the outputwindow
                 }
                 else
@@ -73,6 +74,7 @@ namespace ProgrammingLanguageEnvironment
                     var parse = Execute.ExecuteParse(CommandLine.Text, shapes);
                     shapes = (ArrayList)parse;
                     Console.WriteLine("run");
+                    CommandLine.Text = "";
                     Refresh(); // update the outputwindow
                 }
             }

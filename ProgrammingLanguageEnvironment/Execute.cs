@@ -14,6 +14,7 @@ namespace ProgrammingLanguageEnvironment
         public ArrayList shapes = new ArrayList();
         public static int xDef = 0;
         public static int yDef = 0;
+        public static Color colour;
 
 
 
@@ -26,9 +27,22 @@ namespace ProgrammingLanguageEnvironment
                 var result = Parser.ParseInput(line);
                 var input1 = result.Action;
                 var input2 = result.Paramaters.ToArray();
+                
 
                 switch (input1)
                 {
+                    case Action.ColourRed:
+                        colour = Color.Red;
+                        break;
+                    case Action.ColourGreen:
+                        colour = Color.Green;
+                        break;
+                    case Action.ColourBlue:
+                        colour = Color.Blue;
+                        break;
+                    case Action.ColourReset:
+                        colour = Color.Black;
+                        break;
                     case Action.Reset:
                         xDef = 0;
                         yDef = 0;
@@ -38,29 +52,29 @@ namespace ProgrammingLanguageEnvironment
                         yDef = input2[1];
                         break;
                     case Action.Drawto:
-                        shapes.Add(new Line(Color.Black, xDef, yDef, input2[0], input2[1]));
+                        shapes.Add(new Line(colour, xDef, yDef, input2[0], input2[1]));
                         xDef = input2[0];
                         yDef = input2[1];
                         Console.WriteLine("Drawto");
                         break;
                      case Action.Line:
-                        shapes.Add(new Line(Color.Black, xDef, yDef, input2[0], input2[1]));
+                        shapes.Add(new Line(colour, xDef, yDef, input2[0], input2[1]));
                         Console.WriteLine("line");
                         break;
                     case Action.Square:
-                        shapes.Add(new Rectangle(Color.Black, xDef, yDef, input2[0], input2[0]));
+                        shapes.Add(new Rectangle(colour, xDef, yDef, input2[0], input2[0]));
                         break;
                     case Action.Rect:
-                        shapes.Add(new Rectangle(Color.Black, xDef, yDef, input2[0], input2[0]));
+                        shapes.Add(new Rectangle(colour, xDef, yDef, input2[0], input2[1]));
                         break;
                     case Action.Rectangle:
-                        shapes.Add(new Rectangle(Color.Black, xDef, yDef, input2[0], input2[0]));
+                        shapes.Add(new Rectangle(colour, xDef, yDef, input2[0], input2[1]));
                         break;
                     case Action.Circle:
-                        shapes.Add(new Circle(Color.Black, xDef, yDef, input2[0]));
+                        shapes.Add(new Circle(colour, xDef, yDef, input2[0]));
                         break;
                     case Action.Triangle:
-                        shapes.Add(new Triangle(Color.Black, xDef, yDef, input2[0], input2[1], input2[2]));
+                        shapes.Add(new Triangle(colour, xDef, yDef, input2[0], input2[1], input2[2]));
                         break;
                 }
             }
