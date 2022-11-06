@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -16,16 +17,18 @@ namespace ProgrammingLanguageEnvironment
 {
     public partial class MainForm : Form
     {
-        
+
         //bitmap that will be displayed in OutputWindow picturebox
         Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
         //Canvass MyCanvass;
         public ArrayList shapes = new ArrayList();
 
+       
+
         public MainForm()
         {
             InitializeComponent();
-           // MyCanvass = new Canvass(Graphics.FromImage(OutputBitmap));
+            // MyCanvass = new Canvass(Graphics.FromImage(OutputBitmap));
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,7 +47,7 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="e"></param>
         private void CommandLine_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             if (e.KeyCode == Keys.Enter)
             {
                 if (ProgramWindow.Text.Trim() == "clear")
@@ -62,7 +65,7 @@ namespace ProgrammingLanguageEnvironment
                 }
             }
         }
-       private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (ProgramWindow.Text.Trim() == "clear")
             {
@@ -81,7 +84,7 @@ namespace ProgrammingLanguageEnvironment
 
         private void OutputWindow_Paint(object sender, PaintEventArgs e)
         {
-            
+
             Graphics g = e.Graphics; // get graphics context of the form
             g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
             for (int i = 0; i < shapes.Count; i++)
@@ -98,6 +101,48 @@ namespace ProgrammingLanguageEnvironment
 
         }
 
- 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Create a SaveFileDialog to request a path and file name to save to.
+            SaveFileDialog saveFile1 = new SaveFileDialog();
+
+            // Initialize the SaveFileDialog to specify the RTF extension for the file.
+            saveFile1.DefaultExt = "*.txt";
+            saveFile1.Filter = "Text Files (*.txt)|*.txt|RTF Files (*.rtf)|*.rtf";
+
+            // Determine if the user selected a file name from the saveFileDialog.
+            if (saveFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
+               saveFile1.FileName.Length > 0)
+            {
+                // Save the contents of the RichTextBox into the file.
+                ProgramWindow.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
+                MessageBox.Show("save successfully", "Address File : " + saveFile1.FileName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Stream myStream;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if ((myStream =openFileDialog1.OpenFile()) != null)
+                {
+                    string strfilename = openFileDialog1.FileName;
+                    string filetext = File.ReadAllText(strfilename);
+                    ProgramWindow.Text = filetext;
+                    Console.WriteLine("load");
+                }
+            }
+        }
     }
 }
+
+
+   
