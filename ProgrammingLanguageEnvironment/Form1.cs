@@ -47,10 +47,11 @@ namespace ProgrammingLanguageEnvironment
             
             if (e.KeyCode == Keys.Enter)
             {
-                if (ProgramWindow.Text == "clear")
+                if (ProgramWindow.Text.Trim() == "clear")
                 {
                     shapes = new ArrayList();
                     Console.WriteLine("clear");
+                    ProgramWindow.Text = "";
                     Refresh();
                 }
                 else
@@ -63,10 +64,11 @@ namespace ProgrammingLanguageEnvironment
         }
        private void button1_Click(object sender, EventArgs e)
         {
-            if (ProgramWindow.Text == "clear")
+            if (ProgramWindow.Text.Trim() == "clear")
             {
                 shapes = new ArrayList();
                 Console.WriteLine("clear");
+                ProgramWindow.Text = "";
                 Refresh();
             }
             else
