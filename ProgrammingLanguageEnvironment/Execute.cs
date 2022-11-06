@@ -50,6 +50,12 @@ namespace ProgrammingLanguageEnvironment
                     case Action.Square:
                         shapes.Add(new Rectangle(Color.Black, xDef, yDef, input2[0], input2[0]));
                         break;
+                    case Action.Rect:
+                        shapes.Add(new Rectangle(Color.Black, xDef, yDef, input2[0], input2[0]));
+                        break;
+                    case Action.Rectangle:
+                        shapes.Add(new Rectangle(Color.Black, xDef, yDef, input2[0], input2[0]));
+                        break;
                     case Action.Circle:
                         shapes.Add(new Circle(Color.Black, xDef, yDef, input2[0]));
                         break;

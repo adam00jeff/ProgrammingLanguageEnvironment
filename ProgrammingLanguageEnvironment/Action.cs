@@ -11,6 +11,7 @@ namespace ProgrammingLanguageEnvironment
         Circle,
         Square,
         Rectangle,
+        Rect,
         Triangle,
         Line,
         Moveto,
