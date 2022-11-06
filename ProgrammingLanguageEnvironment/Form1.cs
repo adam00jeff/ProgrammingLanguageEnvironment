@@ -103,7 +103,11 @@ namespace ProgrammingLanguageEnvironment
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            //clear button
+            shapes = new ArrayList();
+            Console.WriteLine("clear");
+            ProgramWindow.Text = "";
+            Refresh();
         }
 
         private void button2_Click(object sender, EventArgs e)
