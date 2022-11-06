@@ -50,17 +50,29 @@ namespace ProgrammingLanguageEnvironment
 
             if (e.KeyCode == Keys.Enter)
             {
-                if (ProgramWindow.Text.Trim() == "clear")
+                var input = CommandLine.Text;
+                //var firstAction = input.Select(ToLower).FirstOrDefault(input);
+
+                if (input.Trim() == "clear")
                 {
                     shapes = new ArrayList();
                     Console.WriteLine("clear");
                     ProgramWindow.Text = "";
+                    CommandLine.Text = "";
                     Refresh();
                 }
-                else
+                else if (CommandLine.Text.Trim() == "run")
                 {
                     var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
                     shapes = (ArrayList)parse;
+                    Console.WriteLine("run");
+                    Refresh(); // update the outputwindow
+                }
+                else
+                {
+                    var parse = Execute.ExecuteParse(CommandLine.Text, shapes);
+                    shapes = (ArrayList)parse;
+                    Console.WriteLine("run");
                     Refresh(); // update the outputwindow
                 }
             }
@@ -107,11 +119,13 @@ namespace ProgrammingLanguageEnvironment
             shapes = new ArrayList();
             Console.WriteLine("clear");
             ProgramWindow.Text = "";
+            CommandLine.Text = "";
             Refresh();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //save button
             // Create a SaveFileDialog to request a path and file name to save to.
             SaveFileDialog saveFile1 = new SaveFileDialog();
 
@@ -131,6 +145,7 @@ namespace ProgrammingLanguageEnvironment
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            //load button
             Stream myStream;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
