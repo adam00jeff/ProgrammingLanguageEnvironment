@@ -12,14 +12,14 @@ namespace ProgrammingLanguageEnvironment
     public class Execute
     {
         public ArrayList shapes = new ArrayList();
-        
+        public static int xDef = 0;
+        public static int yDef = 0;
 
 
 
         internal static object ExecuteParse(string inputtext, ArrayList shapes)
         {
-            int xDef = 0;
-            int yDef = 0;
+            
             string[] lines = inputtext.Split('\n');
             foreach (string line in lines)
             {
@@ -29,7 +29,10 @@ namespace ProgrammingLanguageEnvironment
 
                 switch (input1)
                 {
-                    
+                    case Action.Reset:
+                        xDef = 0;
+                        yDef = 0;
+                        break;
                     case Action.Moveto:
                         xDef = input2[0];
                         yDef = input2[1];
