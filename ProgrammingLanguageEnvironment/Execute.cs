@@ -28,8 +28,19 @@ namespace ProgrammingLanguageEnvironment
 
                 switch (input1)
                 {
-                    case Action.Line:
+                    case Action.Moveto:
+                        xDef = input2[0];
+                        yDef = input2[1];
+                        break;
+                    case Action.Drawto:
                         shapes.Add(new Line(Color.Black, xDef, yDef, input2[0], input2[1]));
+                        xDef = input2[0];
+                        yDef = input2[1];
+                        Console.WriteLine("Drawto");
+                        break;
+                     case Action.Line:
+                        shapes.Add(new Line(Color.Black, xDef, yDef, input2[0], input2[1]));
+                        Console.WriteLine("line");
                         break;
                     case Action.Square:
                         shapes.Add(new Rectangle(Color.Black, xDef, yDef, input2[0], input2[0]));

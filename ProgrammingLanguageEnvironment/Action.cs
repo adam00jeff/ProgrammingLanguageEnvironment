@@ -13,7 +13,8 @@ namespace ProgrammingLanguageEnvironment
         Rectangle,
         Triangle,
         Line,
-        Move,
+        Moveto,
+        Drawto,
         Clear,
         Reset,
         None
