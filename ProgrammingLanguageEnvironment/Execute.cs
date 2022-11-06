@@ -15,6 +15,7 @@ namespace ProgrammingLanguageEnvironment
         
 
 
+
         internal static object ExecuteParse(string inputtext, ArrayList shapes)
         {
             int xDef = 0;
@@ -28,6 +29,7 @@ namespace ProgrammingLanguageEnvironment
 
                 switch (input1)
                 {
+                    
                     case Action.Moveto:
                         xDef = input2[0];
                         yDef = input2[1];

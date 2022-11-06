@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace ProgrammingLanguageEnvironment
         Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
         //Canvass MyCanvass;
         public ArrayList shapes = new ArrayList();
+
         public MainForm()
         {
             InitializeComponent();
@@ -45,16 +47,34 @@ namespace ProgrammingLanguageEnvironment
             
             if (e.KeyCode == Keys.Enter)
             {
-                var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
-                shapes = (ArrayList)parse;
-                Refresh(); // update the outputwindow
+                if (ProgramWindow.Text == "clear")
+                {
+                    shapes = new ArrayList();
+                    Console.WriteLine("clear");
+                    Refresh();
+                }
+                else
+                {
+                    var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
+                    shapes = (ArrayList)parse;
+                    Refresh(); // update the outputwindow
+                }
             }
         }
        private void button1_Click(object sender, EventArgs e)
         {
-            var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
-            shapes = (ArrayList)parse;
-            Refresh(); // update the outputwindow
+            if (ProgramWindow.Text == "clear")
+            {
+                shapes = new ArrayList();
+                Console.WriteLine("clear");
+                Refresh();
+            }
+            else
+            {
+                var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
+                shapes = (ArrayList)parse;
+                Refresh(); // update the outputwindow
+            }
         }
 
         private void OutputWindow_Paint(object sender, PaintEventArgs e)
