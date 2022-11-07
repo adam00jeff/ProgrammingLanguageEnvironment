@@ -215,7 +215,11 @@ namespace ProgrammingLanguageEnvironment
                 }
             }
         }
-     
+
+        private void CommandLine_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -44,6 +44,7 @@
             this.CommandLine.Name = "CommandLine";
             this.CommandLine.Size = new System.Drawing.Size(402, 20);
             this.CommandLine.TabIndex = 0;
+            this.CommandLine.TextChanged += new System.EventHandler(this.CommandLine_TextChanged);
             this.CommandLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CommandLine_KeyDown);
             // 
             // runButton

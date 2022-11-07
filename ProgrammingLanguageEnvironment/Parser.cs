@@ -12,93 +12,70 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
+    /// <summary>
+    /// class to hold parser methods for processing user input
+    /// </summary>
     public class Parser
     {
         /// <summary>
-        /// parses string tokens and returns the first that confirms to an Action in the ENUMS 
+        /// parses string tokens and returns the first that matches to an Action in the ENUMS 
         /// </summary>
         /// <param name="tokens">the string tokens from input</param>
         /// <returns>an instance of the Action Enums if matched,Action.none if unmatched</returns>
         public static Action ParseAction(IEnumerable<string> tokens)
         {
-           // var listinput = new List<string>(tokens);
-           // var listactions = new List<string>(Enum.GetNames(typeof(Action)));
-           // var result = listinput.Where(a => listactions.Any(act => act.Contains(a)));
-           //var res2 = result.ToList();
-            var actions = Enum.GetNames(typeof(Action));
-            var firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));
-            return string.IsNullOrEmpty(firstAction) ? Action.None : (Action)Enum.Parse(typeof(Action), firstAction);
-            
+            var actions = Enum.GetNames(typeof(Action)); // creates a list of actions
+            var firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));//selects the first entry that matches an action from the input and passes to title case
+            return string.IsNullOrEmpty(firstAction) ? Action.None : (Action)Enum.Parse(typeof(Action), firstAction);//checks the action is not null (Action.none is sent for null) if not empty returns an Action
         }
         /// <summary>
-        /// returns a string in lower case 
-        /// 
-        /// TO DO -> SHOULD TRIM?
-        /// 
-        /// 
+        /// returns a string in TitleCase
+        /// Culture info is used to check application 
         /// </summary>
-        /// <param name="input">the string to be lowered</param>
-        /// <returns></returns>
+        /// <param name="input">the string to be parsed</param>
+        /// <returns>the input string in Title Case</returns>
         private static string ToTitleCase(string input)
         {
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());//corrects Title Case for region
         }
         /// <summary>
-        ///parses int tokens and returns them 
-        ///
+        /// parses an input of strings into integers for use in shape paramaters
         /// </summary>
-        /// <param name="tokens"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="tokens">the seperated strings of input</param>
+        /// <returns>a list of itegers from the input strings</returns>
         public static IEnumerable<int> ParseNumbers(IEnumerable<string> tokens)
         {
-            
-            List<int> result = new List<int>();
-            //  IEnumerable<int> list3 = new List<int>();             // sets up an enum to store result
-            Regex nonDigits = new Regex(@"[^\d]");           // sets a regex for removing things than arent an int
+            Regex nonDigits = new Regex(@"[^\d]");// sets a mask for removing things than arent an int
+            List<string> input = (List<string>)tokens; // saves the input strings to a list
 
-            List<string> input = (List<string>)tokens;
-           // List<string> split = input.Split(',');
-
-            List<string> list2 = input.Select(l => nonDigits.Replace(l, "")).ToList();         // iterates through a list of tokens, removing things that are not ints
-            IEnumerable<int> list3 = list2.Select(s => Int32.TryParse(s, out int n) ? n : (int?)null)            // parses the list2 checking for nulls
-                .Where(n => n.HasValue)
-                 .Select(n => n.Value)
-                .ToList(); // saves in list 3
-
-
-            foreach (var i in list3)
-            {
-                result.Add(i);
-            }
-
-            return result;
+            List<string> intlist = input.Select(l => nonDigits.Replace(l, "")).ToList();// creates a list with all non-digits of input removed
+            IEnumerable<int> checkedlist = intlist.Select// check values are all integers
+                (s => Int32.TryParse(s, out int n) ? n : (int?)null) 
+                .Where(n => n.HasValue) // select integers with values
+                 .Select(n => n.Value) // select the values of those ints
+                .ToList(); // saves them in the checked list
+           return checkedlist;
         }
-
         /// <summary>
-        /// 
-        /// 
+        /// calls both parse methods on the user input
+        /// parses and splits input
+        /// removes whitespace
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="input">a user input string</param>
+        /// <returns>a command to performed with action and pramaters</returns>
+        /// <exception cref="NotImplementedException">catched null inputs</exception>
         public static Command ParseInput(string input)
             {
-
-            var line = input.ToLower();
-            var trim = line.Trim();
-            
-                if (input == null)
+            var line = input.ToLower();//passes input to lower case
+            var trim = line.Trim();//removes whitespace
+                if (input == null)//checks the input has value
                 {
                     throw new ArgumentNullException(nameof(input));
                 }
-
-
-                IEnumerable<string> tokens = trim.Split(' ', ',').ToList();
-                var action = ParseAction(tokens);
-
-                var numbers = ParseNumbers(tokens);
-                return new Command(action, numbers);
+                IEnumerable<string> tokens = trim.Split(' ', ',').ToList(); //creates a string of tokens from the input
+                var action = ParseAction(tokens);//finds the action from the input
+                var numbers = ParseNumbers(tokens);//finds the paramaters from the input
+                return new Command(action, numbers);//creates a command from the action+paramaters 
             
             }
         }
