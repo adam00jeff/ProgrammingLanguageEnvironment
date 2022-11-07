@@ -113,14 +113,14 @@ namespace ProgrammingLanguageEnvironment
                 if (Execute.fill == true)
                 {
                     s.drawfilled(g);
-                    Console.WriteLine(s.ToString());
-                    Console.WriteLine("fillon2" + Execute.fill);
+                   // Console.WriteLine(s.ToString());
+                   // Console.WriteLine("fillon2" + Execute.fill);
                 }
                 else
                 {
                     s.draw(g);
-                    Console.WriteLine(s.ToString());
-                    Console.WriteLine("fillon2" + Execute.fill);
+                   // Console.WriteLine(s.ToString());
+                   // Console.WriteLine("fillon2" + Execute.fill);
                 }
 
             }
