@@ -35,7 +35,7 @@ namespace ProgrammingLanguageEnvironment
 
         public override string ToString()
         {
-            return base.ToString() + "     " + this.x + " , " + this.y + " : ";
+            return base.ToString() + "     " + this.x + " , " + this.y + " : " + this.colour;
 
         }
 

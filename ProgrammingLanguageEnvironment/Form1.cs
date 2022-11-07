@@ -107,6 +107,7 @@ namespace ProgrammingLanguageEnvironment
                 s = (Shape)shapes[i];
                 s.draw(g);
                 Console.WriteLine(s.ToString());
+                
             }
         }
 

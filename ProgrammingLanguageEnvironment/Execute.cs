@@ -14,7 +14,7 @@ namespace ProgrammingLanguageEnvironment
         public ArrayList shapes = new ArrayList();
         public static int xDef = 0;
         public static int yDef = 0;
-        public static Color colour;
+        public static Color colour = Color.Black;
 
 
 
@@ -28,19 +28,24 @@ namespace ProgrammingLanguageEnvironment
                 var input1 = result.Action;
                 var input2 = result.Paramaters.ToArray();
                 
+                
 
                 switch (input1)
                 {
-                    case Action.ColourRed:
-                        colour = Color.Red;
+                    case Action.Test:
+                        Console.WriteLine("test");
                         break;
-                    case Action.ColourGreen:
+                    case Action.Colourred:
+                        colour = Color.Red;
+                        Console.WriteLine("colour");
+                        break;
+                    case Action.Colourgreen:
                         colour = Color.Green;
                         break;
-                    case Action.ColourBlue:
+                    case Action.Colourblue:
                         colour = Color.Blue;
                         break;
-                    case Action.ColourReset:
+                    case Action.Colourreset:
                         colour = Color.Black;
                         break;
                     case Action.Reset:
@@ -52,6 +57,7 @@ namespace ProgrammingLanguageEnvironment
                         yDef = input2[1];
                         break;
                     case Action.Drawto:
+                        // testing colour = Color.Red;
                         shapes.Add(new Line(colour, xDef, yDef, input2[0], input2[1]));
                         xDef = input2[0];
                         yDef = input2[1];

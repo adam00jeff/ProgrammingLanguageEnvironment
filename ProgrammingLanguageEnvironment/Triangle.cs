@@ -21,7 +21,7 @@ namespace ProgrammingLanguageEnvironment
 
         public override void draw(Graphics g)
         {
-            Pen p = new Pen(Color.Black, 2);
+            Pen p = new Pen(colour, 2);
             Point[] points =
             {
                 new Point(x, y),
@@ -42,7 +42,7 @@ namespace ProgrammingLanguageEnvironment
             }
             public override void draw(Graphics g)
             {
-                Pen p = new Pen(Color.Black, 2);
+                Pen p = new Pen(colour, 2);
                 g.DrawRectangle(p, x, y, width, height);
             }
         }

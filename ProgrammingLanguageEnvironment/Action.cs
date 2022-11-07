@@ -8,6 +8,7 @@ namespace ProgrammingLanguageEnvironment
 {
     public enum Action
     {
+        Test,
         Circle,
         Square,
         Rectangle,
@@ -18,10 +19,10 @@ namespace ProgrammingLanguageEnvironment
         Drawto,
         Clear,
         Reset,
-        ColourRed,
-        ColourGreen,
-        ColourBlue,
-        ColourReset,
+        Colourred,
+        Colourgreen,
+        Colourblue,
+        Colourreset,
         None
 
     }

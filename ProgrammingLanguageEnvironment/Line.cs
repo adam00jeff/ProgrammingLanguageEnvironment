@@ -19,7 +19,7 @@ namespace ProgrammingLanguageEnvironment
 
         public override void draw(Graphics g)
         {
-            Pen p = new Pen(Color.Black, 2);
+            Pen p = new Pen(colour, 2);
             g.DrawLine(p, x, y, tox, toy);
         }
     }
