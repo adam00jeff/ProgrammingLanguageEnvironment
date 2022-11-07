@@ -12,7 +12,7 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public enum Action
     {
-        Test,
+        //Test, // action to call for testing
         Circle,
         Square,
         Rectangle,
