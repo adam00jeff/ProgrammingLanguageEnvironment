@@ -22,8 +22,18 @@ namespace ProgrammingLanguageEnvironment
         public override void draw(Graphics g)
         {
             Pen p = new Pen(colour, 2);
+            SolidBrush b = new SolidBrush(colour);
             g.DrawEllipse(p, x, y, radius * 2, radius * 2);
+           // g.FillEllipse(b, x, y, radius * 2, radius * 2);
 
+        }
+
+        public override void drawfilled(Graphics g)
+        {
+            Pen p = new Pen(colour, 2);
+            SolidBrush b = new SolidBrush(colour);
+            //g.DrawEllipse(p, x, y, radius * 2, radius * 2);
+            g.FillEllipse(b, x, y, radius * 2, radius * 2);
         }
         public override string ToString()
         {

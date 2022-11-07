@@ -15,15 +15,18 @@ using System.Windows.Forms;
 
 namespace ProgrammingLanguageEnvironment
 {
+
     public partial class MainForm : Form
     {
-
-        //bitmap that will be displayed in OutputWindow picturebox
-        Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
         //Canvass MyCanvass;
+        //bitmap that will be displayed in OutputWindow picturebox
+        
+        
+        Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
         public ArrayList shapes = new ArrayList();
+       // public static bool fill;
+        
 
-       
 
         public MainForm()
         {
@@ -61,6 +64,7 @@ namespace ProgrammingLanguageEnvironment
                     CommandLine.Text = "";
                     Refresh();
                 }
+
                 else if (CommandLine.Text.Trim() == "run")
                 {
                     var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
@@ -73,7 +77,7 @@ namespace ProgrammingLanguageEnvironment
                 {
                     var parse = Execute.ExecuteParse(CommandLine.Text, shapes);
                     shapes = (ArrayList)parse;
-                    Console.WriteLine("run");
+                   // Console.WriteLine("run");
                     CommandLine.Text = "";
                     Refresh(); // update the outputwindow
                 }
@@ -101,14 +105,26 @@ namespace ProgrammingLanguageEnvironment
 
             Graphics g = e.Graphics; // get graphics context of the form
             g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
-            for (int i = 0; i < shapes.Count; i++)
-            {
-                Shape s;
-                s = (Shape)shapes[i];
-                s.draw(g);
-                Console.WriteLine(s.ToString());
-                
+           
+                for (int i = 0; i < shapes.Count; i++)
+                {
+                    Shape s;
+                    s = (Shape)shapes[i];
+                if (Execute.fill == true)
+                {
+                    s.drawfilled(g);
+                    Console.WriteLine(s.ToString());
+                    Console.WriteLine("fillon2" + Execute.fill);
+                }
+                else
+                {
+                    s.draw(g);
+                    Console.WriteLine(s.ToString());
+                    Console.WriteLine("fillon2" + Execute.fill);
+                }
+
             }
+            
         }
 
         private void ProgramWindow_TextChanged(object sender, EventArgs e)
@@ -163,6 +179,7 @@ namespace ProgrammingLanguageEnvironment
                 }
             }
         }
+     
     }
 }
 

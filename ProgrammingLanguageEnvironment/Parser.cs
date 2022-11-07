@@ -92,13 +92,14 @@ namespace ProgrammingLanguageEnvironment
                 {
                     throw new ArgumentNullException(nameof(input));
                 }
-                
 
-                IEnumerable<string> tokens = trim.Split(' ',',').ToList();
+
+                IEnumerable<string> tokens = trim.Split(' ', ',').ToList();
                 var action = ParseAction(tokens);
-                
+
                 var numbers = ParseNumbers(tokens);
                 return new Command(action, numbers);
+            
             }
         }
     } 

@@ -31,21 +31,19 @@ namespace ProgrammingLanguageEnvironment
 
             g.DrawPolygon(p, points);
         }
-        class Rectangle : Shape
+        public override void drawfilled(Graphics g)
         {
-            int width, height;
+            SolidBrush b = new SolidBrush(colour);
+            Point[] points =
+            {
+                new Point(x, y),
+                new Point(x-side1, y+side2),
+                new Point(x+side2, y+side3)
+            };
 
-            public Rectangle(Color colour, int x, int y, int width, int height) : base(colour, x, y)
-            {
-                this.width = width;
-                this.height = height;
-            }
-            public override void draw(Graphics g)
-            {
-                Pen p = new Pen(colour, 2);
-                g.DrawRectangle(p, x, y, width, height);
-            }
+            g.FillPolygon(b, points);
         }
     }
 }
+
 

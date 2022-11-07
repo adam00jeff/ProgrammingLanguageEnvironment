@@ -23,6 +23,8 @@ namespace ProgrammingLanguageEnvironment
         Colourgreen,
         Colourblue,
         Colourreset,
+        Fillon,
+        Filloff,
         None
 
     }

@@ -33,6 +33,8 @@ namespace ProgrammingLanguageEnvironment
         }
         public abstract void draw(Graphics g);
 
+        public abstract void drawfilled(Graphics g);
+
         public override string ToString()
         {
             return base.ToString() + "     " + this.x + " , " + this.y + " : " + this.colour;

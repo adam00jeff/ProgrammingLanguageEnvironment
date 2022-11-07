@@ -21,5 +21,12 @@ namespace ProgrammingLanguageEnvironment
             Pen p = new Pen(colour, 2);
             g.DrawRectangle(p, x, y, width, height);
         }
+
+        public override void drawfilled(Graphics g)
+        {
+            SolidBrush b = new SolidBrush(colour);
+            g.FillRectangle(b, x, y, width, height);
+        }
+
     }
 }

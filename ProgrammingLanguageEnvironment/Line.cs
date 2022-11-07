@@ -22,5 +22,11 @@ namespace ProgrammingLanguageEnvironment
             Pen p = new Pen(colour, 2);
             g.DrawLine(p, x, y, tox, toy);
         }
+        public override void drawfilled(Graphics g)
+        {
+            Pen p = new Pen(colour, 2);
+            g.DrawLine(p, x, y, tox, toy);
+        }
+
     }
 }
