@@ -18,20 +18,14 @@ namespace ProgrammingLanguageEnvironment
 
     public partial class MainForm : Form
     {
-        //Canvass MyCanvass;
-        //bitmap that will be displayed in OutputWindow picturebox
-        
-        
-        Bitmap OutputBitmap = new Bitmap(640, 480); // TO DO CHANGE THIS JUST FROM EXAMPLE VIDEO
-        public ArrayList shapes = new ArrayList();
-       // public static bool fill;
-        
-
-
+        Bitmap OutputBitmap = new Bitmap(640, 480); // bitmap to output grpahics objects onto and apply to form
+        public ArrayList shapes = new ArrayList();// creates a list to hold shapes to be drawn
+       /// <summary>
+       /// initalise the form
+       /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            // MyCanvass = new Canvass(Graphics.FromImage(OutputBitmap));
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,49 +39,52 @@ namespace ProgrammingLanguageEnvironment
         }
         /// <summary>
         /// detects when the user presses return to submit command line data
+        /// if there is data in the command line it is executed
+        /// if run is entered the program window is executed
+        /// iif clear is entered the values for the program are cleared
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">the command line</param>
+        /// <param name="e">the keypressed event</param>
         private void CommandLine_KeyDown(object sender, KeyEventArgs e)
         {
-
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)//check the key pressed was enter
             {
-                var input = CommandLine.Text;
-                //var firstAction = input.Select(ToLower).FirstOrDefault(input);
-
-                if (input.Trim() == "clear")
+                var input = CommandLine.Text;//gets command line data
+                if (input.Trim() == "clear")//checks for clear command
                 {
-                    shapes = new ArrayList();
-                    Console.WriteLine("clear");
-                    ProgramWindow.Text = "";
-                    CommandLine.Text = "";
-                    Refresh();
+                    shapes = new ArrayList();//clears array
+                    Console.WriteLine("clear");//reports a clear
+                    ProgramWindow.Text = "";//clears program window
+                    CommandLine.Text = "";//clears command line
+                    Refresh();// updat  the output window
                 }
-
-                else if (CommandLine.Text.Trim() == "run")
+                else if (CommandLine.Text.Trim() == "run")//checks for run command
                 {
-                    var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
-                    shapes = (ArrayList)parse;
-                    Console.WriteLine("run");
-                    CommandLine.Text = "";
+                    var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);//parses the input from the Program Window
+                    shapes = (ArrayList)parse;//adds shapes to be drawn to array
+                    Console.WriteLine("run");//reports a run command
+                    CommandLine.Text = "";//clears the command line
                     Refresh(); // update the outputwindow
                 }
                 else
                 {
-                    var parse = Execute.ExecuteParse(CommandLine.Text, shapes);
-                    shapes = (ArrayList)parse;
-                   // Console.WriteLine("run");
-                    CommandLine.Text = "";
+                    var parse = Execute.ExecuteParse(CommandLine.Text, shapes);//executes the command line
+                    shapes = (ArrayList)parse;//adds shapes to the array
+                    CommandLine.Text = "";//clears the command line
                     Refresh(); // update the outputwindow
                 }
             }
         }
+        /// <summary>
+        /// event for clicking the run button
+        /// </summary>
+        /// <param name="sender">the run button</param>
+        /// <param name="e">the click event</param>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(CommandLine.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(CommandLine.Text.Trim()))//if the command line is empty or whitespace
             {
-                if (ProgramWindow.Text.Trim() == "clear")
+                if (ProgramWindow.Text.Trim() == "clear")//check program window for clear command
                 {
                     shapes = new ArrayList();
                     Console.WriteLine("clear");
@@ -96,17 +93,15 @@ namespace ProgrammingLanguageEnvironment
                 }
                 else
                 {
-                    var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
-                    shapes = (ArrayList)parse;
+                    var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);//executes program window
+                    shapes = (ArrayList)parse;//adds shapes to the array
                     Refresh(); // update the outputwindow
                 }
             }
             else
             {
-                var input = CommandLine.Text;
-                //var firstAction = input.Select(ToLower).FirstOrDefault(input);
-
-                if (input.Trim() == "clear")
+                var input = CommandLine.Text;//if the command line has data, execute command line then clear it
+                if (input.Trim() == "clear")//checks command liine for clear commmand
                 {
                     shapes = new ArrayList();
                     Console.WriteLine("clear");
@@ -115,7 +110,7 @@ namespace ProgrammingLanguageEnvironment
                     Refresh();
                 }
 
-                else if (CommandLine.Text.Trim() == "run")
+                else if (CommandLine.Text.Trim() == "run")//checks command line for run command, runs program window
                 {
                     var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
                     shapes = (ArrayList)parse;
@@ -125,9 +120,8 @@ namespace ProgrammingLanguageEnvironment
                 }
                 else
                 {
-                    var parse = Execute.ExecuteParse(CommandLine.Text, shapes);
+                    var parse = Execute.ExecuteParse(CommandLine.Text, shapes);//executes the command line
                     shapes = (ArrayList)parse;
-                    // Console.WriteLine("run");
                     CommandLine.Text = "";
                     Refresh(); // update the outputwindow
                 }
@@ -135,83 +129,82 @@ namespace ProgrammingLanguageEnvironment
             }
 
         }
-
+        /// <summary>
+        /// gets values for the ouput window
+        /// </summary>
+        /// <param name="sender">the output paint window</param>
+        /// <param name="e"></param>
         private void OutputWindow_Paint(object sender, PaintEventArgs e)
         {
-
             Graphics g = e.Graphics; // get graphics context of the form
             g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
            
-                for (int i = 0; i < shapes.Count; i++)
+                for (int i = 0; i < shapes.Count; i++)//loops through shapes array
                 {
                     Shape s;
-                    s = (Shape)shapes[i];
-                if (Execute.fill == true)
-                {
-                    s.drawfilled(g);
-                   // Console.WriteLine(s.ToString());
-                   // Console.WriteLine("fillon2" + Execute.fill);
+                    s = (Shape)shapes[i];//creates a shape for each shape in the array
+                    if (Execute.fill == true)// checks fill bool
+                    {
+                        s.drawfilled(g);//draws a filled shape
+                    }
+                    else
+                    {
+                        s.draw(g);//draws a empty shape
+                    }
                 }
-                else
-                {
-                    s.draw(g);
-                   // Console.WriteLine(s.ToString());
-                   // Console.WriteLine("fillon2" + Execute.fill);
-                }
-
-            }
-            
         }
-
         private void ProgramWindow_TextChanged(object sender, EventArgs e)
         {
 
         }
-
+        /// <summary>
+        /// clear button
+        /// </summary>
+        /// <param name="sender">the button</param>
+        /// <param name="e">the click</param>
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //clear button
-            shapes = new ArrayList();
-            Console.WriteLine("clear");
-            ProgramWindow.Text = "";
-            CommandLine.Text = "";
-            Refresh();
+            shapes = new ArrayList();//clears array
+            Console.WriteLine("clear");//reports a clear
+            ProgramWindow.Text = "";//clears program window
+            CommandLine.Text = "";//clears command line
+            Refresh();// updat  the output window
         }
-
+        /// <summary>
+        /// save button
+        /// </summary>
+        /// <param name="sender">the button</param>
+        /// <param name="e">the click</param>
         private void button2_Click(object sender, EventArgs e)
         {
-            //save button
-            // Create a SaveFileDialog to request a path and file name to save to.
-            SaveFileDialog saveFile1 = new SaveFileDialog();
-
-            // Initialize the SaveFileDialog to specify the RTF extension for the file.
-            saveFile1.DefaultExt = "*.txt";
-            saveFile1.Filter = "Text Files (*.txt)|*.txt|RTF Files (*.rtf)|*.rtf";
-
-            // Determine if the user selected a file name from the saveFileDialog.
+            SaveFileDialog saveFile1 = new SaveFileDialog(); // Create a SaveFileDialog to request a path and file name to save to.        
+            saveFile1.DefaultExt = "*.txt";// Initialize the SaveFileDialog to specify the RTF extension for the file.
+            saveFile1.Filter = "Text Files (*.txt)|*.txt|RTF Files (*.rtf)|*.rtf";//filters for .rtf and .txt          
             if (saveFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
-               saveFile1.FileName.Length > 0)
+               saveFile1.FileName.Length > 0)// Determine if the user selected a file name from the saveFileDialog.
             {
-                // Save the contents of the RichTextBox into the file.
-                ProgramWindow.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
-                MessageBox.Show("save successfully", "Address File : " + saveFile1.FileName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                ProgramWindow.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText); // Save the contents of the RichTextBox into the file.
+                MessageBox.Show("save successfully", "Address File : " + saveFile1.FileName, MessageBoxButtons.OK, MessageBoxIcon.Information);//reports successful save
             }
         }
+        /// <summary>
+        /// the load button
+        /// </summary>
+        /// <param name="sender">the button</param>
+        /// <param name="e">the click</param>
         private void button3_Click(object sender, EventArgs e)
         {
-            //load button
-            Stream myStream;
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            Stream myStream; // a new memory stream
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();// a new file dialog for locating the file to be loaded
 
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)//Determine if the user selected a file to be loaded
             {
                 if ((myStream =openFileDialog1.OpenFile()) != null)
                 {
-                    string strfilename = openFileDialog1.FileName;
-                    string filetext = File.ReadAllText(strfilename);
-                    ProgramWindow.Text = filetext;
-                    Console.WriteLine("load");
+                    string strfilename = openFileDialog1.FileName;//gets the name of the file
+                    string filetext = File.ReadAllText(strfilename);//passes the text fo the file to string
+                    ProgramWindow.Text = filetext;//changes the program window text to the file text
+                    Console.WriteLine("load");// reports a successful load
                 }
             }
         }
