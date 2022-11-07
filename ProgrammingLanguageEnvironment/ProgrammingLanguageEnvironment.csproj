@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
-    <Compile Include="Canvass.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Execute.cs" />

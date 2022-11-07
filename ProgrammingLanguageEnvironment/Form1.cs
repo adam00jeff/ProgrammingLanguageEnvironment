@@ -85,19 +85,55 @@ namespace ProgrammingLanguageEnvironment
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (ProgramWindow.Text.Trim() == "clear")
+            if (string.IsNullOrWhiteSpace(CommandLine.Text.Trim()))
             {
-                shapes = new ArrayList();
-                Console.WriteLine("clear");
-                ProgramWindow.Text = "";
-                Refresh();
+                if (ProgramWindow.Text.Trim() == "clear")
+                {
+                    shapes = new ArrayList();
+                    Console.WriteLine("clear");
+                    ProgramWindow.Text = "";
+                    Refresh();
+                }
+                else
+                {
+                    var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
+                    shapes = (ArrayList)parse;
+                    Refresh(); // update the outputwindow
+                }
             }
             else
             {
-                var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
-                shapes = (ArrayList)parse;
-                Refresh(); // update the outputwindow
+                var input = CommandLine.Text;
+                //var firstAction = input.Select(ToLower).FirstOrDefault(input);
+
+                if (input.Trim() == "clear")
+                {
+                    shapes = new ArrayList();
+                    Console.WriteLine("clear");
+                    ProgramWindow.Text = "";
+                    CommandLine.Text = "";
+                    Refresh();
+                }
+
+                else if (CommandLine.Text.Trim() == "run")
+                {
+                    var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
+                    shapes = (ArrayList)parse;
+                    Console.WriteLine("run");
+                    CommandLine.Text = "";
+                    Refresh(); // update the outputwindow
+                }
+                else
+                {
+                    var parse = Execute.ExecuteParse(CommandLine.Text, shapes);
+                    shapes = (ArrayList)parse;
+                    // Console.WriteLine("run");
+                    CommandLine.Text = "";
+                    Refresh(); // update the outputwindow
+                }
+
             }
+
         }
 
         private void OutputWindow_Paint(object sender, PaintEventArgs e)

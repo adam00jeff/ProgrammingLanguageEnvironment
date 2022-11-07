@@ -53,7 +53,7 @@
             this.runButton.Name = "runButton";
             this.runButton.Size = new System.Drawing.Size(113, 50);
             this.runButton.TabIndex = 1;
-            this.runButton.Text = "Run";
+            this.runButton.Text = "Run ";
             this.runButton.UseVisualStyleBackColor = true;
             this.runButton.Click += new System.EventHandler(this.button1_Click);
             // 

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
+    /// <summary>
+    /// Sets up a list of actions that can be performed by the program
+    /// Actions are exectuted in the Execute class
+    /// </summary>
     public enum Action
     {
         Test,

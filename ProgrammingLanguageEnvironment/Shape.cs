@@ -7,23 +7,19 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
+    /// <summary>
+    /// Abstract class to establish paramaters for shapes
+    /// </summary>
     abstract class Shape
     {
-        //example code commented out
-        //public static Point DefaultPosition;
-        //public Point Position { get; set; }
-
-        // public Shape() : this(DefaultPosition)
-        // {
-
-        // }
-        // public Shape(Point position)
-        // {
-        //  Position = position;
-        // }
         protected Color colour; //the colour of the shape to be drawn
         protected int x, y; // values to be used to draw the shape
-
+        /// <summary>
+        /// shape method to set the values of a shape
+        /// </summary>
+        /// <param name="colour">the colour of the shape</param>
+        /// <param name="x">the x axis position to be drawn from</param>
+        /// <param name="y">the y axis position to be drawn from</param>
         public Shape(Color colour, int x, int y)
         {
             this.colour = colour; //colour of the shape
@@ -31,10 +27,20 @@ namespace ProgrammingLanguageEnvironment
             this.y = y; // the y position
 
         }
+        /// <summary>
+        /// method for adding shapes to a graphics object
+        /// </summary>
+        /// <param name="g">the stored graphics to be output</param>
         public abstract void draw(Graphics g);
-
+        /// <summary>
+        /// method for adding filled shapes to a graphics object
+        /// </summary>
+        /// <param name="g">the filled shapes to be graphics object</param>
         public abstract void drawfilled(Graphics g);
-
+        /// <summary>
+        /// overrides ToString method to return the paramaters for a shape
+        /// </summary>
+        /// <returns>the string requested + the coordinated and colour</returns>
         public override string ToString()
         {
             return base.ToString() + "     " + this.x + " , " + this.y + " : " + this.colour;
