@@ -14,6 +14,7 @@ namespace ProgrammingLanguageEnvironment
     {
         protected Color colour; //the colour of the shape to be drawn
         protected int x, y; // values to be used to draw the shape
+
         /// <summary>
         /// shape method to set the values of a shape
         /// </summary>
