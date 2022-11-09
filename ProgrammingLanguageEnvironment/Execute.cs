@@ -34,7 +34,7 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="inputtext">the user input</param>
         /// <param name="shapes">a list of shapes to be drawn</param>
         /// <returns></returns>
-        internal static object ExecuteParse(string inputtext, ArrayList shapes)
+        public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
             string[] lines = inputtext.Split('\n');// ensures the input is split by line
             foreach (string line in lines)// excutes line by line

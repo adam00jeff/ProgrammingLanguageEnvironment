@@ -11,9 +11,9 @@ namespace ProgrammingLanguageEnvironment
     /// class to draw lines 
     /// line method called from DrawTo
     /// </summary>
-    class Line : Shape
+    public class Line : Shape
     {
-        int tox, toy; // ending position of the line
+        public readonly int tox, toy; // ending position of the line
         /// <summary>
         /// constructor for lines
         /// </summary>

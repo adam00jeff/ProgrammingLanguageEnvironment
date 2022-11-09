@@ -12,7 +12,7 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
         public abstract class Shape
         {
-        protected Color colour; //the colour of the shape to be drawn
+        public readonly Color colour; //the colour of the shape to be drawn
         public readonly int x, y; // values to be used to draw the shape
 
         /// <summary>
