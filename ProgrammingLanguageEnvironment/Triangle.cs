@@ -11,9 +11,9 @@ namespace ProgrammingLanguageEnvironment
     /// <summary>
     /// Class to draw Triangles
     /// </summary>
-    class Triangle : Shape
+    public class Triangle : Shape
     { 
-        int side1, side2, side3; // the paramaters of the triangles
+        public readonly int side1, side2, side3; // the paramaters of the triangles
         /// <summary>
         /// Construtor for triangles
         /// </summary>
