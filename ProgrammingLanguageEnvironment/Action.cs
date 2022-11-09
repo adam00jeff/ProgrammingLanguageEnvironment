@@ -29,6 +29,9 @@ namespace ProgrammingLanguageEnvironment
         Colourreset,
         Fillon,
         Filloff,
+        While,
+        If,
+        Colour,
         None
 
     }
