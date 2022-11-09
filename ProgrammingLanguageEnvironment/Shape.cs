@@ -10,10 +10,10 @@ namespace ProgrammingLanguageEnvironment
     /// <summary>
     /// Abstract class to establish paramaters for shapes
     /// </summary>
-    abstract class Shape
-    {
+        public abstract class Shape
+        {
         protected Color colour; //the colour of the shape to be drawn
-        protected int x, y; // values to be used to draw the shape
+        public readonly int x, y; // values to be used to draw the shape
 
         /// <summary>
         /// shape method to set the values of a shape

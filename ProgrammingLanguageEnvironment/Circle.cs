@@ -12,9 +12,9 @@ namespace ProgrammingLanguageEnvironment
     /// <summary>
     /// Class to draw Circles
     /// </summary>
-    class Circle : Shape
+    public class Circle : Shape
     {
-        int radius; //the radius of the circle        
+        public readonly int radius; //the radius of the circle        
         /// <summary>
         /// constructor for circles
         /// </summary>

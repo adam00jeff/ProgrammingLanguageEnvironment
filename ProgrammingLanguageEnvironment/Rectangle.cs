@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    class Rectangle : Shape
+    public class Rectangle : Shape
     {
      
-        int width, height;
+        public readonly int width, height;
+        
 
         public Rectangle(Color colour, int x, int y, int width, int height) :base(colour, x,y)
         {

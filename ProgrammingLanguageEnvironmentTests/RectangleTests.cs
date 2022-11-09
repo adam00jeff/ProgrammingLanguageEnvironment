@@ -12,24 +12,94 @@ namespace ProgrammingLanguageEnvironment.Tests
     [TestClass()]
     public class RectangleTests
     {
+        /// <summary>
+        /// Tests for the Rectangle Class
+        /// </summary>
         [TestMethod()]
+        ///<summary>
+        /// Tests the Rectangle method
+        /// enters paramaters and checks rectangle 
+        ///</summary>
         public void RectangleTestCorrectParams()
         {
             //set up test 
-            var colour = Color.Black;
+            Color colour = Color.Black;
             int x = 5;
             int y = 5;
             int width = 30;
             int height = 30;
             //create a rectangle
-            Rectangle r = new Rectangle(x, y, width, height);
+            Rectangle r = new Rectangle(colour, x, y, width, height);
             //check results
-            Assert.AreEqual(x, r.X);
-            Assert.AreEqual(y, r.Y);
-            Assert.AreEqual(width, r.Width);
-            Assert.AreEqual(height, r.Height);
-        }
-        
+            Assert.AreEqual(x, r.x);
+            Assert.AreEqual(y, r.y);
+            Assert.AreEqual(width, r.width);
+            Assert.AreEqual(height, r.height);
 
+        }
+        [TestMethod()]
+        ///<summary>
+        /// Tests the Rectangle method
+        /// enters unmatched paramaters
+        /// </summary>
+        public void RectangleTestIncorrectParams()
+        {
+            //set up test 
+            Color colour = Color.Black;
+            int x = 3;
+            int y = 5;
+            int width = 30;
+            int height = 30;
+            //create a rectangle
+            Rectangle r = new Rectangle(colour, x, y, width, height);
+            //check results
+            Assert.AreNotEqual(5, r.x);
+            Assert.AreEqual(y, r.y);
+            Assert.AreEqual(width, r.width);
+            Assert.AreEqual(height, r.height);
+        }
+        [TestMethod()]
+        ///<summary>
+        /// Tests the Rectangle method
+        /// enters a maximum variable 
+        /// </summary>
+        public void RectangleTestmaxwidthvariable()
+        {
+            //set up test 
+            Color colour = Color.Black;
+            int x = 2147483647;
+            int y = 5;
+            int width = 30;
+            int height = 30;
+            //create a rectangle
+            Rectangle r = new Rectangle(colour, x, y, width, height);
+            //check results
+            Assert.AreEqual(x, r.x);
+            Assert.AreEqual(y, r.y);
+            Assert.AreEqual(width, r.width);
+            Assert.AreEqual(height, r.height);
+        }
+        [TestMethod()]
+        ///<summary>
+        /// Tests the Rectangle method
+        /// enters a maximum variable 
+        /// </summary>
+        public void RectangleTestmaxheighthvariable()
+        {
+            //set up test 
+            Color colour = Color.Black;
+            int x = 5;
+            int y = 5;
+            int width = 30;
+            int height = 2147483647;
+            //create a rectangle
+            Rectangle r = new Rectangle(colour, x, y, width, height);
+            //check results
+            Assert.AreEqual(x, r.x);
+            Assert.AreEqual(y, r.y);
+            Assert.AreEqual(width, r.width);
+            Assert.AreEqual(height, r.height);
+        }
+  
     }
 }
