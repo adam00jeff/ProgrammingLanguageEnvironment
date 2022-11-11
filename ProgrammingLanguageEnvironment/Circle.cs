@@ -34,7 +34,7 @@ namespace ProgrammingLanguageEnvironment
         public override void draw(Graphics g)
         {
             Pen p = new Pen(colour, 2);//creates a pen with the selected colour
-            g.DrawEllipse(p, x, y, radius*2, radius * 2);//calls method to draw ellipse using paramaters / radius
+            g.DrawEllipse(p, x-radius, y-radius, radius * 2, radius * 2);//calls method to draw ellipse using paramaters / radius
         }
         /// <summary>
         /// overrides drawfilled method to draw filled circles
@@ -44,7 +44,7 @@ namespace ProgrammingLanguageEnvironment
         public override void drawfilled(Graphics g)
         {
             SolidBrush b = new SolidBrush(colour);//creates a solid pen with the selected colour
-            g.FillEllipse(b, x, y, radius * 2, radius * 2);//draws a filled circle using paramaters / radius
+            g.FillEllipse(b, x-radius, y-radius, radius * 2, radius * 2);//draws a filled circle using paramaters / radius
         }
         /// <summary>
         /// when ToString() called on circle, returns with radius appedned
