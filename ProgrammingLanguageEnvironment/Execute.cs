@@ -80,12 +80,14 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Reset://resets drawing position to 0,0
                             xDef = 0;
                             yDef = 0;
+                            Console.WriteLine("reset");
                             break;
                         case Action.Moveto://moves drawing position to new paramaters
                             try
                             {
                                 xDef = param[0];
                                 yDef = param[1];
+                                Console.WriteLine("move to");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
                             {
@@ -109,27 +111,29 @@ namespace ProgrammingLanguageEnvironment
                             try
                             {
                                 shapes.Add(new Line(colour, xDef, yDef, param[0], param[1]));
+                                Console.WriteLine("line");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
                             {
                                 Console.WriteLine("incorrect partamates for line");
                             }
-                            Console.WriteLine("line");
                             break;
                         case Action.Square://draws a rectangle with 4 equal sides
                             try
                             {
                                 shapes.Add(new Rectangle(colour, xDef, yDef, param[0], param[0]));//adds rectangle to shapes array
+                                Console.WriteLine("square");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
                             {
-                                Console.WriteLine("incorrect paramaters for Rectangle");
+                                Console.WriteLine("incorrect paramaters for Square");
                             }
                             break;
                         case Action.Rect://draws a rectangle with 2 equal sets of sides
                             try
                             {
                                 shapes.Add(new Rectangle(colour, xDef, yDef, param[0], param[1]));//adds rectangle to shapes array
+                                Console.WriteLine("rectangle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
                             {
@@ -140,6 +144,7 @@ namespace ProgrammingLanguageEnvironment
                             try
                             {
                                 shapes.Add(new Rectangle(colour, xDef, yDef, param[0], param[1]));//adds rectangle to shapes array
+                                Console.WriteLine("rectangle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
                             {
@@ -150,6 +155,7 @@ namespace ProgrammingLanguageEnvironment
                             try
                             {
                                 shapes.Add(new Circle(colour, xDef, yDef, param[0]));//adds a circle to the shapes array
+                                Console.WriteLine("circle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
                             {
@@ -160,6 +166,7 @@ namespace ProgrammingLanguageEnvironment
                             try
                             {
                                 shapes.Add(new Triangle(colour, xDef, yDef, param[0], param[1], param[2]));//adds a triangle to the shapes array
+                                Console.WriteLine("triangle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
                             {

@@ -166,8 +166,8 @@ namespace ProgrammingLanguageEnvironment
         {
             shapes = new ArrayList();//clears array
             Console.WriteLine("clear");//reports a clear
-            ProgramWindow.Text = "";//clears program window
-            CommandLine.Text = "";//clears command line
+            //ProgramWindow.Text = "";//clears program window // this is actually annoying to clear
+            //CommandLine.Text = "";//clears command line // as above
             Refresh();// updat  the output window
         }
         /// <summary>
