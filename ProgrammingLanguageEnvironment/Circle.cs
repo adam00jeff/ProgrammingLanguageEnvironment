@@ -34,7 +34,7 @@ namespace ProgrammingLanguageEnvironment
         public override void draw(Graphics g)
         {
             Pen p = new Pen(colour, 2);//creates a pen with the selected colour
-            g.DrawEllipse(p, x, y, radius * 2, radius * 2);//calls method to draw ellipse using paramaters / radius
+            g.DrawEllipse(p, x, y, radius*2, radius * 2);//calls method to draw ellipse using paramaters / radius
         }
         /// <summary>
         /// overrides drawfilled method to draw filled circles

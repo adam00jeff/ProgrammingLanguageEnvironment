@@ -18,7 +18,7 @@ namespace ProgrammingLanguageEnvironment.Tests
     /// test the ParseInput method
     /// </summary>
     /// 
-            [TestMethod()]
+            [TestMethod()] // part 2 test
         /// <summary>
         /// tests ParseInput
         /// input correct while loop
@@ -38,7 +38,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             //Assert.IsTrue(result.Paramaters.Contains(colour));
 
         }
-        [TestMethod()]
+        [TestMethod()]// part 2 test
         /// <summary>
         /// tests ParseInput
         /// input correct while loop
@@ -56,7 +56,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsTrue(result.Paramaters.Contains(10));
             //Assert.IsTrue(result.Paramaters.Contains(colour));
         }
-        public void ParseInputTestBasicColourSwitcher()
+        public void ParseInputTestBasicColourSwitcher()//part 2 test
         {
             //arrange
             var input = "colour redgreen";
