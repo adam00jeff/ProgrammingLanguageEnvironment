@@ -30,6 +30,7 @@ namespace ProgrammingLanguageEnvironment
         Fillon,
         Filloff,
         While,
+        Loop,
         If,
         Colour,
         None

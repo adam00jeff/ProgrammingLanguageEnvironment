@@ -42,14 +42,14 @@ namespace ProgrammingLanguageEnvironment
         /// parses an input of strings into integers for use in shape paramaters
         /// </summary>
         /// <param name="tokens">the seperated strings of input</param>
-        /// <returns>a list of itegers from the input strings</returns>
+        /// <returns>a list of integers from the input strings</returns>
         public static IEnumerable<int> ParseNumbers(IEnumerable<string> tokens)
         {
-            Regex nonDigits = new Regex(@"[^\d]");// sets a mask for removing things than arent an int
-            List<string> input = (List<string>)tokens; // saves the input strings to a list
+            Regex nonDigits = new Regex(@"[^\d]");// sets a mask for removing things than arent a digit
+            List<string> input = (List<string>)tokens; // saves the input enum strings to a list
 
             List<string> intlist = input.Select(l => nonDigits.Replace(l, "")).ToList();// creates a list with all non-digits of input removed
-            IEnumerable<int> checkedlist = intlist.Select// check values are all integers
+            IEnumerable<int> checkedlist = intlist.Select// creates the output enum list, check values are all integers
                 (s => Int32.TryParse(s, out int n) ? n : (int?)null) 
                 .Where(n => n.HasValue) // select integers with values
                  .Select(n => n.Value) // select the values of those ints

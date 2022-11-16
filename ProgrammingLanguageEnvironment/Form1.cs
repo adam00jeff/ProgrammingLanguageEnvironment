@@ -39,7 +39,7 @@ namespace ProgrammingLanguageEnvironment
         }
         /// <summary>
         /// detects when the user presses return to submit command line data
-        /// if there is data in the command line it is executed
+        /// if thwere is data in the command line it is executed
         /// if run is entered the program window is executed
         /// iif clear is entered the values for the program are cleared
         /// </summary>
