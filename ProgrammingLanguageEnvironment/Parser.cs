@@ -68,14 +68,39 @@ namespace ProgrammingLanguageEnvironment
             {
             var line = input.ToLower();//passes input to lower case
             var trim = line.Trim();//removes whitespace
+
+
                 if (input == null)//checks the input has value
                 {
                     throw new ArgumentNullException(nameof(input));
                 }
-                IEnumerable<string> tokens = trim.Split(' ', ',').ToList(); //creates a string of tokens from the input
+
+            /// if trim has a command parse action and numbers & return command
+            /// 
+                 IEnumerable<string> tokens = trim.Split(' ', ',').ToList(); //creates a string of tokens from the input                   
                 var action = ParseAction(tokens);//finds the action from the input
                 var numbers = ParseNumbers(tokens);//finds the paramaters from the input
-                return new Command(action, numbers);//creates a command from the action+paramaters 
+                return new Command(action, numbers);//creates a command from the action+paramaters       
+            /// if it isnt a command is it an existing variable
+            /// 
+            /// // if not is is setting one
+            /// 
+            /// 
+            /// do something, return paramaters 
+            /// 
+
+
+/*            if (action == Action.None)
+            {
+                string[] noaction = trim.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (noaction[1] == "=")
+                {
+                    action = Action.Var;
+                    var variable = noaction[0];
+                    var paramater = noaction[2];
+                }
+            }*/
+
             
             }
         }

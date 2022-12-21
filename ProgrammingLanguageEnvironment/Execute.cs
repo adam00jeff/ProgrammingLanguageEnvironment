@@ -44,6 +44,9 @@ namespace ProgrammingLanguageEnvironment
             }
             else 
             { 
+                /// parse commands from input
+                /// execute commands
+                /// adds shapes to the array
             string[] lines = inputtext.Split('\n');// ensures the input is split by line
                 foreach (string line in lines)// excutes line by line
                 {

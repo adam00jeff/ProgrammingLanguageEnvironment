@@ -33,6 +33,7 @@ namespace ProgrammingLanguageEnvironment
         Loop,
         If,
         Colour,
+        Var,
         None
     }
 }

@@ -11,14 +11,33 @@ namespace ProgrammingLanguageEnvironment.Tests
     [TestClass()]
     public class ParserTests
     {
-    /// <summary>
-    /// tests the Paraser class
-    /// tests the ParseAction method
-    /// tests the ParseNumbers method
-    /// test the ParseInput method
-    /// </summary>
-    /// 
-            [TestMethod()] // part 2 test
+        /// <summary>
+        /// tests the Paraser class
+        /// tests the ParseAction method
+        /// tests the ParseNumbers method
+        /// test the ParseInput method
+        /// </summary>
+        /// 
+        [TestMethod()] // part 2 test
+        /// <summary>
+        /// tests ParseInput
+        /// input correct while loop
+        /// </summary>
+        public void ParseInputTestVariables()
+        {
+            //arrange
+            var input = "width = 50";
+            //calculate
+            var result = Parser.ParseInput(input);
+            //check
+            Assert.IsNotNull(result);
+           // Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.While, result.Action);
+            Assert.IsTrue(result.Paramaters.Contains(10));
+
+
+        }
+        [TestMethod()] // part 2 test
         /// <summary>
         /// tests ParseInput
         /// input correct while loop
