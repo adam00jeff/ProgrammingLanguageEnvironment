@@ -13,7 +13,7 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Line : Shape
     {
-        public readonly int tox, toy; // ending position of the line
+        public int tox, toy; // ending position of the line
         /// <summary>
         /// constructor for lines
         /// </summary>
@@ -22,10 +22,22 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="y">starting y axis position</param>
         /// <param name="tox">ending x axis position</param>
         /// <param name="toy">ending y axis position</param>
+        /// 
+        public Line () : base()
+        {
+
+        }
         public Line(Color colour, int x, int y, int tox,int toy) : base(colour, x, y)
         {
             this.tox = tox;
             this.toy = toy;
+        }
+
+        public override void set(Color colour, params int[] list)
+        {
+            base.set(colour, list[0], list[1]);
+            this.tox = list[2];
+            this.toy = list[3];
         }
         /// <summary>
         /// draws a line on the graphics object

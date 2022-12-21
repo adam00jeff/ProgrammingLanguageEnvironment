@@ -14,7 +14,15 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Circle : Shape
     {
-        public readonly int radius; //the radius of the circle        
+        public int radius; //the radius of the circle
+        /// <summary>
+        /// empty constructor
+        /// </summary>
+        public Circle() : base()
+        {
+
+        }
+
         /// <summary>
         /// constructor for circles
         /// </summary>
@@ -26,6 +34,13 @@ namespace ProgrammingLanguageEnvironment
         {
             this.radius = radius;
         }
+
+        public override void set(Color colour, params int[] list)
+        {
+            base.set(colour, list[0], list[1]);
+            this.radius = list[2];
+        }
+
         /// <summary>
         /// overrides draw method when Circle.Draw is called
         /// draws a circle on the graphics object

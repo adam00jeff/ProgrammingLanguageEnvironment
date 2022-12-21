@@ -12,8 +12,13 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
         public abstract class Shape
         {
-        public readonly Color colour; //the colour of the shape to be drawn
-        public readonly int x, y; // values to be used to draw the shape
+        public Color colour; //the colour of the shape to be drawn
+        public int x, y; // values to be used to draw the shape
+
+        public Shape()
+        {
+
+        }
 
         /// <summary>
         /// shape method to set the values of a shape
@@ -28,6 +33,14 @@ namespace ProgrammingLanguageEnvironment
             this.y = y; // the y position
 
         }
+
+        public virtual void set(Color colour, params int[] list)
+        {
+            this.colour = colour;
+            this.x = x;
+            this.y = y;
+        }
+
         /// <summary>
         /// method for adding shapes to a graphics object
         /// </summary>

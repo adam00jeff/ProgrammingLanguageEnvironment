@@ -13,7 +13,7 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Triangle : Shape
     { 
-        public readonly int side1, side2, side3; // the paramaters of the triangles
+        public int side1, side2, side3; // the paramaters of the triangles
         /// <summary>
         /// Construtor for triangles
         /// </summary>
@@ -23,6 +23,19 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="side1">the value for side 1</param>
         /// <param name="side2">the value for side 2</param>
         /// <param name="side3">the value for side 3</param>
+        
+        public Triangle () : base()
+        {
+
+        }
+
+        public override void set(Color colour, params int[] list)
+        {
+            base.set(colour, list[0], list[1]);
+            this.side1 = list[2];
+            this.side2 = list[3];
+            this.side3 = list[4];
+        }
         public Triangle(Color colour, int x, int y, int side1, int side2, int side3): base(colour, x,y)
         {
             this.side1 = side1;

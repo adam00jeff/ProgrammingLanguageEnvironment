@@ -21,7 +21,9 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Execute
     {
+        public ShapeFactory factory = new ShapeFactory();
         public ArrayList shapes = new ArrayList(); // creates a list to store shape objects
+        public Shape s;
         public static int xDef = 0;//default x axis position
         public static int yDef = 0;//default y axis position
         public static Color colour = Color.Black;//default colour for shapes
