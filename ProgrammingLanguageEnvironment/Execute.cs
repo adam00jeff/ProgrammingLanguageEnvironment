@@ -48,6 +48,8 @@ namespace ProgrammingLanguageEnvironment
                     var result = Parser.ParseInput(line);//parses the line
                     var action = result.Action;//the action to be executed
                     var param = result.Paramaters.ToArray();//the paramaters for the action, as an array
+
+
                     switch (action)//switch for each action case, paramater errors are caught by relevant case
                     {
                         case Action.Filloff://turns the fill off for shapes
