@@ -21,9 +21,9 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Execute
     {
-        public ShapeFactory factory = new ShapeFactory();
+        public static ShapeFactory factory = new ShapeFactory();
         public ArrayList shapes = new ArrayList(); // creates a list to store shape objects
-        public Shape s;
+        public static Shape s;
         public static int xDef = 0;//default x axis position
         public static int yDef = 0;//default y axis position
         public static Color colour = Color.Black;//default colour for shapes
@@ -114,7 +114,10 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Line://draws a line to paramaters
                             try
                             {
-                                shapes.Add(new Line(colour, xDef, yDef, param[0], param[1]));
+                                s = factory.getShape("line");
+                                s.set(colour, xDef, yDef, param[0], param[1]);
+                                shapes.Add(s);
+
                                 Console.WriteLine("line");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
@@ -125,7 +128,9 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Square://draws a rectangle with 4 equal sides
                             try
                             {
-                                shapes.Add(new Rectangle(colour, xDef, yDef, param[0], param[0]));//adds rectangle to shapes array
+                                s = factory.getShape("rectangle");
+                                s.set(colour, xDef, yDef, param[0], param[0]);
+                                shapes.Add(s);
                                 Console.WriteLine("square");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
@@ -136,7 +141,9 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Rect://draws a rectangle with 2 equal sets of sides
                             try
                             {
-                                shapes.Add(new Rectangle(colour, xDef, yDef, param[0], param[1]));//adds rectangle to shapes array
+                                s = factory.getShape("rectangle");
+                                s.set(colour, xDef, yDef, param[0], param[1]);
+                                shapes.Add(s);
                                 Console.WriteLine("rectangle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
@@ -147,7 +154,9 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Rectangle://draws a rectangle with 2 equal sets of sides
                             try
                             {
-                                shapes.Add(new Rectangle(colour, xDef, yDef, param[0], param[1]));//adds rectangle to shapes array
+                                s = factory.getShape("rectangle");
+                                s.set(colour, xDef, yDef, param[0], param[1]);
+                                shapes.Add(s);
                                 Console.WriteLine("rectangle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
@@ -158,7 +167,9 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Circle:// draws a circle
                             try
                             {
-                                shapes.Add(new Circle(colour, xDef, yDef, param[0]));//adds a circle to the shapes array
+                                s = factory.getShape("circle");
+                                s.set(colour, xDef, yDef, param[0]);
+                                shapes.Add(s);
                                 Console.WriteLine("circle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters
@@ -169,7 +180,9 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Triangle:// draws a triangle
                             try
                             {
-                                shapes.Add(new Triangle(colour, xDef, yDef, param[0], param[1], param[2]));//adds a triangle to the shapes array
+                                s = factory.getShape("triangle");
+                                s.set(colour, xDef, yDef, param[0], param[1], param[2]);
+                                shapes.Add(s);
                                 Console.WriteLine("triangle");
                             }
                             catch (IndexOutOfRangeException)//catches incorrect paramaters

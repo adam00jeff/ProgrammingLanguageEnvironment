@@ -100,6 +100,27 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.AreEqual(width, r.width);
             Assert.AreEqual(height, r.height);
         }
-  
+        [TestMethod()]
+        ///<summary>
+        /// Tests the Rectangle drawing a square
+        /// enters a maximum variable 
+        /// </summary>
+        public void SquareTest()
+        {
+            //set up test 
+            Color colour = Color.Black;
+            int x = 5;
+            int y = 5;
+            int width = 30;
+            int height = 30;
+            //create a rectangle
+            Rectangle r = new Rectangle(colour, x, y, width, height);
+            //check results
+            Assert.AreEqual(x, r.x);
+            Assert.AreEqual(y, r.y);
+            Assert.AreEqual(width, r.width);
+            Assert.AreEqual(height, r.height);
+        }
+
     }
 }
