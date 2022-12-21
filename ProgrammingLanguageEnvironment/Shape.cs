@@ -37,8 +37,8 @@ namespace ProgrammingLanguageEnvironment
         public virtual void set(Color colour, params int[] list)
         {
             this.colour = colour;
-            this.x = x;
-            this.y = y;
+            this.x = list[0];
+            this.y = list[1];
         }
 
         /// <summary>

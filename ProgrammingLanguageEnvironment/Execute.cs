@@ -51,7 +51,6 @@ namespace ProgrammingLanguageEnvironment
                     var action = result.Action;//the action to be executed
                     var param = result.Paramaters.ToArray();//the paramaters for the action, as an array
 
-
                     switch (action)//switch for each action case, paramater errors are caught by relevant case
                     {
                         case Action.Filloff://turns the fill off for shapes
@@ -101,7 +100,9 @@ namespace ProgrammingLanguageEnvironment
                         case Action.Drawto://draws a line to paramaters
                             try
                             {
-                                shapes.Add(new Line(colour, xDef, yDef, param[0], param[1]));//adds a new line to shapes array
+                                s = factory.getShape("line");
+                                s.set(colour, xDef, yDef, param[0], param[1]);
+                                shapes.Add(s);
                                 xDef = param[0];
                                 yDef = param[1];
                                 Console.WriteLine("Drawto");
