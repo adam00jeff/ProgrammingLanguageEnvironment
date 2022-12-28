@@ -56,39 +56,21 @@ namespace ProgrammingLanguageEnvironment
             string[] lines = inputtext.Split('\n');// ensures the input is split by line
                 foreach (string line in lines)// excutes line by line
                 {
-                    string inputline = line.Trim();// passed the current line to a variable 
+                    string inputline = line.Trim();// passed the current line to a variable
                     if (variableCounter != 0) // if there is a variable set 
                     {
                         var splitLine = inputline.Split(' ', ','); // split the current line
                         for (int i=0;i< splitLine.Length; i++)// loop through the elements of the line
                         {
-                            // find the variable
-                            // replace with matching variable from variable name
-                            // use postion of variable names to get matching variabevalue
-                            // 
-
-
-                            var str = variableNames[variableCounter]; // cannot be varcounter here
-
-
-                            if (splitLine[i].Contains(str))
+                            string s = splitLine[i].Trim();//trims the line element
+                            if (variableNames.Contains(s))//check if the element matches a declared variable name
                             {
-                                splitLine[i] = variableValues[variableCounter].ToString();
-                            }
-                            
+                                int pos = Array.IndexOf(variableNames, s);//finds the position of the match from variableNames
+                                int value = variableValues[pos];//gets the value of variableValue from matching position 
+                                splitLine[i] = value.ToString();//replaces the element with the matching value
+                            }  
                         }
-                            char delim = ',';
-                         /*   line = String.Join(delim, splitLine);*/
-
-
-                        //search split line for the var & replace
-
-                        // change line to new 
-
-                        //for each variableName check the line and replace with the value
-                        //split line into list 
-                        //fine variable that matches variable names
-                        //replace variable name with assigned value
+                        inputline = String.Join(", ",splitLine);//returns the splitlist as a full line
                     }
 
                     var result = Parser.ParseInput(inputline);//parses the line
@@ -101,7 +83,7 @@ namespace ProgrammingLanguageEnvironment
                             // replace the occurences of the var with value
                             //check if variable exists
                             // varibale value = param[0]
-                            var varname = inputline.Split('=')[0];
+                            string varname = inputline.Split(' ')[0];
                             variableNames[variableCounter] = varname;
                             variableValues[variableCounter++] = param[0];
 

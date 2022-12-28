@@ -31,11 +31,9 @@ namespace ProgrammingLanguageEnvironment.Tests
             var result = Parser.ParseInput(input);
             //check
             Assert.IsNotNull(result);
-           // Assert.IsInstanceOfType(result, typeof(Command));
-            Assert.AreEqual(Action.While, result.Action);
-            Assert.IsTrue(result.Paramaters.Contains(10));
-
-
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.Var, result.Action);
+            Assert.IsTrue(result.Paramaters.Contains(50));
         }
         [TestMethod()] // part 2 test
         /// <summary>

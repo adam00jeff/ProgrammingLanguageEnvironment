@@ -78,7 +78,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             //set up test
             var input = "Triangle 50 50 50";
             ArrayList shapes = new ArrayList();
-            Triangle expected = new Triangle(Color.Black, 0, 0, 50,50,50);
+            Triangle expected = new Triangle(Color.Black, 0, 0, 50, 50, 50);
             //calls the method
             var result = Execute.ExecuteParse(input, shapes);
             //checks the result
@@ -104,7 +104,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             //set up test
             var input = "Line 100,100";
             ArrayList shapes = new ArrayList();
-            Line expected = new Line(Color.Black, 0, 0, 50,50);
+            Line expected = new Line(Color.Black, 0, 0, 50, 50);
             //calls the method
             var result = Execute.ExecuteParse(input, shapes);
             //checks the result
@@ -129,7 +129,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             //set up test
             ArrayList shapes = new ArrayList();
             var input = "Cabbage 50, 50";
-           //calls the method
+            //calls the method
             var result = Execute.ExecuteParse(input, shapes);
             //checks the result
             Assert.IsNotNull(result);
@@ -167,5 +167,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual(0, shapes.Count);
         }
+
+ 
     }
 }
