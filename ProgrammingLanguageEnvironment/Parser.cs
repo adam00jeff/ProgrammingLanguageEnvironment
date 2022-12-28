@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -25,12 +26,23 @@ namespace ProgrammingLanguageEnvironment
         public static Action ParseAction(IEnumerable<string> tokens)
         {
             var actions = Enum.GetNames(typeof(Action)); // creates a list of actions
-            var firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));//selects the first entry that matches an action from the input and passes to title case
-
-            if (firstAction == null && tokens.Contains("="))
+            string firstAction="";
+            if (tokens.Contains("="))
             {
                 firstAction = "Var";
             }
+            else
+            {
+                try
+                {
+                    firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));//selects the first entry that matches an action from the input and passes to title case
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"The command {string.Join(", ", tokens)} is incorrect");
+                }
+            }
+            
             return string.IsNullOrEmpty(firstAction) ? Action.None : (Action)Enum.Parse(typeof(Action), firstAction);//checks the action is not null (Action.none is sent for null) if not empty returns an Action
         }
         /// <summary>
