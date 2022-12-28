@@ -56,7 +56,7 @@ namespace ProgrammingLanguageEnvironment
                     Console.WriteLine("clear");//reports a clear
                     ProgramWindow.Text = "";//clears program window
                     CommandLine.Text = "";//clears command line
-                    Refresh();// updat  the output window
+                    Refresh();// update  the output window
                 }
                 else if (CommandLine.Text.Trim() == "run")//checks for run command
                 {

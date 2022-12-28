@@ -167,7 +167,84 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual(0, shapes.Count);
         }
-
- 
+        [TestMethod()]
+        ///<summary>
+        /// Tests Execute Parse
+        /// Enters a correct multi-line command with a variable
+        /// </summary>
+        public void ExecuteParseTestMultilineVariables()
+        {
+            //set up test
+            ArrayList shapes = new ArrayList();
+            var input = @"red = 50
+                        square red";
+            //calls the method
+            var result = Execute.ExecuteParse(input, shapes);
+            //checks the result
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, shapes.Count);
+            Assert.IsInstanceOfType(shapes[0], typeof(Shape));
+            Assert.IsInstanceOfType(shapes[0], typeof(Rectangle));
+            Rectangle s = (Rectangle)shapes[0];//passes the result back to a rectangle
+            Assert.AreEqual(s.width, 50);
+            Assert.AreEqual(s.height, 50);
+            Assert.AreEqual(s.x, 0);
+            Assert.AreEqual(s.y, 0);
+            Assert.AreEqual(s.colour, Color.Black);
+        }
+        [TestMethod()]
+        ///<summary>
+        /// Tests Execute Parse
+        /// Enters a correct multi-line command with a more complex variable
+        /// </summary>
+        public void ExecuteParseTestMultilineVariablesTwo()
+        {
+            //set up test
+            ArrayList shapes = new ArrayList();
+            var input = @"red = 50
+                        blue = 70
+                        square red
+                        rectangle blue red";
+            //calls the method
+            var result = Execute.ExecuteParse(input, shapes);
+            //checks the result
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, shapes.Count);
+            Assert.IsInstanceOfType(shapes[0], typeof(Shape));
+            Assert.IsInstanceOfType(shapes[0], typeof(Rectangle));
+            Assert.IsInstanceOfType(shapes[1], typeof(Shape));
+            Assert.IsInstanceOfType(shapes[1], typeof(Rectangle));
+            Rectangle s = (Rectangle)shapes[0];//passes the result back to a rectangle
+            Assert.AreEqual(s.width, 50);
+            Assert.AreEqual(s.height, 50);
+            Assert.AreEqual(s.x, 0);
+            Assert.AreEqual(s.y, 0);
+            Assert.AreEqual(s.colour, Color.Black);
+            Rectangle s1 = (Rectangle)shapes[1];//passes the result back to a rectangle
+            Assert.AreEqual(s1.width, 70);
+            Assert.AreEqual(s1.height, 50);
+            Assert.AreEqual(s1.x, 0);
+            Assert.AreEqual(s1.y, 0);
+            Assert.AreEqual(s1.colour, Color.Black);
+        }
+        [TestMethod()]
+        ///<summary>
+        /// Tests Execute Parse
+        /// Enters a correct multi-line command with a more complex variable
+        /// </summary>
+        public void ExecuteParseTestwithincorrectMultilineVariables()
+        {
+            //set up test
+            ArrayList shapes = new ArrayList();
+            var input = @"red = floodlights
+                        blue = lunch
+                        squwaere red
+                        rectwangle blue red";
+            //calls the method
+            var result = Execute.ExecuteParse(input, shapes);
+            //checks the result
+            Assert.IsNotNull(result);
+            Assert.AreEqual(0, shapes.Count);
+        }
     }
 }

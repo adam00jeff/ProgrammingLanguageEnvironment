@@ -80,10 +80,20 @@ namespace ProgrammingLanguageEnvironment
                             // replace the occurences of the var with value
                             //check if variable exists
                             // varibale value = param[0]
-                            string varname = inputline.Split(' ')[0];
-                            variableNames[variableCounter] = varname;
-                            variableValues[variableCounter++] = param[0];
-
+                            try
+                            {
+                                string varname = inputline.Split(' ')[0];
+                                if (variableNames.Contains(varname))
+                                {
+                                    Console.WriteLine("var " + variableNames[variableCounter] + " already set");
+                                }
+                                variableNames[variableCounter] = varname;
+                                variableValues[variableCounter++] = param[0];
+                            }
+                            catch
+                            {
+                                Console.WriteLine("incorrect paramaters for var");
+                            }
                             break;
                         case Action.Filloff://turns the fill off for shapes
                             fill = false;
