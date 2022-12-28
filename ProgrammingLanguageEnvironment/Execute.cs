@@ -50,9 +50,6 @@ namespace ProgrammingLanguageEnvironment
             }
             else 
             { 
-                /// parse commands from input
-                /// execute commands
-                /// adds shapes to the array
             string[] lines = inputtext.Split('\n');// ensures the input is split by line
                 foreach (string line in lines)// excutes line by line
                 {
@@ -70,7 +67,7 @@ namespace ProgrammingLanguageEnvironment
                                 splitLine[i] = value.ToString();//replaces the element with the matching value
                             }  
                         }
-                        inputline = String.Join(", ",splitLine);//returns the splitlist as a full line
+                        inputline = String.Join(" ",splitLine);//returns the splitlist as a full line
                     }
 
                     var result = Parser.ParseInput(inputline);//parses the line
@@ -97,7 +94,7 @@ namespace ProgrammingLanguageEnvironment
                             Console.WriteLine("fillon" + fill);
                             break;
                         case Action.None://reports back an empty command
-                            Console.WriteLine("incorrect paramaters for command");
+                            Console.WriteLine("incorrect paramaters for command"); // seems to report incorrectly when using vars
                             break;
                         case Action.Colourred://changes colour to red
                             colour = Color.Red;

@@ -1,0 +1,3 @@
+size = 40
+width = 40
+rectangle size, width
