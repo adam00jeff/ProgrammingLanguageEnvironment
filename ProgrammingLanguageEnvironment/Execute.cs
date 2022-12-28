@@ -56,12 +56,21 @@ namespace ProgrammingLanguageEnvironment
             string[] lines = inputtext.Split('\n');// ensures the input is split by line
                 foreach (string line in lines)// excutes line by line
                 {
+                    string inputline = line.Trim();// passed the current line to a variable 
                     if (variableCounter != 0) // if there is a variable set 
                     {
-                        var splitLine = line.Split(' ', ','); // split the current line
+                        var splitLine = inputline.Split(' ', ','); // split the current line
                         for (int i=0;i< splitLine.Length; i++)// loop through the elements of the line
                         {
+                            // find the variable
+                            // replace with matching variable from variable name
+                            // use postion of variable names to get matching variabevalue
+                            // 
+
+
                             var str = variableNames[variableCounter]; // cannot be varcounter here
+
+
                             if (splitLine[i].Contains(str))
                             {
                                 splitLine[i] = variableValues[variableCounter].ToString();
@@ -70,6 +79,8 @@ namespace ProgrammingLanguageEnvironment
                         }
                             char delim = ',';
                          /*   line = String.Join(delim, splitLine);*/
+
+
                         //search split line for the var & replace
 
                         // change line to new 
@@ -80,7 +91,7 @@ namespace ProgrammingLanguageEnvironment
                         //replace variable name with assigned value
                     }
 
-                    var result = Parser.ParseInput(line);//parses the line
+                    var result = Parser.ParseInput(inputline);//parses the line
                     var action = result.Action;//the action to be executed
                     var param = result.Paramaters.ToArray();//the paramaters for the action, as an array
 
@@ -90,7 +101,7 @@ namespace ProgrammingLanguageEnvironment
                             // replace the occurences of the var with value
                             //check if variable exists
                             // varibale value = param[0]
-                            var varname = line.Split('=')[0];
+                            var varname = inputline.Split('=')[0];
                             variableNames[variableCounter] = varname;
                             variableValues[variableCounter++] = param[0];
 
