@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms;
 using System.Data;
+using System.Net.NetworkInformation;
 
 namespace ProgrammingLanguageEnvironment
 {
@@ -28,6 +29,11 @@ namespace ProgrammingLanguageEnvironment
         public static int yDef = 0;//default y axis position
         public static Color colour = Color.Black;//default colour for shapes
         public static bool fill;//default fill for shapes is unfilled
+
+        /*public static ArrayList variableNames = new ArrayList();*/
+        public static string[] variableNames = new string[200];
+        public static int[] variableValues = new int[200];
+        public static int variableCounter = 0;
         /// <summary>
         /// calls the parser methods on user input
         /// executes the input actions and paramaters to create shapes
@@ -50,12 +56,45 @@ namespace ProgrammingLanguageEnvironment
             string[] lines = inputtext.Split('\n');// ensures the input is split by line
                 foreach (string line in lines)// excutes line by line
                 {
+                    if (variableCounter != 0) // if there is a variable set 
+                    {
+                        var splitLine = line.Split(' ', ','); // split the current line
+                        for (int i=0;i< splitLine.Length; i++)// loop through the elements of the line
+                        {
+                            var str = variableNames[variableCounter]; // cannot be varcounter here
+                            if (splitLine[i].Contains(str))
+                            {
+                                splitLine[i] = variableValues[variableCounter].ToString();
+                            }
+                            
+                        }
+                            char delim = ',';
+                         /*   line = String.Join(delim, splitLine);*/
+                        //search split line for the var & replace
+
+                        // change line to new 
+
+                        //for each variableName check the line and replace with the value
+                        //split line into list 
+                        //fine variable that matches variable names
+                        //replace variable name with assigned value
+                    }
+
                     var result = Parser.ParseInput(line);//parses the line
                     var action = result.Action;//the action to be executed
                     var param = result.Paramaters.ToArray();//the paramaters for the action, as an array
 
                     switch (action)//switch for each action case, paramater errors are caught by relevant case
                     {
+                        case Action.Var:
+                            // replace the occurences of the var with value
+                            //check if variable exists
+                            // varibale value = param[0]
+                            var varname = line.Split('=')[0];
+                            variableNames[variableCounter] = varname;
+                            variableValues[variableCounter++] = param[0];
+
+                            break;
                         case Action.Filloff://turns the fill off for shapes
                             fill = false;
                             Console.WriteLine("filloff" + fill);

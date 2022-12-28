@@ -26,6 +26,11 @@ namespace ProgrammingLanguageEnvironment
         {
             var actions = Enum.GetNames(typeof(Action)); // creates a list of actions
             var firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));//selects the first entry that matches an action from the input and passes to title case
+
+            if (firstAction == null && tokens.Contains("="))
+            {
+                firstAction = "Var";
+            }
             return string.IsNullOrEmpty(firstAction) ? Action.None : (Action)Enum.Parse(typeof(Action), firstAction);//checks the action is not null (Action.none is sent for null) if not empty returns an Action
         }
         /// <summary>
@@ -74,32 +79,17 @@ namespace ProgrammingLanguageEnvironment
                 {
                     throw new ArgumentNullException(nameof(input));
                 }
+            /// check line for variables
+            
+            /// replace variables in line
 
             /// if trim has a command parse action and numbers & return command
-            /// 
+
                  IEnumerable<string> tokens = trim.Split(' ', ',').ToList(); //creates a string of tokens from the input                   
                 var action = ParseAction(tokens);//finds the action from the input
                 var numbers = ParseNumbers(tokens);//finds the paramaters from the input
                 return new Command(action, numbers);//creates a command from the action+paramaters       
-            /// if it isnt a command is it an existing variable
-            /// 
-            /// // if not is is setting one
-            /// 
-            /// 
-            /// do something, return paramaters 
-            /// 
 
-
-/*            if (action == Action.None)
-            {
-                string[] noaction = trim.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                if (noaction[1] == "=")
-                {
-                    action = Action.Var;
-                    var variable = noaction[0];
-                    var paramater = noaction[2];
-                }
-            }*/
 
             
             }
