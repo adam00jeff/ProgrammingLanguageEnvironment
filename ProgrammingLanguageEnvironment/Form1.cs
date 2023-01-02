@@ -57,6 +57,7 @@ namespace ProgrammingLanguageEnvironment
                     ProgramWindow.Text = "";//clears program window
                     CommandLine.Text = "";//clears command line
                     Refresh();// update  the output window
+                    e.SuppressKeyPress = true;
                 }
                 else if (CommandLine.Text.Trim() == "run")//checks for run command
                 {
@@ -65,6 +66,7 @@ namespace ProgrammingLanguageEnvironment
                     Console.WriteLine("run");//reports a run command
                     CommandLine.Text = "";//clears the command line
                     Refresh(); // update the outputwindow
+                    e.SuppressKeyPress = true;
                 }
                 else
                 {
@@ -72,8 +74,10 @@ namespace ProgrammingLanguageEnvironment
                     shapes = (ArrayList)parse;//adds shapes to the array
                     CommandLine.Text = "";//clears the command line
                     Refresh(); // update the outputwindow
+                    e.SuppressKeyPress = true;
                 }
             }
+            
         }
         /// <summary>
         /// event for clicking the run button
@@ -82,10 +86,13 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="e">the click event</param>
         private void button1_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrWhiteSpace(CommandLine.Text.Trim()))//if the command line is empty or whitespace
             {
                 if (ProgramWindow.Text.Trim() == "clear")//check program window for clear command
                 {
+                    string clear = "clear";
+                    var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
                     shapes = new ArrayList();
                     Console.WriteLine("clear");
                     ProgramWindow.Text = "";
@@ -103,6 +110,8 @@ namespace ProgrammingLanguageEnvironment
                 var input = CommandLine.Text;//if the command line has data, execute command line then clear it
                 if (input.Trim() == "clear")//checks command liine for clear commmand
                 {
+                    string clear = "clear";
+                    var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
                     shapes = new ArrayList();
                     Console.WriteLine("clear");
                     ProgramWindow.Text = "";
@@ -164,6 +173,8 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="e">the click</param>
         private void button1_Click_1(object sender, EventArgs e)
         {
+            string clear = "clear";
+            var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
             shapes = new ArrayList();//clears array
             Console.WriteLine("clear");//reports a clear
             //ProgramWindow.Text = "";//clears program window // this is actually annoying to clear

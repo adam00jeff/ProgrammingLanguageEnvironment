@@ -76,6 +76,14 @@ namespace ProgrammingLanguageEnvironment
 
                     switch (action)//switch for each action case, paramater errors are caught by relevant case
                     {
+                        case Action.Clear:
+                            xDef = 0;
+                            yDef = 0;
+                            variableCounter = 0;
+                            variableNames = new string[200];
+                            variableValues = new int[200];
+                            Console.WriteLine("clear act");
+                            break;
                         case Action.Var:
                             // replace the occurences of the var with value
                             //check if variable exists
