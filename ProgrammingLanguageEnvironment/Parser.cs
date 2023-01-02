@@ -26,27 +26,16 @@ namespace ProgrammingLanguageEnvironment
         public static Action ParseAction(IEnumerable<string> tokens)
         {
             var actions = Enum.GetNames(typeof(Action)); // creates a list of actions
-            string firstAction="";
-            if (tokens.Contains("="))
+            var firstAction = tokens.Select(ToTitleCase).FirstOrDefault(token => actions.Contains(token));//selects the first entry that matches an action from the input and passes to title case
+
+            if (firstAction == null && tokens.Contains("="))
             {
                 firstAction = "Var";
             }
-            else
-            {
-                try
-                {
-                    firstAction = tokens.Select(ToTitleCase).First(token => actions.Contains(token));//selects the first entry that matches an action from the input and passes to title case
-                }
-                catch (Exception e)
-                {
-/*                    throw new ArgumentOutOfRangeException($"The command {string.Join(", ", tokens)} is incorrect");
-                    *//*Console.WriteLine($"The command {string.Join(", ", tokens)} is incorrect");*/
-                    /* throw new Exception($"The command {string.Join(", ", tokens)} is incorrect");*/
-                }
-            }
-            
-            return (Action)Enum.Parse(typeof(Action), firstAction);//checks the action is not null (Action.none is sent for null) if not empty returns an Action
+
+            return string.IsNullOrEmpty(firstAction) ? Action.None : (Action)Enum.Parse(typeof(Action), firstAction);//checks the action is not null (Action.none is sent for null) if not empty returns an Action
         }
+    
         /// <summary>
         /// returns a string in TitleCase
         /// Culture info is used to check application 
