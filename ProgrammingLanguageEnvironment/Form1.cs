@@ -52,8 +52,9 @@ namespace ProgrammingLanguageEnvironment
                 var input = CommandLine.Text;//gets command line data
                 if (input.Trim() == "clear")//checks for clear command
                 {
+                    string clear = "clear";
+                    var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
                     shapes = new ArrayList();//clears array
-                    Console.WriteLine("clear");//reports a clear
                     ProgramWindow.Text = "";//clears program window
                     CommandLine.Text = "";//clears command line
                     Refresh();// update  the output window
@@ -94,7 +95,6 @@ namespace ProgrammingLanguageEnvironment
                     string clear = "clear";
                     var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
                     shapes = new ArrayList();
-                    Console.WriteLine("clear");
                     ProgramWindow.Text = "";
                     Refresh();
                 }
@@ -113,7 +113,6 @@ namespace ProgrammingLanguageEnvironment
                     string clear = "clear";
                     var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
                     shapes = new ArrayList();
-                    Console.WriteLine("clear");
                     ProgramWindow.Text = "";
                     CommandLine.Text = "";
                     Refresh();
@@ -176,7 +175,6 @@ namespace ProgrammingLanguageEnvironment
             string clear = "clear";
             var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
             shapes = new ArrayList();//clears array
-            Console.WriteLine("clear");//reports a clear
             //ProgramWindow.Text = "";//clears program window // this is actually annoying to clear
             //CommandLine.Text = "";//clears command line // as above
             Refresh();// updat  the output window

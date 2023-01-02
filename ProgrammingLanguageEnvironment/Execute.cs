@@ -82,7 +82,7 @@ namespace ProgrammingLanguageEnvironment
                             variableCounter = 0;
                             variableNames = new string[200];
                             variableValues = new int[200];
-                            Console.WriteLine("clear act");
+                            Console.WriteLine("clear");
                             break;
                         case Action.Var:
                             // replace the occurences of the var with value
