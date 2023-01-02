@@ -1,0 +1,6 @@
+red = 10
+blue = 5
+loop 10
+red = red + blue
+square red
+endloop

@@ -22,6 +22,7 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Execute
     {
+        public static int programCounter = 0; // number of lines in the program
         public static ShapeFactory factory = new ShapeFactory();
         public ArrayList shapes = new ArrayList(); // creates a list to store shape objects
         public static Shape s;
@@ -29,6 +30,11 @@ namespace ProgrammingLanguageEnvironment
         public static int yDef = 0;//default y axis position
         public static Color colour = Color.Black;//default colour for shapes
         public static bool fill;//default fill for shapes is unfilled
+        public static int loopCounter = 0; // current iteratioins through loop
+        public static int loopSize = 0; // size of the loop
+        public static int loopLength = 0;
+        public static bool loopFlag = false; // flag to show if program is inside loop
+        public static int programLength = 0;
 
         /*public static ArrayList variableNames = new ArrayList();*/
         public static string[] variableNames = new string[200];
@@ -51,20 +57,38 @@ namespace ProgrammingLanguageEnvironment
             else 
             { 
             string[] lines = inputtext.Split('\n');// ensures the input is split by line
-                foreach (string line in lines)// excutes line by line
+                programLength = lines.Count();
+                while (programCounter < programLength)
                 {
-                    string inputline = line.Trim();// passed the current line to a variable
+                                
+/*                             
+
+                foreach (string line in lines)// excutes line by line
+                {*/
+                    //if loop flag is true and loop counter is less than size
+
+
+                     // counts each line in input
+                    string inputline = lines[programCounter].Trim();// passed the current line to a variable
+                    var splitLine = inputline.Split(' ', ','); // split the current line
+                   
+                    
                     if (variableCounter != 0) // if there is a variable set 
-                    {
-                        var splitLine = inputline.Split(' ', ','); // split the current line
+                    {                       
                         for (int i=0;i< splitLine.Length; i++)// loop through the elements of the line
                         {
                             string s = splitLine[i].Trim();//trims the line element
                             if (variableNames.Contains(s))//check if the element matches a declared variable name
                             {
+
+                                // if the first element is a variable it should be unchanged here
+                                int first = Array.IndexOf(splitLine, s);
+                                if (first != 0)
+                                { 
                                 int pos = Array.IndexOf(variableNames, s);//finds the position of the match from variableNames
                                 int value = variableValues[pos];//gets the value of variableValue from matching position 
                                 splitLine[i] = value.ToString();//replaces the element with the matching value
+                                }
                             }  
                         }
                         inputline = String.Join(" ",splitLine);//returns the splitlist as a full line
@@ -76,6 +100,22 @@ namespace ProgrammingLanguageEnvironment
 
                     switch (action)//switch for each action case, paramater errors are caught by relevant case
                     {
+                        case Action.Loop:
+                            loopFlag = true;
+                            loopSize = param[0]; // number of times to execute this loop
+                            string[] thearrayofinputlines = lines;
+                            int loopStart = programCounter;
+                            loopCounter = 0; // times through loop
+                            break;
+                        case Action.Endloop:
+                            int iterations = loopSize;
+                            loopFlag = false;
+                            if (loopCounter++ < iterations)
+                            {
+                                programCounter = programCounter - loopLength;
+                            }
+                            Console.WriteLine("loop executed " + loopCounter + " times");
+                            break;
                         case Action.Clear:
                             xDef = 0;
                             yDef = 0;
@@ -93,15 +133,36 @@ namespace ProgrammingLanguageEnvironment
                                 var computed = "";
                                 string[] splits = inputline.Split(' ');
                                 string varname = splits[0];
-
+                                List<string> after = inputline.Split('=').Select(p => p.Trim()).ToList();
+                                string[] aftercount = after[1].Split(' ');
                                 if (variableNames.Contains(varname)) // need a flag for loops
                                 {
-                                    Console.WriteLine("var " + variableNames[variableCounter] + " already set");
+                                    int pos = Array.IndexOf(variableNames, varname);//finds the position of the match from variableNames
+                                    try
+                                    {
+                                        using (var dt = new DataTable())
+                                        {
+                                            try
+                                            {
+                                                computed = dt.Compute(after[1], "").ToString();
+                                            }
+                                            catch (EvaluateException)
+                                            {
+                                                Console.WriteLine("This could not be computed :(");
+                                            }
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        Console.WriteLine("cannot calculate this var");
+                                    }
+                                    variableNames[pos] = varname;
+                                    variableValues[pos] = int.Parse(computed);
+                                    Console.WriteLine("var " + variableNames[variableCounter] + "overwritten");
                                 }
                                 else
                                 {
-                                    List<string> after = inputline.Split('=').Select(p => p.Trim()).ToList();
-                                    string[] aftercount = after[1].Split(' ');
+                                    
                                     //find everything after '=' in splits
                                     //if its one thing then set it as the var
                                     //if its many then try and compute it
@@ -285,7 +346,14 @@ namespace ProgrammingLanguageEnvironment
                             //      Console.WriteLine("test");
                             //    break;
                     }
+                    programCounter++;
+                    if (loopFlag == true)
+                    {
+                        loopLength++;
+                    }
                 }
+                /*}*/
+
             }
             return shapes; // returns the array of shapes
             

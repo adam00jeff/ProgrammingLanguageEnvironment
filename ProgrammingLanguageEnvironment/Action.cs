@@ -31,6 +31,7 @@ namespace ProgrammingLanguageEnvironment
         Filloff,
         While,
         Loop,
+        Endloop,
         If,
         Colour,
         Var,
