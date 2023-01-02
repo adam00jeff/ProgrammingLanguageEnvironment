@@ -1,0 +1,2 @@
+red = 10 + 10
+square red

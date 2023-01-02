@@ -90,13 +90,55 @@ namespace ProgrammingLanguageEnvironment
                             // varibale value = param[0]
                             try
                             {
-                                string varname = inputline.Split(' ')[0];
-                                if (variableNames.Contains(varname))
+                                var computed = "";
+                                string[] splits = inputline.Split(' ');
+                                string varname = splits[0];
+                                if (variableNames.Contains(varname)) // need a flag for loops
                                 {
                                     Console.WriteLine("var " + variableNames[variableCounter] + " already set");
                                 }
-                                variableNames[variableCounter] = varname;
-                                variableValues[variableCounter++] = param[0];
+                                else
+                                {
+                                    List<string> after = inputline.Split('=').Select(p => p.Trim()).ToList();
+                                    string[] aftercount = after[1].Split(' ');
+                                    //find everything after '=' in splits
+                                    //if its one thing then set it as the var
+                                    //if its many then try and compute it
+                                    if (after != null && (aftercount.Count() > 1))//this is an expression
+                                    //maybe save the expression to an array
+                                    {
+                                        try
+                                        {
+                                            
+                                            using (var dt = new DataTable())
+                                            {
+                                                try
+                                                {
+                                                    computed = dt.Compute(after[1], "").ToString();
+
+                                                }
+                                                catch (EvaluateException)
+                                                {
+                                                    //TODO: Evaluation failed, put relevant code here
+                                                }
+                                            }
+
+                                        }
+                                        catch
+                                        {
+                                            Console.WriteLine("cannot calculate this var");
+                                        }
+                                        variableNames[variableCounter] = varname;
+                                        variableValues[variableCounter++] = int.Parse(computed);
+                                    }
+                                    else // not an expression
+                                    {
+
+                                        variableNames[variableCounter] = varname;
+                                        variableValues[variableCounter++] = param[0];
+
+                                    }
+                                }
                             }
                             catch
                             {
