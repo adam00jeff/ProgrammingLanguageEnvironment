@@ -93,6 +93,7 @@ namespace ProgrammingLanguageEnvironment
                                 var computed = "";
                                 string[] splits = inputline.Split(' ');
                                 string varname = splits[0];
+
                                 if (variableNames.Contains(varname)) // need a flag for loops
                                 {
                                     Console.WriteLine("var " + variableNames[variableCounter] + " already set");
@@ -108,21 +109,18 @@ namespace ProgrammingLanguageEnvironment
                                     //maybe save the expression to an array
                                     {
                                         try
-                                        {
-                                            
+                                        {                                            
                                             using (var dt = new DataTable())
                                             {
                                                 try
                                                 {
                                                     computed = dt.Compute(after[1], "").ToString();
-
                                                 }
                                                 catch (EvaluateException)
                                                 {
-                                                    //TODO: Evaluation failed, put relevant code here
+                                                    Console.WriteLine("This could not be computed :(");
                                                 }
                                             }
-
                                         }
                                         catch
                                         {
