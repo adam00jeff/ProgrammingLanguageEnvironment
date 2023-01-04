@@ -82,16 +82,12 @@ namespace ProgrammingLanguageEnvironment
                 {
                     throw new ArgumentNullException(nameof(input));
                 }
-            /// check line for variables
-            
-            /// replace variables in line
-
-            /// if trim has a command parse action and numbers & return command
-
                  IEnumerable<string> tokens = trim.Split(' ', ',').ToList(); //creates a string of tokens from the input                   
                 var action = ParseAction(tokens);//finds the action from the input
                 var numbers = ParseNumbers(tokens);//finds the paramaters from the input
-                return new Command(action, numbers);//creates a command from the action+paramaters       
+                // check the returned numbers are sensible
+
+                    return new Command(action, numbers);//creates a command from the action+paramaters       
 
 
             

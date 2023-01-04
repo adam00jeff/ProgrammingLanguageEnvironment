@@ -50,6 +50,10 @@ namespace ProgrammingLanguageEnvironment
         /// <returns></returns>
         public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
+            if(inputtext == "clear")
+            {
+                programCounter = 0;
+            }
             
 
             if (inputtext == null || inputtext == String.Empty)
@@ -105,12 +109,13 @@ namespace ProgrammingLanguageEnvironment
                     var result = Parser.ParseInput(inputline);//parses the line
                     var action = result.Action;//the action to be executed
                     var param = result.Paramaters.ToArray();//the paramaters for the action, as an array
-
+                    //check if any paramaters are too large
                     switch (action)//switch for each action case, paramater errors are caught by relevant case
                     {
                         case Action.Loop:
                             loopFlag = true;
-                            loopSize = param[0]; // number of times to execute this loop
+                            int loopParam = param[0];
+                            loopSize = loopParam - 1; // number of times to execute this loop (minus one to miss the loop declaration)
                             string[] thearrayofinputlines = lines;
                             int loopStart = programCounter;
                             loopCounter = 0; // times through loop
@@ -129,8 +134,11 @@ namespace ProgrammingLanguageEnvironment
                             yDef = 0;
                             variableCounter = 0;
                             programCounter = 0;
+                            programLength = 0;
+                            loopLength = 0;
                             variableNames = new string[200];
                             variableValues = new int[200];
+                            colour = Color.Black;
                             Console.WriteLine("clear");
                             break;
                         case Action.Var:
@@ -140,6 +148,7 @@ namespace ProgrammingLanguageEnvironment
                             try
                             {
                                 var computed = "";
+                                var sensiblenumber = 0;
                                 string[] splits = inputline.Split(' ');
                                 string varname = splits[0];
                                 List<string> after = inputline.Split('=').Select(p => p.Trim()).ToList();
@@ -165,9 +174,21 @@ namespace ProgrammingLanguageEnvironment
                                     {
                                         Console.WriteLine("cannot calculate this var");
                                     }
+                                    try { 
+                                    sensiblenumber = int.Parse(computed);
+                                    } catch
+                                    {
+                                        
+                                    }
+                                    if (sensiblenumber > 5000000){
+                                        Console.WriteLine("sorry, var "+varname +" "+ sensiblenumber + " is too large to set. Current Value is: "+ variableValues[pos]);
+                                    }
+                                    else { 
                                     variableNames[pos] = varname;
                                     variableValues[pos] = int.Parse(computed);
-                                    Console.WriteLine("var " + variableNames[variableCounter] + "overwritten");
+                                        string currentVarName = variableNames[pos];
+                                    Console.WriteLine("var " + currentVarName + " overwritten: New Value = "+ variableValues[pos]);
+                                    }
                                 }
                                 else
                                 {
@@ -290,7 +311,7 @@ namespace ProgrammingLanguageEnvironment
                                 shapes.Add(s);
                                 Console.WriteLine("square");
                             }
-                            catch (IndexOutOfRangeException)//catches incorrect paramaters
+                            catch (OverflowException)//catches incorrect paramaters
                             {
                                 Console.WriteLine("incorrect paramaters for Square");
                             }
@@ -351,16 +372,19 @@ namespace ProgrammingLanguageEnvironment
                             //      Console.WriteLine("test");
                             //    break;
                     }
-                    programCounter++;
+                    if (inputtext != "clear")
+                    {
+                        programCounter++;
+                    }
+                    
                     if (loopFlag == true)
                     {
                         loopLength++;
                     }
                 }
-                /*}*/
+                
 
             }
-            programCounter = 0;
             return shapes; // returns the array of shapes
             
         }

@@ -48,8 +48,14 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="g">the graphics object to be output</param>
         public override void draw(Graphics g)
         {
+            try { 
             Pen p = new Pen(colour, 2);//creates a pen with the selected colour
             g.DrawEllipse(p, x-radius, y-radius, radius * 2, radius * 2);//calls method to draw ellipse using paramaters / radius
+            }
+            catch (OverflowException)//catches incorrect paramaters
+            {
+                Console.WriteLine("incorrect paramaters for Square");
+            }
         }
         /// <summary>
         /// overrides drawfilled method to draw filled circles

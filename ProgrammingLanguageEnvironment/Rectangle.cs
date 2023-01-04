@@ -10,7 +10,7 @@ namespace ProgrammingLanguageEnvironment
     public class Rectangle : Shape
     {
      
-        public int width, height;
+        public long width, height;
         
 
         public Rectangle() : base ()
@@ -32,8 +32,16 @@ namespace ProgrammingLanguageEnvironment
         }
         public override void draw(Graphics g)
         {
+            try
+            {
             Pen p = new Pen(colour, 2);
             g.DrawRectangle(p, x, y, width, height);
+            }
+            catch (OverflowException)//catches incorrect paramaters
+            {
+                Console.WriteLine("incorrect paramaters for Square");
+            }
+
         }
 
         public override void drawfilled(Graphics g)
