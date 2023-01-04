@@ -22,6 +22,10 @@ namespace ProgrammingLanguageEnvironment
         
         Bitmap OutputBitmap = new Bitmap(640, 480); // bitmap to output grpahics objects onto and apply to form
         public ArrayList shapes = new ArrayList();// creates a list to hold shapes to be drawn
+        public List<string> feedback = new List<string>()
+        {
+            "test","test","test"
+        };
        /// <summary>
        /// initalise the form
        /// </summary>
@@ -163,17 +167,23 @@ namespace ProgrammingLanguageEnvironment
            
                 for (int i = 0; i < shapes.Count; i++)//loops through shapes array
                 {
-                    Shape s;
+                Shape s;
                     s = (Shape)shapes[i];//creates a shape for each shape in the array
                     if (Execute.fill == true)// checks fill bool
                     {
                         s.drawfilled(g);//draws a filled shape
+       
                     }
                     else
                     {
                         s.draw(g);//draws a empty shape
-                    }
+                    }                
                 }
+            for (int i = 0; i < feedback.Count; i++)//loops through feedback
+            {
+                string f = feedback[i].ToString();
+                feedbackBox.Text +=f+ Environment.NewLine ;
+            }
         }
         private void ProgramWindow_TextChanged(object sender, EventArgs e)
         {
@@ -233,6 +243,11 @@ namespace ProgrammingLanguageEnvironment
         }
 
         private void CommandLine_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void feedbackBox_TextChanged(object sender, EventArgs e)
         {
 
         }

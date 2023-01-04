@@ -65,6 +65,7 @@ namespace ProgrammingLanguageEnvironment
             if (inputtext == null || inputtext == String.Empty)
             {
                 Console.WriteLine("no input detected");
+
             }
             else 
             { 

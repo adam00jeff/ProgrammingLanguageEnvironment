@@ -43,12 +43,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.feedbackBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.OutputWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // CommandLine
             // 
-            this.CommandLine.Location = new System.Drawing.Point(21, 394);
+            this.CommandLine.Location = new System.Drawing.Point(21, 558);
             this.CommandLine.Name = "CommandLine";
             this.CommandLine.Size = new System.Drawing.Size(432, 20);
             this.CommandLine.TabIndex = 0;
@@ -58,7 +59,7 @@
             // runButton
             // 
             this.runButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.runButton.Location = new System.Drawing.Point(21, 430);
+            this.runButton.Location = new System.Drawing.Point(21, 594);
             this.runButton.Name = "runButton";
             this.runButton.Size = new System.Drawing.Size(113, 50);
             this.runButton.TabIndex = 1;
@@ -72,7 +73,7 @@
             this.OutputWindow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.OutputWindow.Location = new System.Drawing.Point(502, 33);
             this.OutputWindow.Name = "OutputWindow";
-            this.OutputWindow.Size = new System.Drawing.Size(405, 462);
+            this.OutputWindow.Size = new System.Drawing.Size(405, 611);
             this.OutputWindow.TabIndex = 2;
             this.OutputWindow.TabStop = false;
             this.OutputWindow.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -82,14 +83,14 @@
             // 
             this.ProgramWindow.Location = new System.Drawing.Point(21, 33);
             this.ProgramWindow.Name = "ProgramWindow";
-            this.ProgramWindow.Size = new System.Drawing.Size(432, 355);
+            this.ProgramWindow.Size = new System.Drawing.Size(432, 284);
             this.ProgramWindow.TabIndex = 3;
             this.ProgramWindow.Text = "";
             this.ProgramWindow.TextChanged += new System.EventHandler(this.ProgramWindow_TextChanged);
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(177, 430);
+            this.clearButton.Location = new System.Drawing.Point(177, 594);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(111, 49);
             this.clearButton.TabIndex = 4;
@@ -99,7 +100,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(328, 431);
+            this.saveButton.Location = new System.Drawing.Point(328, 595);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 5;
@@ -109,7 +110,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(328, 457);
+            this.loadButton.Location = new System.Drawing.Point(328, 621);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(75, 23);
             this.loadButton.TabIndex = 6;
@@ -189,11 +190,21 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "300,0";
             // 
+            // feedbackBox
+            // 
+            this.feedbackBox.Location = new System.Drawing.Point(21, 326);
+            this.feedbackBox.Name = "feedbackBox";
+            this.feedbackBox.Size = new System.Drawing.Size(432, 226);
+            this.feedbackBox.TabIndex = 16;
+            this.feedbackBox.Text = "";
+            this.feedbackBox.TextChanged += new System.EventHandler(this.feedbackBox_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(919, 507);
+            this.ClientSize = new System.Drawing.Size(915, 666);
+            this.Controls.Add(this.feedbackBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -236,6 +247,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox feedbackBox;
     }
 }
 
