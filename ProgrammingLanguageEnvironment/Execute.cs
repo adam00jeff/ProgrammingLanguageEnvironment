@@ -72,19 +72,9 @@ namespace ProgrammingLanguageEnvironment
                 programLength = lines.Count();
                 while (programCounter < programLength)
                 {
-                                
-/*                             
-
-                foreach (string line in lines)// excutes line by line
-                {*/
-                    //if loop flag is true and loop counter is less than size
-
-
-                     // counts each line in input
                     string inputline = lines[programCounter].Trim();// passed the current line to a variable
                     var splitLine = inputline.Split(' ', ','); // split the current line
-                   
-                    
+                                    
                     if (variableCounter != 0) // if there is a variable set 
                     {                       
                         for (int i=0;i< splitLine.Length; i++)// loop through the elements of the line
@@ -216,7 +206,7 @@ namespace ProgrammingLanguageEnvironment
                                                 }
                                             }
                                         }
-                                        catch
+                                        catch (Exception)
                                         {
                                             Console.WriteLine("cannot calculate this var");
                                         }
@@ -225,14 +215,24 @@ namespace ProgrammingLanguageEnvironment
                                     }
                                     else // not an expression
                                     {
+                                        if (param.Length != 0)
+                                        {
+                                            try
+                                        {
+                                            variableNames[variableCounter] = varname;
+                                            variableValues[variableCounter++] = param[0];
+                                        }
+                                        catch (Exception)
+                                        {
+                                            Console.WriteLine("cannot define this paramater");
+                                        }
 
-                                        variableNames[variableCounter] = varname;
-                                        variableValues[variableCounter++] = param[0];
-
+                                        }
+                                        Console.WriteLine("no parameter found");
                                     }
                                 }
                             }
-                            catch
+                            catch (Exception)
                             {
                                 Console.WriteLine("incorrect paramaters for var");
                             }
@@ -246,7 +246,7 @@ namespace ProgrammingLanguageEnvironment
                             Console.WriteLine("fillon" + fill);
                             break;
                         case Action.None://reports back an empty command
-                            Console.WriteLine("incorrect paramaters for command"); // seems to report incorrectly when using vars
+                            Console.WriteLine("incorrect paramaters for command -> action: none"); // seems to report incorrectly when using vars
                             break;
                         case Action.Colourred://changes colour to red
                             colour = Color.Red;
@@ -311,17 +311,24 @@ namespace ProgrammingLanguageEnvironment
                             }
                             break;
                         case Action.Square://draws a rectangle with 4 equal sides
-                            try
+
+                            if (param.Length != 0)
                             {
+                                try
+                                {
                                 s = factory.getShape("rectangle");
                                 s.set(colour, xDef, yDef, param[0], param[0]);
                                 shapes.Add(s);
-                                Console.WriteLine("square");
+                                Console.WriteLine("square"); 
+                                }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine("incorrect paramaters for Square");
+                                }
+
                             }
-                            catch (OverflowException)//catches incorrect paramaters
-                            {
-                                Console.WriteLine("incorrect paramaters for Square");
-                            }
+                            Console.WriteLine("no paramaters found");
+
                             break;
                         case Action.Rect://draws a rectangle with 2 equal sets of sides
                             try

@@ -265,7 +265,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         [TestMethod()]
         ///<summary>
         /// Tests Execute Parse
-        /// Enters a correct multi-line command with a more complex variable
+        /// Enters an incorrect multi-line command with a more complex variable
         /// </summary>
         public void ExecuteParseTestwithincorrectMultilineVariables()
         {
@@ -273,13 +273,14 @@ namespace ProgrammingLanguageEnvironment.Tests
             ArrayList shapes = new ArrayList();
             var input = @"red = floodlights
                         blue = lunch
-                        squwaere red
+                        squarwe red
                         rectwangle blue red";
             //calls the method
             var result = Execute.ExecuteParse(input, shapes);
             //checks the result
             Assert.IsNotNull(result);
             Assert.AreEqual(0, shapes.Count);
+            Console.WriteLine(shapes);
         }
     }
 }

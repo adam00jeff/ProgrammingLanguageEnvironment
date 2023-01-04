@@ -18,7 +18,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// test the ParseInput method
         /// </summary>
         /// 
-        [TestMethod()] // part 2 test
+        [TestMethod()] 
         /// <summary>
         /// tests ParseInput
         /// input correct while loop
@@ -35,7 +35,24 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.AreEqual(Action.Var, result.Action);
             Assert.IsTrue(result.Paramaters.Contains(50));
         }
-       
+        [TestMethod()]
+        /// <summary>
+        /// tests ParseInput
+        /// input correct while loop
+        /// </summary>
+        public void ParseInputTestLoop()
+        {
+            //arrange
+            var input = "Loop 50";
+            //calculate
+            var result = Parser.ParseInput(input);
+            //check
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Command));
+            Assert.AreEqual(Action.Loop, result.Action);
+            Assert.IsTrue(result.Paramaters.Contains(50));
+        }
+
         [TestMethod()]
         ///<summary>
         /// tests ParseAction
