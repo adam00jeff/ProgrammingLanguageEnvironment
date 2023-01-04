@@ -209,6 +209,7 @@
             this.Controls.Add(this.OutputWindow);
             this.Controls.Add(this.runButton);
             this.Controls.Add(this.CommandLine);
+            this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.Text = "Programming Language Environment";
             this.Load += new System.EventHandler(this.Form1_Load);

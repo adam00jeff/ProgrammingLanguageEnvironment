@@ -24,6 +24,7 @@ namespace ProgrammingLanguageEnvironment
         Clear,
         Reset,
         Colourred,
+        Colourredgreen,
         Colourgreen,
         Colourblue,
         Colourreset,

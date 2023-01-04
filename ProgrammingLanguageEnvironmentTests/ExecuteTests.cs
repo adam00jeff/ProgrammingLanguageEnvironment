@@ -21,6 +21,41 @@ namespace ProgrammingLanguageEnvironment.Tests
     {
         [TestMethod()]
         ///<summary>
+        /// Tests a basic loop
+        /// with correct parameters
+        /// </summary>
+        public void ExecuteParseTestBasicLoop()
+        {
+            //set up test
+            var input = @"red = 50
+                        blue = 70
+                        loop 10
+                        rectangle blue red
+                        endloop";
+            ArrayList shapes = new ArrayList();
+            Rectangle expected = new Rectangle(Color.Black, 0, 0, 70, 50);
+            //calls the method
+            var result = Execute.ExecuteParse(input, shapes);
+            //checks the result
+            Assert.IsNotNull(result);
+            Assert.AreEqual(10, shapes.Count);
+            Assert.IsInstanceOfType(shapes[0], typeof(Shape));
+            Assert.IsInstanceOfType(shapes[0], typeof(Rectangle));
+            Rectangle s = (Rectangle)shapes[0];//passes the result back to a rectangle
+            Assert.AreEqual(s.width, 70);
+            Assert.AreEqual(s.height, 50);
+            Assert.AreEqual(s.x, 0);
+            Assert.AreEqual(s.y, 0);
+            Assert.AreEqual(s.colour, Color.Black);
+            Rectangle s2 = (Rectangle)shapes[9];//passes another result back to a rectangle
+            Assert.AreEqual(s.width, 70);
+            Assert.AreEqual(s.height, 50);
+            Assert.AreEqual(s.x, 0);
+            Assert.AreEqual(s.y, 0);
+            Assert.AreEqual(s.colour, Color.Black);
+        }
+        [TestMethod()]
+        ///<summary>
         /// Tests Execute Parse
         /// Enters a correct Rectangle command
         /// </summary>

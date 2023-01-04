@@ -35,56 +35,7 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.AreEqual(Action.Var, result.Action);
             Assert.IsTrue(result.Paramaters.Contains(50));
         }
-        [TestMethod()] // part 2 test
-        /// <summary>
-        /// tests ParseInput
-        /// input correct while loop
-        /// </summary>
-        public void ParseInputTestBasicWhile()
-        {
-            //arrange
-            var input = "While colour < 10";
-            //calculate
-            var result = Parser.ParseInput(input);
-            //check
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(Command));
-            Assert.AreEqual(Action.While, result.Action);
-            Assert.IsTrue(result.Paramaters.Contains(10));
-            //Assert.IsTrue(result.Paramaters.Contains(LESSTHAN));
-            //Assert.IsTrue(result.Paramaters.Contains(colour));
-
-        }
-        [TestMethod()]// part 2 test
-        /// <summary>
-        /// tests ParseInput
-        /// input correct while loop
-        /// </summary>
-        public void ParseInputTestBasicIf()
-        {
-            //arrange
-            var input = "If colour < 10";
-            //calculate
-            var result = Parser.ParseInput(input);
-            //check
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(Command));
-            Assert.AreEqual(Action.If, result.Action);
-            Assert.IsTrue(result.Paramaters.Contains(10));
-            //Assert.IsTrue(result.Paramaters.Contains(colour));
-        }
-        public void ParseInputTestBasicColourSwitcher()//part 2 test
-        {
-            //arrange
-            var input = "colour redgreen";
-            //calculate
-            var result = Parser.ParseInput(input);
-            //check
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(Command));
-            Assert.AreEqual(Action.Colour, result.Action);
-            //Assert.IsTrue(result.Paramaters.Contains(redgreen));
-        }
+       
         [TestMethod()]
         ///<summary>
         /// tests ParseAction

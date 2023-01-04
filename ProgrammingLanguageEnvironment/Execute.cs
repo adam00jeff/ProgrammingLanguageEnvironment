@@ -13,6 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms;
 using System.Data;
 using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace ProgrammingLanguageEnvironment
 {
@@ -35,6 +36,10 @@ namespace ProgrammingLanguageEnvironment
         public static int loopLength = 0;
         public static bool loopFlag = false; // flag to show if program is inside loop
         public static int programLength = 0;
+        public static Thread newThread;
+        public static bool running = false;
+        public static bool threadflag = false;
+        public static bool endThread = false;
 
         /*public static ArrayList variableNames = new ArrayList();*/
         public static string[] variableNames = new string[200];
@@ -50,9 +55,10 @@ namespace ProgrammingLanguageEnvironment
         /// <returns></returns>
         public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
+            programCounter = 0;
             if(inputtext == "clear")
             {
-                programCounter = 0;
+                
             }
             
 
@@ -112,6 +118,7 @@ namespace ProgrammingLanguageEnvironment
                     //check if any paramaters are too large
                     switch (action)//switch for each action case, paramater errors are caught by relevant case
                     {
+
                         case Action.Loop:
                             loopFlag = true;
                             int loopParam = param[0];

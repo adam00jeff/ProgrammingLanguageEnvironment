@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -18,16 +19,29 @@ namespace ProgrammingLanguageEnvironment
 
     public partial class MainForm : Form
     {
+        
         Bitmap OutputBitmap = new Bitmap(640, 480); // bitmap to output grpahics objects onto and apply to form
         public ArrayList shapes = new ArrayList();// creates a list to hold shapes to be drawn
        /// <summary>
        /// initalise the form
        /// </summary>
+       /// 
+
+
         public MainForm()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+/*            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
+            timer1.Interval=50;
+            timer1.Tick += new System.EventHandler(timer1_Tick);
+            timer1.Start();*/
+            
         }
-
+/*        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine("refreshed");
+            Refresh();
+        }*/
         private void Form1_Load(object sender, EventArgs e)
         {
 
