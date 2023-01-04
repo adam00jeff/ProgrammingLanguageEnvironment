@@ -111,7 +111,7 @@ namespace ProgrammingLanguageEnvironment
                 if (input.Trim() == "clear")//checks command liine for clear commmand
                 {
                     string clear = "clear";
-                    var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
+                    var parse = Execute.ExecuteParse(clear, shapes);
                     shapes = new ArrayList();
                     ProgramWindow.Text = "";
                     CommandLine.Text = "";

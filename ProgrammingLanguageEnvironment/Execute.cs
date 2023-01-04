@@ -50,6 +50,8 @@ namespace ProgrammingLanguageEnvironment
         /// <returns></returns>
         public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
+            
+
             if (inputtext == null || inputtext == String.Empty)
             {
                 Console.WriteLine("no input detected");
@@ -78,12 +80,18 @@ namespace ProgrammingLanguageEnvironment
                         for (int i=0;i< splitLine.Length; i++)// loop through the elements of the line
                         {
                             string s = splitLine[i].Trim();//trims the line element
+                            var fpos = i;
+                            // this is the first problem, when "red" is declared earlier, changing "red" fails
+                            // e.g. "red = 10 ... red = red + 3" the line becomes 10 = 10 + 3
+                            // it needs to output red = 10 + 3, then process again to update "red"
+                            // 
+                            //
                             if (variableNames.Contains(s))//check if the element matches a declared variable name
+                                //swapping declared variables for values
+                                //need to not calculate, and leave first reference to var, swapping others
                             {
-
-                                // if the first element is a variable it should be unchanged here
-                                int first = Array.IndexOf(splitLine, s);
-                                if (first != 0)
+                                int first = Array.IndexOf(splitLine, s);// if the first element is a variable it should be unchanged here
+                                if (first != 0 || fpos != 0) // misses the first occurence of the var
                                 { 
                                 int pos = Array.IndexOf(variableNames, s);//finds the position of the match from variableNames
                                 int value = variableValues[pos];//gets the value of variableValue from matching position 
@@ -120,13 +128,14 @@ namespace ProgrammingLanguageEnvironment
                             xDef = 0;
                             yDef = 0;
                             variableCounter = 0;
+                            programCounter = 0;
                             variableNames = new string[200];
                             variableValues = new int[200];
                             Console.WriteLine("clear");
                             break;
                         case Action.Var:
                             // replace the occurences of the var with value
-                            //check if variable exists
+                            // check if variable exists
                             // varibale value = param[0]
                             try
                             {
@@ -162,10 +171,6 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 else
                                 {
-                                    
-                                    //find everything after '=' in splits
-                                    //if its one thing then set it as the var
-                                    //if its many then try and compute it
                                     if (after != null && (aftercount.Count() > 1))//this is an expression
                                     //maybe save the expression to an array
                                     {
@@ -355,6 +360,7 @@ namespace ProgrammingLanguageEnvironment
                 /*}*/
 
             }
+            programCounter = 0;
             return shapes; // returns the array of shapes
             
         }
