@@ -40,11 +40,13 @@ namespace ProgrammingLanguageEnvironment
         public static bool running = false;
         public static bool threadflag = false;
         public static bool endThread = false;
+        public static List<string> feedback { get; set; } = new List<string>();
 
         /*public static ArrayList variableNames = new ArrayList();*/
         public static string[] variableNames = new string[200];
         public static int[] variableValues = new int[200];
         public static int variableCounter = 0;
+
         /// <summary>
         /// calls the parser methods on user input
         /// executes the input actions and paramaters to create shapes
@@ -56,16 +58,16 @@ namespace ProgrammingLanguageEnvironment
         public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
             programCounter = 0;
-            if(inputtext == "clear")
+/*            if(inputtext == "clear")
             {
                 
-            }
+            }*/
             
 
             if (inputtext == null || inputtext == String.Empty)
             {
                 Console.WriteLine("no input detected");
-
+                feedback.Add("No Input Detected");
             }
             else 
             { 
@@ -125,6 +127,10 @@ namespace ProgrammingLanguageEnvironment
                             {
                                 programCounter = programCounter - loopLength;
                             }
+                            if (loopCounter == iterations)
+                            {
+                                feedback.Add("Loop Executed "+(iterations+1)+" times");
+                            }
                             Console.WriteLine("loop executed " + loopCounter + " times");
                             break;
                         case Action.Clear:
@@ -137,6 +143,7 @@ namespace ProgrammingLanguageEnvironment
                             variableNames = new string[200];
                             variableValues = new int[200];
                             colour = Color.Black;
+                            feedback.Add("clear");
                             Console.WriteLine("clear");
                             break;
                         case Action.Var:
@@ -317,19 +324,23 @@ namespace ProgrammingLanguageEnvironment
                             {
                                 try
                                 {
-                                s = factory.getShape("rectangle");
-                                s.set(colour, xDef, yDef, param[0], param[0]);
-                                shapes.Add(s);
-                                Console.WriteLine("square"); 
+                                    s = factory.getShape("rectangle");
+                                    s.set(colour, xDef, yDef, param[0], param[0]);
+                                    shapes.Add(s);
+                                    Console.WriteLine("square");
                                 }
                                 catch (Exception)
                                 {
+                                    feedback.Add("incorrect paramaters for Square");
                                     Console.WriteLine("incorrect paramaters for Square");
                                 }
 
                             }
-                            Console.WriteLine("no paramaters found");
-
+                            else
+                            {
+                                feedback.Add("no paramaters found for " + action + " using the variable");
+                                Console.WriteLine("no paramaters found");
+                            }
                             break;
                         case Action.Rect://draws a rectangle with 2 equal sets of sides
                             try

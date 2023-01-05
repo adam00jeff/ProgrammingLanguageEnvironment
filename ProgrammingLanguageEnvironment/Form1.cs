@@ -22,10 +22,7 @@ namespace ProgrammingLanguageEnvironment
         
         Bitmap OutputBitmap = new Bitmap(640, 480); // bitmap to output grpahics objects onto and apply to form
         public ArrayList shapes = new ArrayList();// creates a list to hold shapes to be drawn
-        public List<string> feedback = new List<string>()
-        {
-            "test","test","test"
-        };
+        public List<string> feedback = new List<string>();
        /// <summary>
        /// initalise the form
        /// </summary>
@@ -164,7 +161,7 @@ namespace ProgrammingLanguageEnvironment
         {
             Graphics g = e.Graphics; // get graphics context of the form
             g.DrawImageUnscaled(OutputBitmap, 0, 0); // put the bitmap on the form
-           
+            var list = Execute.feedback;
                 for (int i = 0; i < shapes.Count; i++)//loops through shapes array
                 {
                 Shape s;
@@ -179,9 +176,9 @@ namespace ProgrammingLanguageEnvironment
                         s.draw(g);//draws a empty shape
                     }                
                 }
-            for (int i = 0; i < feedback.Count; i++)//loops through feedback
+            for (int i = 0; i < list.Count; i++)//loops through feedback
             {
-                string f = feedback[i].ToString();
+                string f = list[i].ToString();
                 feedbackBox.Text +=f+ Environment.NewLine ;
             }
         }
