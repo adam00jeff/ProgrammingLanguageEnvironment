@@ -196,6 +196,8 @@ namespace ProgrammingLanguageEnvironment
             string clear = "clear";
             var parse = Execute.ExecuteParse(clear, shapes);//parses the input from the Program Window
             shapes = new ArrayList();//clears array
+            Execute.feedback.Clear();
+            feedbackBox.Text = "";
             //ProgramWindow.Text = "";//clears program window // this is actually annoying to clear
             //CommandLine.Text = "";//clears command line // as above
             Refresh();// updat  the output window

@@ -1,0 +1,15 @@
+red = 2
+blue = 1
+green = 4
+loop 10
+triangle red, blue, green
+colourgreen
+circle red
+colourblue
+square green
+colourreset
+red = red * 3
+blue = blue * 3
+green = green * 3
+moveto red, green
+endloop
