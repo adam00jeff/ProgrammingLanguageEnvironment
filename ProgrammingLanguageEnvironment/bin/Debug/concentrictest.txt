@@ -1,0 +1,6 @@
+moveto 100 100
+red = 10
+loop 5
+circle red
+red = red * 2
+endloop
