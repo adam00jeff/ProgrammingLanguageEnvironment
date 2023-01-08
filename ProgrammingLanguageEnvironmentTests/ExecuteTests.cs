@@ -21,10 +21,39 @@ namespace ProgrammingLanguageEnvironment.Tests
     {
         [TestMethod()]
         ///<summary>
+        /// Tests Execute Parse
+        /// Enters a correct Rectangle command
+        /// </summary>
+        public void IftestCorrectparamaters()
+        {
+            //set up test
+            var input = @"red = 70
+                        blue = 50
+                        if red = 70
+                        rectangle blue red
+                        endif";
+            ArrayList shapes = new ArrayList();
+            Rectangle expected = new Rectangle(Color.Black, 0, 0, 50, 50);
+            //calls the method
+            var result = Execute.ExecuteParse(input, shapes);
+            //checks the result
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, shapes.Count);
+            Assert.IsInstanceOfType(shapes[0], typeof(Shape));
+            Assert.IsInstanceOfType(shapes[0], typeof(Rectangle));
+            Rectangle s = (Rectangle)shapes[0];//passes the result back to a rectangle
+            Assert.AreEqual(s.width, 50);
+            Assert.AreEqual(s.height, 70);
+            Assert.AreEqual(s.x, 0);
+            Assert.AreEqual(s.y, 0);
+            Assert.AreEqual(s.colour, Color.Black);
+        }
+        [TestMethod()]
+        ///<summary>
         /// Tests a basic loop
         /// with correct parameters
         /// </summary>
-        public void ExecuteParseTestBasicLoop()
+        public void LoopTest_Correct_Input()
         {
             //set up test
             var input = @"red = 50
@@ -59,7 +88,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters a correct Rectangle command
         /// </summary>
-        public void ExecuteParseTestRectangleCorrectParamaters()
+        public void RectangleCorrectParamaters()
         {
             //set up test
             var input = "Rectangle 50, 50";
@@ -84,7 +113,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters a correct command
         /// </summary>
-        public void ExecuteParseTestCircleCorrectParamaters()
+        public void CircleCorrectParamaters()
         {
             //set up test
             var input = "Circle 50";
@@ -108,7 +137,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters a correct command
         /// </summary>
-        public void ExecuteParseTestTriangleCorrectParamaters()
+        public void TriangleCorrectParamaters()
         {
             //set up test
             var input = "Triangle 50 50 50";
@@ -134,7 +163,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters a correct command
         /// </summary>
-        public void ExecuteParseTestLineCorrectParamaters()
+        public void LineCorrectParamaters()
         {
             //set up test
             var input = "Line 100,100";
@@ -159,7 +188,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters an incorrect command
         /// </summary>
-        public void ExecuteParseTestIncorrectParamaters()
+        public void IncorrectParamaters()
         {
             //set up test
             ArrayList shapes = new ArrayList();
@@ -175,7 +204,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters an incorrect command
         /// </summary>
-        public void ExecuteParseTestIncorrectParamatersmixed()
+        public void IncorrectParamatersmixed()
         {
             //set up test
             ArrayList shapes = new ArrayList();
@@ -191,7 +220,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters an incorrect command
         /// </summary>
-        public void ExecuteParseTestIncorrectSymbolsmixed()
+        public void IncorrectSymbolsmixed()
         {
             //set up test
             ArrayList shapes = new ArrayList();
@@ -207,7 +236,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters a correct multi-line command with a variable
         /// </summary>
-        public void ExecuteParseTestMultilineVariables()
+        public void MultilineVariables_Correct()
         {
             //set up test
             ArrayList shapes = new ArrayList();
@@ -232,7 +261,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters a correct multi-line command with a more complex variable
         /// </summary>
-        public void ExecuteParseTestMultilineVariablesTwo()
+        public void MultilineVariables_CorrectTwo()
         {
             //set up test
             ArrayList shapes = new ArrayList();
@@ -267,7 +296,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         /// Tests Execute Parse
         /// Enters an incorrect multi-line command with a more complex variable
         /// </summary>
-        public void ExecuteParseTestwithincorrectMultilineVariables()
+        public void MultilineVariables_Incorrect()
         {
             //set up test
             ArrayList shapes = new ArrayList();
