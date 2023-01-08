@@ -83,8 +83,9 @@ namespace ProgrammingLanguageEnvironment
                 {
                     try
                     {
-                    inputline = lines[programCounter].Trim();// passed the current line to a variable
-                    splitLine = inputline.Split(' ', ','); // split the current line
+
+                        inputline = lines[programCounter].Trim();// passed the current line to a variable
+                        splitLine = inputline.Split(' ', ','); // split the current line
                     }
                     catch (Exception)
                     {
@@ -125,19 +126,18 @@ namespace ProgrammingLanguageEnvironment
                                                                 //check if any paramaters are too large
                         switch (action)//switch for each action case, paramater errors are caught by relevant case
                         {
-                            case Action.If:
-                                // get the statement and evaluate it
+                            case Action.If: // action for the IF statments
                                 string[] splits = inputline.Split(' '); // array of the input line
                                 var firstVal = splits[1];
                                 var secondVal = splits[3];
                                 var theOperator = splits[2];
-                                bool ifCondition = false;
+                                bool ifCondition = false; // if true, execute the lines following the statment
                                 try
                                 {
                                     firstasint = int.Parse(firstVal);
                                     secondasint = int.Parse(secondVal);
                                     string str = theOperator;
-                                    switch (str)
+                                    switch (str) // switch for IF operators
                                     {
                                         case "=": // if equals
                                             if (firstVal == secondVal)
@@ -181,11 +181,11 @@ namespace ProgrammingLanguageEnvironment
                                             break;
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception) // catches bad paramaters for the IF
                                 {
-                                    feedback.Add("IF cannot be calculated with paramaters: "+inputline);
+                                    feedback.Add("IF cannot be calculated with paramaters: " + inputline);
                                 }
-                                if (ifCondition == false) 
+                                if (ifCondition == false) // misses the rest of the IF until it finds the endif
                                 {
                                     executeLinesFlag = false;
                                 }
@@ -194,27 +194,27 @@ namespace ProgrammingLanguageEnvironment
                                 executeLinesFlag = true; // resumes executing the program
                                 break;
                             case Action.Loop:
-                                loopFlag = true;
-                                loopParam = param[0];
+                                loopFlag = true; // begin counting the size of the loop
+                                loopParam = param[0]; // gets the requested number of iterations
                                 loopSize = loopParam - 1; // number of times to execute this loop (minus one to miss the loop declaration)
-                                string[] thearrayofinputlines = lines;
-                                int loopStart = programCounter;
-                                loopCounter = 0; // times through loop
+                                /*string[] thearrayofinputlines = lines;*/
+                                int loopStart = programCounter; // finds the position of the start of the loop
+                                loopCounter = 0; // times through this loop
                                 break;
                             case Action.Endloop:
-                                int iterations = loopSize;
-                                loopFlag = false;
-                                if (loopCounter++ < iterations)
+                                int iterations = loopSize;// sets the size of the loop 
+                                loopFlag = false;// ends counting the loop
+                                if (loopCounter++ < iterations)//compares performed loops to requested 
                                 {
-                                    programCounter = programCounter - loopLength;
+                                    programCounter = programCounter - (loopLength);// returns to start of loop 
                                 }
-                                if (loopCounter == (iterations + 1))
+                                if (loopCounter == (iterations + 1))// feedsback count of loops
                                 {
                                     feedback.Add("Loop Executed " + (iterations + 1) + " times");
                                 }
                                 Console.WriteLine("loop executed " + loopCounter + " times");
                                 break;
-                            case Action.Clear:
+                            case Action.Clear:// clears relevant variables 
                                 xDef = 0;
                                 yDef = 0;
                                 variableCounter = 0;
@@ -224,80 +224,68 @@ namespace ProgrammingLanguageEnvironment
                                 variableNames = new string[200];
                                 variableValues = new int[200];
                                 colour = Color.Black;
-                                /*                            feedback.Add("clear");*/
                                 Console.WriteLine("clear");
                                 break;
                             case Action.Var:
-                                // replace the occurences of the var with value
-                                // check if variable exists
-                                // varibale value = param[0]
-                                try
+                                try // trys to calculate paramaters 
                                 {
                                     var computed = "";
                                     var sensiblenumber = 0;
-                                    string[] splits2 = inputline.Split(' ');
-                                    string varname = splits2[0];
-                                    List<string> after = inputline.Split('=').Select(p => p.Trim()).ToList();
-                                    string[] aftercount = after[1].Split(' ');
-                                    if (variableNames.Contains(varname)) // need a flag for loops
+                                    string[] splits2 = inputline.Split(' '); // gets the input line as an array
+                                    string varname = splits2[0];// finds the first element, the var
+                                    List<string> after = inputline.Split('=').Select(p => p.Trim()).ToList();// get a list of things that are not the var
+                                    string[] aftercount = after[1].Split(' ');// an array used for counting the elements after the operator
+                                    if (variableNames.Contains(varname)) // checks for the existing variable name
                                     {
                                         int pos = Array.IndexOf(variableNames, varname);//finds the position of the match from variableNames
-                                        try
+                                        try // checks for a computable value
                                         {
                                             using (var dt = new DataTable())
                                             {
                                                 try
                                                 {
-                                                    computed = dt.Compute(after[1], "").ToString();
+                                                    computed = dt.Compute(after[1], "").ToString(); // trys to compute line following operator
                                                 }
-                                                catch (EvaluateException)
+                                                catch (EvaluateException)// informs user of error
                                                 {
                                                     feedback.Add("Line " + after[1] + " could not be computed");
                                                     Console.WriteLine("This could not be computed :(");
                                                 }
                                             }
                                         }
-                                        catch (Exception)
+                                        catch (Exception)// if the var cannot be commputed, but contains operators
                                         {
                                             feedback.Add("cannot calculate this var " + after[1]);
                                             Console.WriteLine("cannot calculate this var");
                                         }
-                                        try
-                                        {
-                                            sensiblenumber = int.Parse(computed);
-                                        }
-                                        catch
-                                        {
-
-                                        }
-                                        if (sensiblenumber > 5000000)
+                                        sensiblenumber = int.Parse(computed);
+                                        if (sensiblenumber > 5000000)// checks the computed number is withing a reasonable range
                                         {
                                             Console.WriteLine("sorry, var " + varname + " " + sensiblenumber + " is too large to set. Current Value is: " + variableValues[pos]);
                                             feedback.Add("sorry, var " + varname + " " + sensiblenumber + " is too large to set. Current Value is: " + variableValues[pos]);
                                         }
-                                        else
+                                        else // variable is computable and an integer
                                         {
-                                            variableNames[pos] = varname;
-                                            variableValues[pos] = int.Parse(computed);
-                                            string currentVarName = variableNames[pos];
+                                            variableNames[pos] = varname; // overwrites varname
+                                            variableValues[pos] = int.Parse(computed);// overwirtes value
+                                            string currentVarName = variableNames[pos];// gets new varname
                                             feedback.Add("var " + currentVarName + " overwritten: New Value = " + variableValues[pos]);
                                             Console.WriteLine("var " + currentVarName + " overwritten: New Value = " + variableValues[pos]);
                                         }
                                     }
-                                    else
+                                    else // if the var name is not found in the array
                                     {
-                                        if (after != null && (aftercount.Count() > 1))//this is an expression
-                                                                                      //maybe save the expression to an array
+                                        if (after != null && (aftercount.Count() > 1))//this is a new variable with an expression
                                         {
                                             try
                                             {
-                                                using (var dt = new DataTable())
+                                                using (var dt = new DataTable())// try and calculate the expression
                                                 {
                                                     try
                                                     {
                                                         computed = dt.Compute(after[1], "").ToString();
                                                     }
-                                                    catch (EvaluateException)
+                                                    catch (EvaluateException) // catch errors and report
                                                     {
                                                         feedback.Add("cannot compute var " + after[1]);
                                                         Console.WriteLine("This could not be computed :(");
@@ -309,31 +297,29 @@ namespace ProgrammingLanguageEnvironment
                                                 feedback.Add("cannot compute var " + after[1]);
                                                 Console.WriteLine("cannot calculate this var");
                                             }
-                                            variableNames[variableCounter] = varname;
-                                            variableValues[variableCounter++] = int.Parse(computed);
+                                            variableNames[variableCounter] = varname; // if successful, pass new variable name 
+                                            variableValues[variableCounter++] = int.Parse(computed);// if successful pass new variable value
                                         }
                                         else // not an expression
                                         {
-                                            if (param.Length != 0)
+                                            if (param.Length != 0) // variables must have paramaters 
                                             {
-                                                try
+                                                try // try and set var
                                                 {
                                                     variableNames[variableCounter] = varname;
                                                     variableValues[variableCounter++] = param[0];
                                                 }
-                                                catch (Exception)
+                                                catch (Exception) // report failing to set var
                                                 {
                                                     feedback.Add("cannot define parameter for" + varname);
                                                     Console.WriteLine("cannot define this paramater");
                                                 }
 
                                             }
-                                            /*                                        feedback.Add("no action or parameter found for " + varname);
-                                                                                    Console.WriteLine("no parameter found");*/
                                         }
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception) // catch anything that drops through all 
                                 {
                                     feedback.Add("incorrect parameters for var");
                                     Console.WriteLine("incorrect paramaters for var");
@@ -496,9 +482,6 @@ namespace ProgrammingLanguageEnvironment
                                     Console.WriteLine("incorrect paramaters for triangle");
                                 }
                                 break;
-                                //case Action.Test://command to call for testing
-                                //      Console.WriteLine("test");
-                                //    break;
                         }
                         if (inputtext != "clear")
                         {
@@ -513,6 +496,10 @@ namespace ProgrammingLanguageEnvironment
                     else
                     {
                         programCounter++;
+                        if (loopFlag == true)
+                        {
+                            loopLength++;
+                        }
                     }
                 }
 
