@@ -1,15 +1,15 @@
 red = 10
 blue = 5
 green = 20
-loop 300
+loop 50
 triangle red, blue, green
 colourgreen
 circle red
 colourblue
 square green
 colourreset
-red = red + 13
-blue = blue + 13
-green = green + 13
+red = red + 5
+blue = blue + 5
+green = green + 5
 moveto red, green
 endloop

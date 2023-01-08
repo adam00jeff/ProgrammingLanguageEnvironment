@@ -45,7 +45,10 @@ namespace ProgrammingLanguageEnvironment
         public static string[] variableNames = new string[200];
         public static int[] variableValues = new int[200];
         public static int variableCounter = 0;
-
+        public static int firstasint = 0;
+        public static int secondasint = 0;
+        public static string[] splitLine;
+        public static int loopParam;
         /// <summary>
         /// calls the parser methods on user input
         /// executes the input actions and paramaters to create shapes
@@ -57,20 +60,37 @@ namespace ProgrammingLanguageEnvironment
         public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
             programCounter = 0;
+            loopSize = 0;
+            loopParam = 0;
+            loopLength = 0;
             feedback.Clear();
             if (inputtext == null || inputtext == String.Empty)
             {
                 Console.WriteLine("no input detected");
                 feedback.Add("No Input Detected");
             }
+            else if (programCounter < 0)
+            {
+                Console.WriteLine("programCounter < 0 ");
+                feedback.Add("Error computing program, please clear the program");
+            }
             else
             {
                 string[] lines = inputtext.Split('\n');// ensures the input is split by line
+                string inputline = "";
                 programLength = lines.Count();// sets programLength to size of the input
                 while (programCounter < programLength)// checks position within the program
                 {
-                    string inputline = lines[programCounter].Trim();// passed the current line to a variable
-                    var splitLine = inputline.Split(' ', ','); // split the current line
+                    try
+                    {
+                    inputline = lines[programCounter].Trim();// passed the current line to a variable
+                    splitLine = inputline.Split(' ', ','); // split the current line
+                    }
+                    catch (Exception)
+                    {
+                        feedback.Add("Error computing program, please clear the program");
+                    }
+
                     if (inputline == "endif")
                     {
                         executeLinesFlag = true;
@@ -114,8 +134,8 @@ namespace ProgrammingLanguageEnvironment
                                 bool ifCondition = false;
                                 try
                                 {
-                                    int firstasint = int.Parse(firstVal);
-                                    int secondasint = int.Parse(secondVal);
+                                    firstasint = int.Parse(firstVal);
+                                    secondasint = int.Parse(secondVal);
                                     string str = theOperator;
                                     switch (str)
                                     {
@@ -159,13 +179,11 @@ namespace ProgrammingLanguageEnvironment
                                                 ifCondition = false;
                                             }
                                             break;
-
                                     }
-
                                 }
                                 catch (Exception)
                                 {
-
+                                    feedback.Add("IF cannot be calculated with paramaters: "+inputline);
                                 }
                                 if (ifCondition == false) 
                                 {
@@ -177,7 +195,7 @@ namespace ProgrammingLanguageEnvironment
                                 break;
                             case Action.Loop:
                                 loopFlag = true;
-                                int loopParam = param[0];
+                                loopParam = param[0];
                                 loopSize = loopParam - 1; // number of times to execute this loop (minus one to miss the loop declaration)
                                 string[] thearrayofinputlines = lines;
                                 int loopStart = programCounter;
