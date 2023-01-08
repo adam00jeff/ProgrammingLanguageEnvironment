@@ -21,7 +21,6 @@ namespace ProgrammingLanguageEnvironment.Tests
         [TestMethod()] 
         /// <summary>
         /// tests ParseInput
-        /// input correct while loop
         /// </summary>
         public void ParseInputTestVariables()
         {
@@ -38,7 +37,7 @@ namespace ProgrammingLanguageEnvironment.Tests
         [TestMethod()]
         /// <summary>
         /// tests ParseInput
-        /// input correct while loop
+        /// input correct loop
         /// </summary>
         public void ParseInputTestLoop()
         {

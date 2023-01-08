@@ -169,7 +169,6 @@ namespace ProgrammingLanguageEnvironment
                     if (Execute.fill == true)// checks fill bool
                     {
                         s.drawfilled(g);//draws a filled shape
-       
                     }
                     else
                     {

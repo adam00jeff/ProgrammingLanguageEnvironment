@@ -1,0 +1,5 @@
+drawto 30, 30
+moveto 100,100
+circle 50
+rectangle 50, 60
+triangle 50, 60, 70

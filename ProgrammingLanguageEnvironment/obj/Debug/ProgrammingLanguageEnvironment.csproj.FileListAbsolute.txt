@@ -9,3 +9,4 @@ C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEn
 C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.csproj.CoreCompileInputs.cache
 C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.exe
 C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\obj\Debug\ProgrammingLanguageEnvironment.pdb
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironment\bin\Debug\ProgrammingLanguageEnvironment.xml

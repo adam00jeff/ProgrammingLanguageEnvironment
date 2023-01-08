@@ -50,6 +50,26 @@ namespace ProgrammingLanguageEnvironment.Tests
         }
         [TestMethod()]
         ///<summary>
+        /// Tests Execute Parse
+        /// Enters a correct Rectangle command
+        /// </summary>
+        public void IftestIncorrectparamaters()
+        {
+            //set up test
+            var input = @"red = 70q
+                        blue = 50w
+                        if red = 7w0
+                        rectangle blue red
+                        endif";
+            ArrayList shapes = new ArrayList();
+            //calls the method
+            var result = Execute.ExecuteParse(input, shapes);
+            //checks the result
+            Assert.IsNotNull(result);
+            Assert.AreEqual(0, shapes.Count);
+        }
+            [TestMethod()]
+        ///<summary>
         /// Tests a basic loop
         /// with correct parameters
         /// </summary>
@@ -309,7 +329,6 @@ namespace ProgrammingLanguageEnvironment.Tests
             //checks the result
             Assert.IsNotNull(result);
             Assert.AreEqual(0, shapes.Count);
-            Console.WriteLine(shapes);
         }
     }
 }

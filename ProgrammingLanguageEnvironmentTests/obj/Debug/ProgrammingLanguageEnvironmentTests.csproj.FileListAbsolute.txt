@@ -16,3 +16,4 @@ C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEn
 C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironmentTests\obj\Debug\ProgrammingLanguageEnvironmentTests.csproj.CopyComplete
 C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironmentTests\obj\Debug\ProgrammingLanguageEnvironmentTests.dll
 C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironmentTests\obj\Debug\ProgrammingLanguageEnvironmentTests.pdb
+C:\Users\adamj\source\repos\ProgrammingLanguageEnvironment\ProgrammingLanguageEnvironmentTests\bin\Debug\ProgrammingLanguageEnvironment.xml

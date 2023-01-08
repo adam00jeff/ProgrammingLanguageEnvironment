@@ -23,11 +23,17 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Execute
     {
+        /// <summary>The program counter, counts numbers of lines in the program</summary>
         public static int programCounter = 0; // number of lines in the program
+        /// <summary>The factory</summary>
         public static ShapeFactory factory = new ShapeFactory();
+        /// <summary>The shapes</summary>
         public ArrayList shapes = new ArrayList(); // creates a list to store shape objects
+        /// <summary>The current shape to be drawn</summary>
         public static Shape s;
+        /// <summary>The x definition</summary>
         public static int xDef = 0;//default x axis position
+        /// <summary>The y definition</summary>
         public static int yDef = 0;//default y axis position
         public static Color colour = Color.Black;//default colour for shapes
         public static bool fill;//default fill for shapes is unfilled
@@ -49,14 +55,14 @@ namespace ProgrammingLanguageEnvironment
         public static int secondasint = 0;
         public static string[] splitLine;
         public static int loopParam;
-        /// <summary>
-        /// calls the parser methods on user input
+        /// <summary>calls the parser methods on user input
         /// executes the input actions and paramaters to create shapes
-        /// adds shapes to the shapes array
-        /// </summary>
+        /// adds shapes to the shapes array</summary>
         /// <param name="inputtext">the user input</param>
         /// <param name="shapes">a list of shapes to be drawn</param>
-        /// <returns></returns>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
             programCounter = 0;

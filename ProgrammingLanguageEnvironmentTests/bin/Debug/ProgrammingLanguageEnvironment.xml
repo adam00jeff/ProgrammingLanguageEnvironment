@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProgrammingLanguageEnvironment</name>
+    </assembly>
+    <members>
+        <member name="T:ProgrammingLanguageEnvironment.Action">
+            <summary>
+            Sets up a list of actions that can be performed by the program
+            Actions are exectuted in the Execute class
+            </summary>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Circle">
+            <summary>
+            Class to draw Circles
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Circle.#ctor">
+            <summary>
+            empty constructor
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Circle.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            constructor for circles
+            </summary>
+            <param name="colour">the colour of the circle</param>
+            <param name="x">the x axis posiition</param>
+            <param name="y">the y axis position</param>
+            <param name="radius">the radius of the circle</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Circle.draw(System.Drawing.Graphics)">
+            <summary>
+            overrides draw method when Circle.Draw is called
+            draws a circle on the graphics object
+            </summary>
+            <param name="g">the graphics object to be output</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Circle.drawfilled(System.Drawing.Graphics)">
+            <summary>
+            overrides drawfilled method to draw filled circles
+            draws filled circles on the graphics object
+            </summary>
+            <param name="g">the graphics object to be output</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Circle.ToString">
+            <summary>
+            when ToString() called on circle, returns with radius appedned
+            </summary>
+            <returns>ToString()+radius</returns>
+        </member>
+        <member name="P:ProgrammingLanguageEnvironment.Command.Action">
+            <summary>
+            Commad class allows creation of commands
+            
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Command.#ctor(ProgrammingLanguageEnvironment.Action,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Commands hold the action to be performed and the associated paramaters
+            input is parsed into commands
+            </summary>
+            <param name="action">The action parsed from input</param>
+            <param name="paramaters">The paramaters for the action</param>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Execute">
+            <summary>
+            holds methods for executing actions
+            and applying graphics objects to the form
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Execute.ExecuteParse(System.String,System.Collections.ArrayList)">
+            <summary>
+            calls the parser methods on user input
+            executes the input actions and paramaters to create shapes
+            adds shapes to the shapes array
+            </summary>
+            <param name="inputtext">the user input</param>
+            <param name="shapes">a list of shapes to be drawn</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.#ctor">
+            <summary>
+            initalise the form
+            </summary>
+            
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.CommandLine_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            detects when the user presses return to submit command line data
+            if thwere is data in the command line it is executed
+            if run is entered the program window is executed
+            iif clear is entered the values for the program are cleared
+            </summary>
+            <param name="sender">the command line</param>
+            <param name="e">the keypressed event</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.button1_Click(System.Object,System.EventArgs)">
+            <summary>
+            event for clicking the run button
+            </summary>
+            <param name="sender">the run button</param>
+            <param name="e">the click event</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.OutputWindow_Paint(System.Object,System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            gets values for the ouput window
+            </summary>
+            <param name="sender">the output paint window</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.button1_Click_1(System.Object,System.EventArgs)">
+            <summary>
+            clear button
+            </summary>
+            <param name="sender">the button</param>
+            <param name="e">the click</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.button2_Click(System.Object,System.EventArgs)">
+            <summary>
+            save button
+            </summary>
+            <param name="sender">the button</param>
+            <param name="e">the click</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.button3_Click(System.Object,System.EventArgs)">
+            <summary>
+            the load button
+            </summary>
+            <param name="sender">the button</param>
+            <param name="e">the click</param>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Line">
+            <summary>
+            class to draw lines 
+            line method called from DrawTo
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Line.#ctor">
+            <summary>
+            constructor for lines
+            </summary>
+            <param name="colour">the colour of the line</param>
+            <param name="x">starting x axis position</param>
+            <param name="y">starting y axis position</param>
+            <param name="tox">ending x axis position</param>
+            <param name="toy">ending y axis position</param>
+            
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Line.draw(System.Drawing.Graphics)">
+            <summary>
+            draws a line on the graphics object
+            </summary>
+            <param name="g">graphics object to be output</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Line.drawfilled(System.Drawing.Graphics)">
+            <summary>
+            method to call when fill is selected
+            does not change the lines
+            </summary>
+            <param name="g">the graphics object to be output</param>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Parser">
+            <summary>
+            class to hold parser methods for processing user input
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Parser.ParseAction(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            parses string tokens and returns the first that matches to an Action in the ENUMS 
+            </summary>
+            <param name="tokens">the string tokens from input</param>
+            <returns>an instance of the Action Enums if matched,Action.none if unmatched</returns>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Parser.ToTitleCase(System.String)">
+            <summary>
+            returns a string in TitleCase
+            Culture info is used to check application 
+            </summary>
+            <param name="input">the string to be parsed</param>
+            <returns>the input string in Title Case</returns>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Parser.ParseNumbers(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            parses an input of strings into integers for use in shape paramaters
+            </summary>
+            <param name="tokens">the seperated strings of input</param>
+            <returns>a list of integers from the input strings</returns>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Parser.ParseInput(System.String)">
+            <summary>
+            calls both parse methods on the user input
+            parses and splits input
+            removes whitespace
+            </summary>
+            <param name="input">a user input string</param>
+            <returns>a command to performed with action and pramaters</returns>
+            <exception cref="T:System.NotImplementedException">catched null inputs</exception>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Shape">
+            <summary>
+            Abstract class to establish paramaters for shapes
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Shape.#ctor(System.Drawing.Color,System.Int32,System.Int32)">
+            <summary>
+            shape method to set the values of a shape
+            </summary>
+            <param name="colour">the colour of the shape</param>
+            <param name="x">the x axis position to be drawn from</param>
+            <param name="y">the y axis position to be drawn from</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Shape.draw(System.Drawing.Graphics)">
+            <summary>
+            method for adding shapes to a graphics object
+            </summary>
+            <param name="g">the stored graphics to be output</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Shape.drawfilled(System.Drawing.Graphics)">
+            <summary>
+            method for adding filled shapes to a graphics object
+            </summary>
+            <param name="g">the filled shapes to be graphics object</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Shape.ToString">
+            <summary>
+            overrides ToString method to return the paramaters for a shape
+            </summary>
+            <returns>the string requested + the coordinated and colour</returns>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Triangle">
+            <summary>
+            Class to draw Triangles
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Triangle.#ctor">
+            <summary>
+            Construtor for triangles
+            </summary>
+            <param name="colour">the colour of the triangle</param>
+            <param name="x">its x axis position</param>
+            <param name="y">its y asix position</param>
+            <param name="side1">the value for side 1</param>
+            <param name="side2">the value for side 2</param>
+            <param name="side3">the value for side 3</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Triangle.draw(System.Drawing.Graphics)">
+            <summary>
+            draws an empty triangle
+            </summary>
+            <param name="g">the graphics object to be output</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Triangle.drawfilled(System.Drawing.Graphics)">
+            <summary>
+            draws a filled triangle
+            </summary>
+            <param name="g">the graphics object to be output</param>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ProgrammingLanguageEnvironment.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ProgrammingLanguageEnvironment.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
