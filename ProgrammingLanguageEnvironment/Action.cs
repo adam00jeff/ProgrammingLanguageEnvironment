@@ -34,6 +34,7 @@ namespace ProgrammingLanguageEnvironment
         Loop,
         Endloop,
         If,
+        Endif,
         Colour,
         Var,
         None

@@ -1,0 +1,4 @@
+size = 10
+if size = 12
+square 40
+endif
