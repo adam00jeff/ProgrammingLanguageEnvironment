@@ -71,10 +71,12 @@ namespace ProgrammingLanguageEnvironment
                 {
                     string inputline = lines[programCounter].Trim();// passed the current line to a variable
                     var splitLine = inputline.Split(' ', ','); // split the current line
+                    if (inputline == "endif")
+                    {
+                        executeLinesFlag = true;
+                    }
                     if (executeLinesFlag == true) // checks we are executing lines
                     {
-
-
                         if (variableCounter != 0) // if there is a variable set 
                         {
                             for (int i = 0; i < splitLine.Length; i++)// loop through the elements of the line
@@ -104,14 +106,71 @@ namespace ProgrammingLanguageEnvironment
                         switch (action)//switch for each action case, paramater errors are caught by relevant case
                         {
                             case Action.If:
-
                                 // get the statement and evaluate it
-                                // if it is true keep going through the code
+                                string[] splits = inputline.Split(' '); // array of the input line
+                                var firstVal = splits[1];
+                                var secondVal = splits[3];
+                                var theOperator = splits[2];
+                                bool ifCondition = false;
+                                try
+                                {
+                                    int firstasint = int.Parse(firstVal);
+                                    int secondasint = int.Parse(secondVal);
+                                    string str = theOperator;
+                                    switch (str)
+                                    {
+                                        case "=": // if equals
+                                            if (firstVal == secondVal)
+                                            {
+                                                ifCondition = true;
+                                            }
+                                            else
+                                            {
+                                                ifCondition = false;
+                                            }
+                                            break;
+                                        case ">":// if greaterthan
+                                            if (firstasint > secondasint)
+                                            {
+                                                ifCondition = true;
+                                            }
+                                            else
+                                            {
+                                                ifCondition = false;
+                                            }
+                                            break;
+                                        case "<":// if lessthan
+                                            if (firstasint < secondasint)
+                                            {
+                                                ifCondition = true;
+                                            }
+                                            else
+                                            {
+                                                ifCondition = false;
+                                            }
+                                            break;
+                                        case "!=":// if not equal
+                                            if (firstasint != secondasint)
+                                            {
+                                                ifCondition = true;
+                                            }
+                                            else
+                                            {
+                                                ifCondition = false;
+                                            }
+                                            break;
 
+                                    }
 
-                                // if it is false lines unitl endif are ignored
-                                // if condition = false executelinesflag = false
+                                }
+                                catch (Exception)
+                                {
 
+                                }
+                                if (ifCondition == false) 
+                                {
+                                    executeLinesFlag = false;
+                                }
                                 break;
                             case Action.Endif:
                                 executeLinesFlag = true; // resumes executing the program
@@ -158,8 +217,8 @@ namespace ProgrammingLanguageEnvironment
                                 {
                                     var computed = "";
                                     var sensiblenumber = 0;
-                                    string[] splits = inputline.Split(' ');
-                                    string varname = splits[0];
+                                    string[] splits2 = inputline.Split(' ');
+                                    string varname = splits2[0];
                                     List<string> after = inputline.Split('=').Select(p => p.Trim()).ToList();
                                     string[] aftercount = after[1].Split(' ');
                                     if (variableNames.Contains(varname)) // need a flag for loops
@@ -432,6 +491,10 @@ namespace ProgrammingLanguageEnvironment
                         {
                             loopLength++;
                         }
+                    }
+                    else
+                    {
+                        programCounter++;
                     }
                 }
 
