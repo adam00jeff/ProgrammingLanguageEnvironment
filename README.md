@@ -39,17 +39,26 @@ Paramaters be seperated by comma or spaces.
 - **Rectangle**"rectangle 50, 70" will draw a rectangle with a 5opx width and a 70px height
 - **Triangle**"triangle 30, 40 ,50" will draw a triangle with sides equal to the 3 input paramaters
 - **Line**"line 100, 100" draws a line from the default position to the defined coordinate position
-- **Drawto**"drawto 50, 50" same as line method, used in varying input styles so both included
+- **Draw To**"drawto 50, 50" same as line method, used in varying input styles so both included
 ### Program Actions
 Program actions call additional functionality to the input. Most require paramaters to be passed in. Loops and If statments must be closed with their appropriate "end" command.
 
 - **Loop** "loop 50" will execute all lines between "loop 50" and "end loop" a number of times defined by the paramater.
 - **If** "if 12 > 15" will compute the statment and apply the condition to the code block leading up to "end if"
    ##### If Syntax
-   - 
+   - **=** Is equal 
+   - **>** Is greater than
+   - **<** Is less than
+   - **!=** Is not equal 
+- **Variables** Variables can be used throughout the program. They can be called, set, computed and overwritten using loops, if's and computations.
+    - "size 50" sets a variable called "size" with the value "50", this value can then be used as follows:
+      - "square size"
+      - "loop size"
+      - "If size > 50"
+      - "size = size * size"
 ### Control Actions
 Control actions affect the form or output window without drawing shapes 
-- **Moveto**"moveto 40, 40" moves the starting draw position to the defined coordinate position
+- **Move To**"moveto 40, 40" moves the starting draw position to the defined coordinate position
 - **Reset**"reset" resets the starting draw position (default is 0,0)
 - **Clear** "clear" clears the output, syntax feedback, input box and program values
 #### Colour Controls
@@ -58,4 +67,6 @@ Changing the program colour affects all shapes drawn after the colour is changed
 - **Colour Green** "colourgreen" sets the draw colour to green
 - **Colour Blue** "colour blue "sets the draw colour to blue
 - **Colour Reset** "colour reset" resets the draw colour to default (black)
+- **Fill ON** "fillon" fills the current shapes drawn with their current colour 
+- **Fill OFF** "filloff" reverts the current shapes drawn to outlines
 
