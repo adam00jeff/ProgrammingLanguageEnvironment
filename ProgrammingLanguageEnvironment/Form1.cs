@@ -17,41 +17,23 @@ using System.Windows.Forms;
 namespace ProgrammingLanguageEnvironment
 {
 
+    /// <summary>Holds the main elements for the form</summary>
     public partial class MainForm : Form
     {
-        
-        Bitmap OutputBitmap = new Bitmap(640, 480); // bitmap to output grpahics objects onto and apply to form
-        public ArrayList shapes = new ArrayList();// creates a list to hold shapes to be drawn
+        /// <summary>The output bitmap</summary>
+        Bitmap OutputBitmap = new Bitmap(640, 480);
+        /// <summary>The shapes
+        /// to be drawn</summary>
+        public ArrayList shapes = new ArrayList();
+        /// <summary>The array of feedback strings to be output</summary>
         public List<string> feedback = new List<string>();
        /// <summary>
        /// initalise the form
        /// </summary>
-       /// 
-
-
-        public MainForm()
-        {
+       public MainForm()
+       {
             InitializeComponent(); 
-/*            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval=50;
-            timer1.Tick += new System.EventHandler(timer1_Tick);
-            timer1.Start();*/
-            
-        }
-/*        private void timer1_Tick(object sender, EventArgs e)
-        {
-            Console.WriteLine("refreshed");
-            Refresh();
-        }*/
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+       }
         /// <summary>
         /// detects when the user presses return to submit command line data
         /// if thwere is data in the command line it is executed
@@ -102,7 +84,6 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="e">the click event</param>
         private void button1_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(CommandLine.Text.Trim()))//if the command line is empty or whitespace
             {
                 if (ProgramWindow.Text.Trim() == "clear")//check program window for clear command
@@ -132,7 +113,6 @@ namespace ProgrammingLanguageEnvironment
                     CommandLine.Text = "";
                     Refresh();
                 }
-
                 else if (CommandLine.Text.Trim() == "run")//checks command line for run command, runs program window
                 {
                     var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);
@@ -148,9 +128,7 @@ namespace ProgrammingLanguageEnvironment
                     CommandLine.Text = "";
                     Refresh(); // update the outputwindow
                 }
-
             }
-
         }
         /// <summary>
         /// gets values for the ouput window
@@ -180,10 +158,6 @@ namespace ProgrammingLanguageEnvironment
                 string f = list[i].ToString();
                 feedbackBox.Text +=f+ Environment.NewLine ;
             }
-        }
-        private void ProgramWindow_TextChanged(object sender, EventArgs e)
-        {
-
         }
         /// <summary>
         /// clear button
@@ -239,12 +213,47 @@ namespace ProgrammingLanguageEnvironment
                 }
             }
         }
+        /// <summary>
+        /// Handles the Load event of the Form1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
+        }
+        /// <summary>
+        /// Handles the Click event of the pictureBox1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// Handles the TextChanged event of the CommandLine control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void CommandLine_TextChanged(object sender, EventArgs e)
         {
 
         }
+        /// <summary>
+        /// Handles the TextChanged event of the ProgramWindow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ProgramWindow_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+        /// <summary>
+        /// Handles the TextChanged event of the feedbackBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void feedbackBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -252,5 +261,13 @@ namespace ProgrammingLanguageEnvironment
     }
 }
 
+/*            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
+            timer1.Interval=50;
+            timer1.Tick += new System.EventHandler(timer1_Tick);
+            timer1.Start();*/
+/*        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine("refreshed");
+            Refresh();
+        }*/
 
-   

@@ -14,6 +14,8 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Circle : Shape
     {
+        /// <summary>The radius
+        /// value</summary>
         public int radius; //the radius of the circle
         /// <summary>
         /// empty constructor
@@ -22,7 +24,6 @@ namespace ProgrammingLanguageEnvironment
         {
 
         }
-
         /// <summary>
         /// constructor for circles
         /// </summary>
@@ -35,6 +36,9 @@ namespace ProgrammingLanguageEnvironment
             this.radius = radius;
         }
 
+        /// <summary>Sets the specified values for the circle</summary>
+        /// <param name="colour">The colour.</param>
+        /// <param name="list">The list of paramaters for the circle</param>
         public override void set(Color colour, params int[] list)
         {
             base.set(colour, list[0], list[1]);

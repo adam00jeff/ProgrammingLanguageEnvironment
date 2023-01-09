@@ -13,7 +13,15 @@ namespace ProgrammingLanguageEnvironment
     /// </summary>
     public class Line : Shape
     {
-        public int tox, toy; // ending position of the line
+        /// <summary>The destination value of the x/y axis</summary>
+        public int tox, toy;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Line"/> class.
+        /// </summary>
+        public Line () : base()
+        {
+
+        } 
         /// <summary>
         /// constructor for lines
         /// </summary>
@@ -23,16 +31,16 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="tox">ending x axis position</param>
         /// <param name="toy">ending y axis position</param>
         /// 
-        public Line () : base()
-        {
-
-        }
         public Line(Color colour, int x, int y, int tox,int toy) : base(colour, x, y)
         {
             this.tox = tox;
             this.toy = toy;
         }
-
+        /// <summary>
+        /// Sets the specified values of the line.
+        /// </summary>
+        /// <param name="colour">The colour.</param>
+        /// <param name="list">The list.</param>
         public override void set(Color colour, params int[] list)
         {
             base.set(colour, list[0], list[1]);

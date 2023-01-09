@@ -8,12 +8,26 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    /// <summary>
-    /// Class to draw Triangles
-    /// </summary>
+    /// <summary>Class to draw Triangles</summary>
     public class Triangle : Shape
-    { 
-        public int side1, side2, side3; // the paramaters of the triangles
+    {
+        /// <summary>The paramaters of the triangles 3 sides</summary>
+        public int side1, side2, side3; // 
+        /// <summary>Initializes a new instance of the <see cref="Triangle" /> class.</summary>
+        public Triangle () : base()
+        {
+
+        }
+        /// <summary>Sets the values of a triangle.</summary>
+        /// <param name="colour">The colour.</param>
+        /// <param name="list">The list of paramaters to be used to draw a triangle</param>
+        public override void set(Color colour, params int[] list)
+        {
+            base.set(colour, list[0], list[1]);
+            this.side1 = list[2];
+            this.side2 = list[3];
+            this.side3 = list[4];
+        } 
         /// <summary>
         /// Construtor for triangles
         /// </summary>
@@ -23,19 +37,6 @@ namespace ProgrammingLanguageEnvironment
         /// <param name="side1">the value for side 1</param>
         /// <param name="side2">the value for side 2</param>
         /// <param name="side3">the value for side 3</param>
-        
-        public Triangle () : base()
-        {
-
-        }
-
-        public override void set(Color colour, params int[] list)
-        {
-            base.set(colour, list[0], list[1]);
-            this.side1 = list[2];
-            this.side2 = list[3];
-            this.side3 = list[4];
-        }
         public Triangle(Color colour, int x, int y, int side1, int side2, int side3): base(colour, x,y)
         {
             this.side1 = side1;
@@ -49,13 +50,12 @@ namespace ProgrammingLanguageEnvironment
         public override void draw(Graphics g)
         {
             Pen p = new Pen(colour, 2);//new pen of the selected colour
-            Point[] points =            // calculates 3 points to draw between to create triangle
+            Point[] points =           // calculates 3 points to draw between to create triangle
             {
                 new Point(x, y),
                 new Point(x-side1, y+side2),
                 new Point(x+side2, y+side3)
             };
-
             g.DrawPolygon(p, points);   //draws a 3 sided poloygon between the calculated points
         }
         /// <summary>
@@ -71,7 +71,6 @@ namespace ProgrammingLanguageEnvironment
                 new Point(x-side1, y+side2),
                 new Point(x+side2, y+side3)
             };
-
             g.FillPolygon(b, points);//draws a filled 3 sided poloygon between the calculated points
         }
     }
