@@ -21,7 +21,10 @@ namespace ProgrammingLanguageEnvironment
     public partial class MainForm : Form
     {
         /// <summary>The output bitmap</summary>
-        Bitmap OutputBitmap = new Bitmap(640, 480);
+        /// 
+
+
+        Image OutputBitmap = new Bitmap(640, 480);
         /// <summary>The shapes
         /// to be drawn</summary>
         public ArrayList shapes = new ArrayList();

@@ -256,6 +256,7 @@
         </member>
         <member name="F:ProgrammingLanguageEnvironment.MainForm.OutputBitmap">
             <summary>The output bitmap</summary>
+            
         </member>
         <member name="F:ProgrammingLanguageEnvironment.MainForm.shapes">
             <summary>The shapes

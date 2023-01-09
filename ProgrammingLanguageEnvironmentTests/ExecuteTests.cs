@@ -330,5 +330,6 @@ namespace ProgrammingLanguageEnvironment.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual(0, shapes.Count);
         }
+
     }
 }
