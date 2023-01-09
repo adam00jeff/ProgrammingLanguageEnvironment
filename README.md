@@ -30,7 +30,7 @@ Variables can be used as action or drawing paramaters, and calculation and proce
 User input must be formatted correctly or error feedback will be reported and shapes not drawn.
 ### Actions
 Actions are the main commands accepted by the program:
-####Shape Actions
+#### Shape Actions
 Shapes are drawn with their name and a number value for each paramater required.
 Actions are not case-sensitive. Paramaters have varying input conditions defined for each type.
 Paramaters be seperated by comma or spaces.
@@ -40,18 +40,18 @@ Paramaters be seperated by comma or spaces.
 -**Triangle**"triangle 30, 40 ,50" will draw a triangle with sides equal to the 3 input paramaters
 -**Line**"line 100, 100" draws a line from the default position to the defined coordinate position
 -**Drawto**"drawto 50, 50" same as line method, used in varying input styles so both included
-###Program Actions
+### Program Actions
 Program actions call additional functionality to the input. Most require paramaters to be passed in. Loops and If statments must be closed with their appropriate "end" command.
 -**Loop** "loop 50" will execute all lines between "loop 50" and "end loop" a number of times defined by the paramater.
 -**If** "if 12 > 15" will compute the statment and apply the condition to the code block leading up to "end if"
    #####If Syntax
    - 
-###Control Actions
+### Control Actions
 Control actions affect the form or output window without drawing shapes 
 -**Moveto**"moveto 40, 40" moves the starting draw position to the defined coordinate position
 -**Reset**"reset" resets the starting draw position (default is 0,0)
 -**Clear** "clear" clears the output, syntax feedback, input box and program values
-####Colour Controls
+#### Colour Controls
 Changing the program colour affects all shapes drawn after the colour is changed until the program is cleared or "colourreset" is input.
 -**Colour Red** "colourred" sets the draw colour to red
 -**Colour Green** "colourgreen" sets the draw colour to green
