@@ -26,8 +26,6 @@ namespace ProgrammingLanguageEnvironment
        /// <summary>
        /// initalise the form
        /// </summary>
-       /// 
-
 
         public MainForm()
         {

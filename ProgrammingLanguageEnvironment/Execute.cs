@@ -18,78 +18,105 @@ using System.Threading;
 namespace ProgrammingLanguageEnvironment
 {
     /// <summary>
-    /// holds methods for executing actions
-    /// and applying graphics objects to the form
+    ///   <para>
+    /// holds methods for executing actions and applying graphics objects to the form
+    /// </para>
+    ///   <para>calls methods from Parser class on input to define commands to execute </para>
     /// </summary>
     public class Execute
     {
         /// <summary>The program counter, counts numbers of lines in the program</summary>
-        public static int programCounter = 0; // number of lines in the program
-        /// <summary>The factory</summary>
+        public static int programCounter = 0;
+        /// <summary>The factory, used to set and define shapes drawn by the program</summary>
         public static ShapeFactory factory = new ShapeFactory();
-        /// <summary>The shapes</summary>
-        public ArrayList shapes = new ArrayList(); // creates a list to store shape objects
-        /// <summary>The current shape to be drawn</summary>
+        /// <summary>Array to hold the list of shapes to be drawn</summary>
+        public ArrayList shapes = new ArrayList();
+        /// <summary>The current shape to be passed to the array</summary>
         public static Shape s;
-        /// <summary>The x definition</summary>
-        public static int xDef = 0;//default x axis position
-        /// <summary>The y definition</summary>
-        public static int yDef = 0;//default y axis position
-        public static Color colour = Color.Black;//default colour for shapes
-        public static bool fill;//default fill for shapes is unfilled
-        public static int loopCounter = 0; // current iteratioins through loop
-        public static int loopSize = 0; // size of the loop
+        /// <summary>The x-axis default position</summary>
+        public static int xDef = 0;
+        /// <summary>The y-axiis default position</summary>
+        public static int yDef = 0;
+        /// <summary>The current colour shapes are drawn using (default is black)</summary>
+        public static Color colour = Color.Black;
+        /// <summary>Bool to allow selection of drawing shapes filled or unfilled</summary>
+        public static bool fill;
+        /// <summary>The loop counter, counts the number of iterations through the current loop</summary>
+        public static int loopCounter = 0;
+        /// <summary>The total number times to perform the loop</summary>
+        public static int loopSize = 0;
+        /// <summary>The total number of lines within the loop</summary>
         public static int loopLength = 0;
-        public static bool loopFlag = false; // flag to show if program is inside loop
-        public static bool executeLinesFlag = true; // flag to show if we are executing lines (for IF or Method)
+        /// <summary>Flag to show if we are inside a loop or not</summary>
+        public static bool loopFlag = false;
+        /// <summary>Flag to show if lines are being skipped (for IF or Methods)</summary>
+        public static bool executeLinesFlag = true;
+        /// <summary>The number of lines in the input or "program"</summary>
         public static int programLength = 0;
-        public static Thread newThread;
-        public static bool running = false;
-        public static bool threadflag = false;
-        public static bool endThread = false;
+        /// <summary>Gets or sets the list of feedback added to as the program executes.</summary>
+        /// <value>The feedback strings entered from Execute Class</value>
         public static List<string> feedback { get; set; } = new List<string>();
+        /// <summary>The array of set variable names</summary>
         public static string[] variableNames = new string[200];
+        /// <summary>The array of set variable values</summary>
         public static int[] variableValues = new int[200];
+        /// <summary>The variable counter
+        /// for numbers of vars set by the program</summary>
         public static int variableCounter = 0;
+        /// <summary>The first integer found when processing IF statements</summary>
         public static int firstasint = 0;
+        /// <summary>The second integer found when processing IF statments</summary>
         public static int secondasint = 0;
+        /// <summary>Array for holding split elements of the input line being processed</summary>
         public static string[] splitLine;
+        /// <summary>The number of times a loop is to be performed</summary>
         public static int loopParam;
+        /// <summary>String for holding the current line of the program</summary>
+        public static string inputline = string.Empty;
+        /*        public static Thread newThread;
+                public static bool running = false;
+                public static bool threadflag = false;
+                public static bool endThread = false;*/
+
+
+
+
         /// <summary>calls the parser methods on user input
         /// executes the input actions and paramaters to create shapes
         /// adds shapes to the shapes array</summary>
         /// <param name="inputtext">the user input</param>
-        /// <param name="shapes">a list of shapes to be drawn</param>
-        /// <returns>
-        ///   <br />
-        /// </returns>
+        /// <param name="shapes">a list of shapes to be drawn onto</param>
+        /// <returns>an array of shapes to be drawn<br /></returns>
         public static object ExecuteParse(string inputtext, ArrayList shapes)
         {
+            // ensuring key values are reset
             programCounter = 0;
             loopSize = 0;
             loopParam = 0;
             loopLength = 0;
             feedback.Clear();
+            // checking for valid input
             if (inputtext == null || inputtext == String.Empty)
             {
                 Console.WriteLine("no input detected");
                 feedback.Add("No Input Detected");
             }
+            // ensuring program does not get stuck in a loop
             else if (programCounter < 0)
             {
                 Console.WriteLine("programCounter < 0 ");
                 feedback.Add("Error computing program, please clear the program");
             }
+            // begin processing the input
             else
             {
-                string[] lines = inputtext.Split('\n');// ensures the input is split by line
-                string inputline = "";
+                string[] lines = inputtext.Split('\n');// input is split by line
+                inputline = "";// ensures inputline is empty
                 programLength = lines.Count();// sets programLength to size of the input
                 while (programCounter < programLength)// checks position within the program
                 {
-                    try
+                    try//catching errors for bad input
                     {
-
                         inputline = lines[programCounter].Trim();// passed the current line to a variable
                         splitLine = inputline.Split(' ', ','); // split the current line
                     }
@@ -97,12 +124,11 @@ namespace ProgrammingLanguageEnvironment
                     {
                         feedback.Add("Error computing program, please clear the program");
                     }
-
-                    if (inputline == "endif")
+                    if (inputline == "endif")//resumes line execution following IF statments
                     {
                         executeLinesFlag = true;
                     }
-                    if (executeLinesFlag == true) // checks we are executing lines
+                    if (executeLinesFlag == true) // checks we are executing lines, skips the execution if not
                     {
                         if (variableCounter != 0) // if there is a variable set 
                         {
@@ -111,8 +137,6 @@ namespace ProgrammingLanguageEnvironment
                                 string s = splitLine[i].Trim();//trims the line element
                                 var fpos = i;
                                 if (variableNames.Contains(s))//check if the element matches a declared variable name
-                                                              //swapping declared variables for values
-                                                              //need to not calculate, and leave first reference to var, swapping others
                                 {
                                     int first = Array.IndexOf(splitLine, s);// if the first element is a variable it should be unchanged here
                                     if (first != 0 || fpos != 0) // misses the first occurence of the var
@@ -138,7 +162,7 @@ namespace ProgrammingLanguageEnvironment
                                 var secondVal = splits[3];
                                 var theOperator = splits[2];
                                 bool ifCondition = false; // if true, execute the lines following the statment
-                                try
+                                try // attempts to pass values to ints and calculate using operator
                                 {
                                     firstasint = int.Parse(firstVal);
                                     secondasint = int.Parse(secondVal);
