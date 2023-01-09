@@ -105,7 +105,7 @@ namespace ProgrammingLanguageEnvironment
             else if (programCounter < 0)
             {
                 Console.WriteLine("programCounter < 0 ");
-                feedback.Add("Error computing program, please clear the program");
+                feedback.Add("Error computing program, please clear the program, ProgramCounter is less than 0 ("+programCounter+")");
             }
             // begin processing the input
             else
@@ -122,7 +122,7 @@ namespace ProgrammingLanguageEnvironment
                     }
                     catch (Exception)
                     {
-                        feedback.Add("Error computing program, please clear the program");
+                        feedback.Add("Error computing program, please clear the program: ProgramCounter(" +programCounter+") cannot be reduced by ProgramLength ("+programLength+")");
                     }
                     if (inputline == "endif")//resumes line execution following IF statments
                     {
@@ -213,7 +213,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (Exception) // catches bad paramaters for the IF
                                 {
-                                    feedback.Add("IF cannot be calculated with paramaters: " + inputline);
+                                    feedback.Add("IF cannot be calculated with paramaters: " + inputline+ " on line " + (programCounter + 1));
                                 }
                                 if (ifCondition == false) // misses the rest of the IF until it finds the endif
                                 {
@@ -240,7 +240,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 if (loopCounter == (iterations + 1))// feedsback count of loops
                                 {
-                                    feedback.Add("Loop Executed " + (iterations + 1) + " times");
+                                    feedback.Add("Loop Executed " + (iterations + 1) + " times" + " finished on line " + (programCounter + 1));
                                 }
                                 Console.WriteLine("loop executed " + loopCounter + " times");
                                 break;
@@ -278,28 +278,28 @@ namespace ProgrammingLanguageEnvironment
                                                 }
                                                 catch (EvaluateException)// informs user of error
                                                 {
-                                                    feedback.Add("Line " + after[1] + " could not be computed");
+                                                    feedback.Add("Line " + after[1] + " could not be computed on line " + (programCounter + 1));
                                                     Console.WriteLine("This could not be computed :(");
                                                 }
                                             }
                                         }
                                         catch (Exception)// if the var cannot be commputed, but contains operators
                                         {
-                                            feedback.Add("cannot calculate this var " + after[1]);
+                                            feedback.Add("cannot calculate this var " + after[1] + " on line " + (programCounter + 1));
                                             Console.WriteLine("cannot calculate this var");
                                         }
                                         sensiblenumber = int.Parse(computed);
                                         if (sensiblenumber > 5000000)// checks the computed number is withing a reasonable range
                                         {
                                             Console.WriteLine("sorry, var " + varname + " " + sensiblenumber + " is too large to set. Current Value is: " + variableValues[pos]);
-                                            feedback.Add("sorry, var " + varname + " " + sensiblenumber + " is too large to set. Current Value is: " + variableValues[pos]);
+                                            feedback.Add("sorry, var " + varname + " " + sensiblenumber + " is too large to set. Current Value is: " + variableValues[pos] + " on line " + (programCounter + 1));
                                         }
                                         else // variable is computable and an integer
                                         {
                                             variableNames[pos] = varname; // overwrites varname
                                             variableValues[pos] = int.Parse(computed);// overwirtes value
                                             string currentVarName = variableNames[pos];// gets new varname
-                                            feedback.Add("var " + currentVarName + " overwritten: New Value = " + variableValues[pos]);
+                                            feedback.Add("var " + currentVarName + " overwritten: New Value = " + variableValues[pos] + " on line " + (programCounter + 1));
                                             Console.WriteLine("var " + currentVarName + " overwritten: New Value = " + variableValues[pos]);
                                         }
                                     }
@@ -317,14 +317,14 @@ namespace ProgrammingLanguageEnvironment
                                                     }
                                                     catch (EvaluateException) // catch errors and report
                                                     {
-                                                        feedback.Add("cannot compute var " + after[1]);
+                                                        feedback.Add("cannot compute var " + after[1] + " on line " + (programCounter + 1));
                                                         Console.WriteLine("This could not be computed :(");
                                                     }
                                                 }
                                             }
                                             catch (Exception)
                                             {
-                                                feedback.Add("cannot compute var " + after[1]);
+                                                feedback.Add("cannot compute var " + after[1]+ " on line " + (programCounter + 1));
                                                 Console.WriteLine("cannot calculate this var");
                                             }
                                             variableNames[variableCounter] = varname; // if successful, pass new variable name 
@@ -341,7 +341,7 @@ namespace ProgrammingLanguageEnvironment
                                                 }
                                                 catch (Exception) // report failing to set var
                                                 {
-                                                    feedback.Add("cannot define parameter for" + varname);
+                                                    feedback.Add("cannot define parameter for " + varname+" on line " + (programCounter + 1));
                                                     Console.WriteLine("cannot define this paramater");
                                                 }
 
@@ -351,7 +351,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (Exception) // catch anything that drops through all 
                                 {
-                                    feedback.Add("incorrect parameters for var");
+                                    feedback.Add("incorrect parameters for var on line " + (programCounter + 1));
                                     Console.WriteLine("incorrect paramaters for var");
                                 }
                                 break;
@@ -364,7 +364,7 @@ namespace ProgrammingLanguageEnvironment
                                 Console.WriteLine("fillon" + fill);
                                 break;
                             case Action.None://reports back an empty command
-                                Console.WriteLine("incorrect paramaters for command -> action: none"); // seems to report incorrectly when using vars
+                                Console.WriteLine("incorrect paramaters for command -> action on line " + (programCounter + 1)); // seems to report incorrectly when using vars
                                 feedback.Add("incorrect paramaters for command -> action: none");
                                 break;
                             case Action.Colourred://changes colour to red
@@ -397,7 +397,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (IndexOutOfRangeException)//catches incorrect paramaters
                                 {
-                                    feedback.Add("incorrect paramaters for moveto");
+                                    feedback.Add("incorrect paramaters for moveto on line " + (programCounter + 1));
                                     Console.WriteLine("incorrect paramaters for moveto");
                                 }
                                 break;
@@ -413,7 +413,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (IndexOutOfRangeException)//catches incorrect paramaters
                                 {
-                                    feedback.Add("incorrect paramaters for drawto");
+                                    feedback.Add("incorrect paramaters for drawto on line " + (programCounter + 1));
                                     Console.WriteLine("incorrect paramaters for drawto");
                                 }
                                 break;
@@ -428,7 +428,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (IndexOutOfRangeException)//catches incorrect paramaters
                                 {
-                                    feedback.Add("incorrect partamates for line");
+                                    feedback.Add("incorrect partamates for line on line " + (programCounter + 1));
                                     Console.WriteLine("incorrect partamates for line");
                                 }
                                 break;
@@ -445,14 +445,14 @@ namespace ProgrammingLanguageEnvironment
                                     }
                                     catch (Exception)
                                     {
-                                        feedback.Add("incorrect paramaters for Square");
+                                        feedback.Add("incorrect paramaters for Square on line " + (programCounter + 1));
                                         Console.WriteLine("incorrect paramaters for Square");
                                     }
 
                                 }
                                 else
                                 {
-                                    feedback.Add("no paramaters found for " + action + " using the variable");
+                                    feedback.Add("no paramaters found for " + action + " using the variable on line " + (programCounter + 1));
                                     Console.WriteLine("no paramaters found");
                                 }
                                 break;
@@ -466,7 +466,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (IndexOutOfRangeException)//catches incorrect paramaters
                                 {
-                                    feedback.Add("incorrect paramaters for Rectangle");
+                                    feedback.Add("incorrect paramaters for Rectangle on line " + (programCounter + 1));
                                     Console.WriteLine("incorrect paramaters for Rectangle");
                                 }
                                 break;
@@ -480,7 +480,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (IndexOutOfRangeException)//catches incorrect paramaters
                                 {
-                                    feedback.Add("incorrect paramaters for Rectangle");
+                                    feedback.Add("incorrect paramaters for Rectangle on line " + (programCounter + 1));
                                     Console.WriteLine("incorrect paramaters for Rectangle");
                                 }
                                 break;
@@ -494,7 +494,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (IndexOutOfRangeException)//catches incorrect paramaters
                                 {
-                                    feedback.Add("incorrect paramaters for circle");
+                                    feedback.Add("incorrect paramaters for circle on line " + (programCounter + 1));
                                     Console.WriteLine("incorrect paramaters for circle");
                                 }
                                 break;
@@ -508,7 +508,7 @@ namespace ProgrammingLanguageEnvironment
                                 }
                                 catch (IndexOutOfRangeException)//catches incorrect paramaters
                                 {
-                                    feedback.Add("incorrect paramaters for triangle");
+                                    feedback.Add("incorrect paramaters for triangle on line "+(programCounter+1));
                                     Console.WriteLine("incorrect paramaters for triangle");
                                 }
                                 break;

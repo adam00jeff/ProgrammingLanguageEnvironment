@@ -7,19 +7,23 @@ using System.Threading.Tasks;
 
 namespace ProgrammingLanguageEnvironment
 {
-    /// <summary>
-    /// Abstract class to establish paramaters for shapes
-    /// </summary>
-        public abstract class Shape
+    /// <summary>Abstract class to establish paramaters for shapes</summary>
+    public abstract class Shape
         {
-        public Color colour; //the colour of the shape to be drawn
-        public int x, y; // values to be used to draw the shape
-
+        /// <summary>The colour
+        /// of the shape to be drawn</summary>
+        public Color colour;
+        /// <summary>
+        /// The values to be used to draw the shape
+        /// </summary>
+        public int x, y;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Shape"/> class.
+        /// </summary>
         public Shape()
         {
 
         }
-
         /// <summary>
         /// shape method to set the values of a shape
         /// </summary>
@@ -33,15 +37,18 @@ namespace ProgrammingLanguageEnvironment
             this.y = y; // the y position
 
         }
-
+        /// <summary>
+        /// Sets the specified values for the shape.
+        /// </summary>
+        /// <param name="colour">The colour.</param>
+        /// <param name="list">The list.</param>
         public virtual void set(Color colour, params int[] list)
         {
             this.colour = colour;
             this.x = list[0];
             this.y = list[1];
         }
-
-        /// <summary>
+                /// <summary>
         /// method for adding shapes to a graphics object
         /// </summary>
         /// <param name="g">the stored graphics to be output</param>
@@ -58,11 +65,6 @@ namespace ProgrammingLanguageEnvironment
         public override string ToString()
         {
             return base.ToString() + "     " + this.x + " , " + this.y + " : " + this.colour;
-
         }
-
-
-
-
     }
 }

@@ -10,10 +10,86 @@
             Actions are exectuted in the Execute class
             </summary>
         </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Circle">
+            <summary>The action for drawing circles</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Square">
+            <summary>The action for drawing squares</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Rectangle">
+            <summary>The action for drawing rectangles</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Rect">
+            <summary>The action for drawing rectangles</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Triangle">
+            <summary>The action for drawing triangles</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Line">
+            <summary>The action for drawing lines</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Moveto">
+            <summary>The action for moving the drawing position</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Drawto">
+            <summary>The action for drawing a line from the drawing position to another</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Clear">
+            <summary>The action for clearing the bitmap and the program</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Reset">
+            <summary>The action for resetting the drawing position to default values (0,0)</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Colourred">
+            <summary>The action for selecting the colour red</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Colourredgreen">
+            <summary>The action for selecting the colour flashing between red and green</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Colourgreen">
+            <summary>The action for selecting the colour green</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Colourblue">
+            <summary>The action for selecting the colour blue</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Colourreset">
+            <summary>The action for selecting the default colour black</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Fillon">
+            <summary>The action for selecting the drawn shapes to be filled</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Filloff">
+            <summary>The action for selecting the drawn shapes to be unfilled</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.While">
+            <summary>The action for selecting a while loop</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Loop">
+            <summary>The action for selecting a regular loop</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Endloop">
+            <summary>The action for ending a loop</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.If">
+            <summary>The action for selecting an IF statement</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Endif">
+            <summary>The action for ending an IF statement</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.Var">
+            <summary>The action for setting a variable</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Action.None">
+            <summary>The action placeholder for an action not being set</summary>
+        </member>
         <member name="T:ProgrammingLanguageEnvironment.Circle">
             <summary>
             Class to draw Circles
             </summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Circle.radius">
+            <summary>The radius
+            value</summary>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.Circle.#ctor">
             <summary>
@@ -28,6 +104,11 @@
             <param name="x">the x axis posiition</param>
             <param name="y">the y axis position</param>
             <param name="radius">the radius of the circle</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Circle.set(System.Drawing.Color,System.Int32[])">
+            <summary>Sets the specified values for the circle</summary>
+            <param name="colour">The colour.</param>
+            <param name="list">The list of paramaters for the circle</param>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.Circle.draw(System.Drawing.Graphics)">
             <summary>
@@ -49,11 +130,31 @@
             </summary>
             <returns>ToString()+radius</returns>
         </member>
-        <member name="P:ProgrammingLanguageEnvironment.Command.Action">
+        <member name="T:ProgrammingLanguageEnvironment.ShapeFactory">
+            <summary>
+            factory class for producting shape objects
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.ShapeFactory.getShape(System.String)">
+            <summary>
+            Gets the shape.
+            </summary>
+            <param name="shapeType">Type of the shape.</param>
+            <returns>the requested type of shape</returns>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Command">
             <summary>
             Commad class allows creation of commands
-            
+            commands are passed from parser classes to execute class to draw to shapes array
             </summary>
+        </member>
+        <member name="P:ProgrammingLanguageEnvironment.Command.Action">
+            <summary>Gets or sets the action.</summary>
+            <value>The requested action from Action Class</value>
+        </member>
+        <member name="P:ProgrammingLanguageEnvironment.Command.Paramaters">
+            <summary>Gets or sets the paramaters for a given action</summary>
+            <value>The paramaters input for the action</value>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.Command.#ctor(ProgrammingLanguageEnvironment.Action,System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -65,25 +166,108 @@
         </member>
         <member name="T:ProgrammingLanguageEnvironment.Execute">
             <summary>
-            holds methods for executing actions
-            and applying graphics objects to the form
+              <para>
+            holds methods for executing actions and applying graphics objects to the form
+            </para>
+              <para>calls methods from Parser class on input to define commands to execute </para>
             </summary>
         </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.programCounter">
+            <summary>The program counter, counts numbers of lines in the program</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.factory">
+            <summary>The factory, used to set and define shapes drawn by the program</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.shapes">
+            <summary>Array to hold the list of shapes to be drawn</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.s">
+            <summary>The current shape to be passed to the array</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.xDef">
+            <summary>The x-axis default position</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.yDef">
+            <summary>The y-axiis default position</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.colour">
+            <summary>The current colour shapes are drawn using (default is black)</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.fill">
+            <summary>Bool to allow selection of drawing shapes filled or unfilled</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.loopCounter">
+            <summary>The loop counter, counts the number of iterations through the current loop</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.loopSize">
+            <summary>The total number times to perform the loop</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.loopLength">
+            <summary>The total number of lines within the loop</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.loopFlag">
+            <summary>Flag to show if we are inside a loop or not</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.executeLinesFlag">
+            <summary>Flag to show if lines are being skipped (for IF or Methods)</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.programLength">
+            <summary>The number of lines in the input or "program"</summary>
+        </member>
+        <member name="P:ProgrammingLanguageEnvironment.Execute.feedback">
+            <summary>Gets or sets the list of feedback added to as the program executes.</summary>
+            <value>The feedback strings entered from Execute Class</value>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.variableNames">
+            <summary>The array of set variable names</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.variableValues">
+            <summary>The array of set variable values</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.variableCounter">
+            <summary>The variable counter
+            for numbers of vars set by the program</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.firstasint">
+            <summary>The first integer found when processing IF statements</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.secondasint">
+            <summary>The second integer found when processing IF statments</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.splitLine">
+            <summary>Array for holding split elements of the input line being processed</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.loopParam">
+            <summary>The number of times a loop is to be performed</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Execute.inputline">
+            <summary>String for holding the current line of the program</summary>
+        </member>
         <member name="M:ProgrammingLanguageEnvironment.Execute.ExecuteParse(System.String,System.Collections.ArrayList)">
-            <summary>
-            calls the parser methods on user input
+            <summary>calls the parser methods on user input
             executes the input actions and paramaters to create shapes
-            adds shapes to the shapes array
-            </summary>
+            adds shapes to the shapes array</summary>
             <param name="inputtext">the user input</param>
-            <param name="shapes">a list of shapes to be drawn</param>
-            <returns></returns>
+            <param name="shapes">a list of shapes to be drawn onto</param>
+            <returns>an array of shapes to be drawn<br /></returns>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.MainForm">
+            <summary>Holds the main elements for the form</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.MainForm.OutputBitmap">
+            <summary>The output bitmap</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.MainForm.shapes">
+            <summary>The shapes
+            to be drawn</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.MainForm.feedback">
+            <summary>The array of feedback strings to be output</summary>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.MainForm.#ctor">
             <summary>
             initalise the form
             </summary>
-            
         </member>
         <member name="M:ProgrammingLanguageEnvironment.MainForm.CommandLine_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
             <summary>
@@ -130,6 +314,41 @@
             <param name="sender">the button</param>
             <param name="e">the click</param>
         </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.Form1_Load(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Load event of the Form1 control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.pictureBox1_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Click event of the pictureBox1 control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.CommandLine_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the TextChanged event of the CommandLine control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.ProgramWindow_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the TextChanged event of the ProgramWindow control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.feedbackBox_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the TextChanged event of the feedbackBox control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
         <member name="F:ProgrammingLanguageEnvironment.MainForm.components">
             <summary>
             Required designer variable.
@@ -153,7 +372,18 @@
             line method called from DrawTo
             </summary>
         </member>
+        <member name="F:ProgrammingLanguageEnvironment.Line.tox">
+            <summary>The destination value of the x/y axis</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Line.toy">
+            <summary>The destination value of the x/y axis</summary>
+        </member>
         <member name="M:ProgrammingLanguageEnvironment.Line.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProgrammingLanguageEnvironment.Line"/> class.
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Line.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             constructor for lines
             </summary>
@@ -163,6 +393,13 @@
             <param name="tox">ending x axis position</param>
             <param name="toy">ending y axis position</param>
             
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Line.set(System.Drawing.Color,System.Int32[])">
+            <summary>
+            Sets the specified values of the line.
+            </summary>
+            <param name="colour">The colour.</param>
+            <param name="list">The list.</param>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.Line.draw(System.Drawing.Graphics)">
             <summary>
@@ -219,9 +456,76 @@
             The main entry point for the application.
             </summary>
         </member>
-        <member name="T:ProgrammingLanguageEnvironment.Shape">
+        <member name="T:ProgrammingLanguageEnvironment.Rectangle">
             <summary>
-            Abstract class to establish paramaters for shapes
+            Class for drawing rectangles (squares are draw as rectangles with matched paramaters)
+            </summary>
+            <seealso cref="T:ProgrammingLanguageEnvironment.Shape" />
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Rectangle.width">
+            <summary>
+            The width and height variables for rectangles
+            </summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Rectangle.height">
+            <summary>
+            The width and height variables for rectangles
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Rectangle.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProgrammingLanguageEnvironment.Rectangle"/> class.
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Rectangle.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProgrammingLanguageEnvironment.Rectangle"/> class.
+            </summary>
+            <param name="colour">The colour.</param>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Rectangle.set(System.Drawing.Color,System.Int32[])">
+            <summary>
+            Sets the specified variables of the shape.
+            </summary>
+            <param name="colour">The colour.</param>
+            <param name="list">The list.</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Rectangle.draw(System.Drawing.Graphics)">
+            <summary>
+            method for adding shapes to a graphics object
+            </summary>
+            <param name="g">the stored graphics to be output</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Rectangle.drawfilled(System.Drawing.Graphics)">
+            <summary>
+            method for adding filled shapes to a graphics object
+            </summary>
+            <param name="g">the filled shapes to be graphics object</param>
+        </member>
+        <member name="T:ProgrammingLanguageEnvironment.Shape">
+            <summary>Abstract class to establish paramaters for shapes</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Shape.colour">
+            <summary>The colour
+            of the shape to be drawn</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Shape.x">
+            <summary>
+            The values to be used to draw the shape
+            </summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Shape.y">
+            <summary>
+            The values to be used to draw the shape
+            </summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Shape.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProgrammingLanguageEnvironment.Shape"/> class.
             </summary>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.Shape.#ctor(System.Drawing.Color,System.Int32,System.Int32)">
@@ -231,6 +535,13 @@
             <param name="colour">the colour of the shape</param>
             <param name="x">the x axis position to be drawn from</param>
             <param name="y">the y axis position to be drawn from</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Shape.set(System.Drawing.Color,System.Int32[])">
+            <summary>
+            Sets the specified values for the shape.
+            </summary>
+            <param name="colour">The colour.</param>
+            <param name="list">The list.</param>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.Shape.draw(System.Drawing.Graphics)">
             <summary>
@@ -251,11 +562,26 @@
             <returns>the string requested + the coordinated and colour</returns>
         </member>
         <member name="T:ProgrammingLanguageEnvironment.Triangle">
-            <summary>
-            Class to draw Triangles
-            </summary>
+            <summary>Class to draw Triangles</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Triangle.side1">
+            <summary>The paramaters of the triangles 3 sides</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Triangle.side2">
+            <summary>The paramaters of the triangles 3 sides</summary>
+        </member>
+        <member name="F:ProgrammingLanguageEnvironment.Triangle.side3">
+            <summary>The paramaters of the triangles 3 sides</summary>
         </member>
         <member name="M:ProgrammingLanguageEnvironment.Triangle.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:ProgrammingLanguageEnvironment.Triangle" /> class.</summary>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Triangle.set(System.Drawing.Color,System.Int32[])">
+            <summary>Sets the values of a triangle.</summary>
+            <param name="colour">The colour.</param>
+            <param name="list">The list of paramaters to be used to draw a triangle</param>
+        </member>
+        <member name="M:ProgrammingLanguageEnvironment.Triangle.#ctor(System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Construtor for triangles
             </summary>
