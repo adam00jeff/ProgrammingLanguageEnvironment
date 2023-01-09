@@ -44,7 +44,7 @@ Paramaters be seperated by comma or spaces.
 Program actions call additional functionality to the input. Most require paramaters to be passed in. Loops and If statments must be closed with their appropriate "end" command.
 -**Loop** "loop 50" will execute all lines between "loop 50" and "end loop" a number of times defined by the paramater.
 -**If** "if 12 > 15" will compute the statment and apply the condition to the code block leading up to "end if"
-   #####If Syntax
+   ##### If Syntax
    - 
 ### Control Actions
 Control actions affect the form or output window without drawing shapes 
