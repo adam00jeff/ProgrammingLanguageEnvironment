@@ -214,6 +214,18 @@ namespace ProgrammingLanguageEnvironment
             }
         }
         /// <summary>
+        /// Handles the 2 event of the syntax button control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+
+            var parse = Execute.ExecuteParse(ProgramWindow.Text, shapes);//executes program window
+            shapes.Clear();
+            Refresh(); // update the outputwindow
+        }
+        /// <summary>
         /// Handles the Load event of the Form1 control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -258,7 +270,9 @@ namespace ProgrammingLanguageEnvironment
         {
 
         }
-    }
+
+    }     
+        
 }
 
 /*            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();

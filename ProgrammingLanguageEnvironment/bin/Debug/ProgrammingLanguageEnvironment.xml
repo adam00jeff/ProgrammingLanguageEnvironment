@@ -314,6 +314,13 @@
             <param name="sender">the button</param>
             <param name="e">the click</param>
         </member>
+        <member name="M:ProgrammingLanguageEnvironment.MainForm.button1_Click_2(System.Object,System.EventArgs)">
+            <summary>
+            Handles the 2 event of the syntax button control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
         <member name="M:ProgrammingLanguageEnvironment.MainForm.Form1_Load(System.Object,System.EventArgs)">
             <summary>
             Handles the Load event of the Form1 control.

@@ -364,8 +364,8 @@ namespace ProgrammingLanguageEnvironment
                                 Console.WriteLine("fillon" + fill);
                                 break;
                             case Action.None://reports back an empty command
-                                Console.WriteLine("incorrect paramaters for command -> action on line " + (programCounter + 1)); // seems to report incorrectly when using vars
-                                feedback.Add("incorrect paramaters for command -> action: none");
+                                Console.WriteLine("incorrect paramaters for command -> action"); // seems to report incorrectly when using vars
+                                feedback.Add("incorrect paramaters for command -> action on line " + (programCounter + 1));
                                 break;
                             case Action.Colourred://changes colour to red
                                 colour = Color.Red;

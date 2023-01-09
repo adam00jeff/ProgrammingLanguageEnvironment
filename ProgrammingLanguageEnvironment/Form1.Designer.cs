@@ -51,6 +51,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.OutputWindow)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,9 +67,9 @@
             // runButton
             // 
             this.runButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.runButton.Location = new System.Drawing.Point(21, 594);
+            this.runButton.Location = new System.Drawing.Point(21, 595);
             this.runButton.Name = "runButton";
-            this.runButton.Size = new System.Drawing.Size(113, 50);
+            this.runButton.Size = new System.Drawing.Size(113, 49);
             this.runButton.TabIndex = 1;
             this.runButton.Text = "Run ";
             this.runButton.UseVisualStyleBackColor = true;
@@ -97,7 +98,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(177, 594);
+            this.clearButton.Location = new System.Drawing.Point(143, 595);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(111, 49);
             this.clearButton.TabIndex = 4;
@@ -107,7 +108,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(328, 595);
+            this.saveButton.Location = new System.Drawing.Point(378, 595);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 5;
@@ -117,7 +118,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(328, 621);
+            this.loadButton.Location = new System.Drawing.Point(378, 621);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(75, 23);
             this.loadButton.TabIndex = 6;
@@ -269,11 +270,22 @@
             this.label15.TabIndex = 23;
             this.label15.Text = "500,0";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(261, 595);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 49);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Syntax Check";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1087, 666);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -332,6 +344,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button1;
     }
 }
 
